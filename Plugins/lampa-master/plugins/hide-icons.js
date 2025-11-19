@@ -1,0 +1,1 @@
+"use strict";(function(){var a=function(){[".open--premium",".open--feed",".open--settings",".open--profile"].forEach(function(a){return $(a).hide()}),[".head__split"].forEach(function(a){document.querySelector(a).style.width=0,document.querySelector(a).style.margin="0 0.7em"})};window.appready?a():Lampa.Listener.follow("app",function(b){"ready"===b.type&&a()})})();

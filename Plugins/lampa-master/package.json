@@ -1,0 +1,46 @@
+{
+  "name": "lampa",
+  "version": "1.0.0",
+  "description": "Lampa Plugins",
+  "maintainers": [
+    "Kirill Molchanov <k03.mad@gmail.com"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k03mad/lampa.git"
+  },
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "browserslist": [
+    "chrome > 1"
+  ],
+  "babel": {
+    "comments": false,
+    "presets": [
+      "@babel/preset-env",
+      "minify"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "7.24.1",
+    "@babel/core": "7.24.4",
+    "@babel/preset-env": "7.24.4",
+    "@k03mad/eslint-config": "21.0.0",
+    "babel-preset-minify": "0.5.2",
+    "eslint": "8.57.0",
+    "husky": "9.0.11"
+  },
+  "scripts": {
+    "lint": "npm run lint:eslint",
+    "lint:eslint": "eslint ./ --cache",
+    "clean": "rm -rf ./node_modules .eslintcache || true",
+    "setup": "npm run clean && npm run setup:pnpm",
+    "setup:pnpm": "npm i pnpm -g && pnpm i",
+    "build": "rm -rf plugins && babel src -d plugins",
+    "prepare": "husky || true"
+  }
+}
