@@ -1,0 +1,1262 @@
+[
+  {
+    "rawName": "Свободные люди / Sovereign / 2025 / ПМ / 4K, HEVC, HDR10+ / WEB-DL (2160p)",
+    "russianTitle": "Свободные люди",
+    "russianTitleAlt": null,
+    "originalTitle": "Sovereign",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-15T01:21:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/oGMqaaeMuZJx5xJDyCncgQFJUKR.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 53,
+            "name": "триллер"
+          }
+        ],
+        "homepage": "",
+        "id": 1130022,
+        "imdb_id": "tt26843513",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Sovereign",
+        "overview": "Отец-одиночка Джерри, испытывающий жизненные трудности, приобщает своего сына Джо к идеологии антиправительственного движения суверенных граждан и убеждает его, что законы и правила - лишь иллюзия, а свободу можно заполучить только самостоятельно. Постепенно взгляды Джерри полностью поглощают их обоих, и это приводит к противостоянию с местным начальником полиции, который защищает отвергаемые ими нормы.",
+        "popularity": 12.7916,
+        "poster_path": "/cSeu3t5wO7VlVmopyEEVpb8e858.jpg",
+        "production_companies": [
+          {
+            "id": 169642,
+            "logo_path": "/pZegqrKGPMaZCaoUEfFDT3fW0Om.png",
+            "name": "All Night Diner",
+            "origin_country": "US"
+          },
+          {
+            "id": 62709,
+            "logo_path": null,
+            "name": "Concourse Media",
+            "origin_country": "US"
+          },
+          {
+            "id": 112520,
+            "logo_path": "/qBGcdh94RUbWtsdexjFiJViQg4.png",
+            "name": "Rockhill Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 243339,
+            "logo_path": null,
+            "name": "Valecroft",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-07-11",
+        "revenue": 0,
+        "runtime": 100,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Свободные люди",
+        "video": false,
+        "vote_average": 6.667,
+        "vote_count": 3
+      }
+    }
+  },
+  {
+    "rawName": "Нечестивая троица / The Unholy Trinity / 2024 / ПМ, СТ / 4K, HEVC, HDR, Dolby Vision P8 / WEB-DL (2160p)",
+    "russianTitle": "Нечестивая троица",
+    "russianTitleAlt": null,
+    "originalTitle": "The Unholy Trinity",
+    "originalTitleAlt": null,
+    "year": 2024,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-14T15:49:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/hyc9gq0Oq5THKak7tB7oqC2Rd6z.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 37,
+            "name": "вестерн"
+          },
+          {
+            "id": 12,
+            "name": "приключения"
+          },
+          {
+            "id": 80,
+            "name": "криминал"
+          }
+        ],
+        "homepage": "",
+        "id": 1195518,
+        "imdb_id": "tt6300910",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "The Unholy Trinity",
+        "overview": "Монтана, 1870-е. Сын казнённого преступника приезжает в городок Тринити, где становится заложником и участником конфликта между новым шерифом Гэбриелом Доу и загадочным местным жителем.",
+        "popularity": 48.6632,
+        "poster_path": "/vrJcRSPSOPLPXN1kEJaGIFQraTL.jpg",
+        "production_companies": [
+          {
+            "id": 199833,
+            "logo_path": "/jBvzUqNAKQL9KUiAXPHJ01fREGN.png",
+            "name": "Jaggi Entertainment",
+            "origin_country": "AU"
+          },
+          {
+            "id": 25635,
+            "logo_path": null,
+            "name": "High Five Films",
+            "origin_country": ""
+          },
+          {
+            "id": 76992,
+            "logo_path": "/mw3j3P8SUQJKLSJQrLKuSDO9Xr6.png",
+            "name": "Saban Films",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          },
+          {
+            "iso_3166_1": "AU",
+            "name": "Australia"
+          }
+        ],
+        "release_date": "2025-06-13",
+        "revenue": 0,
+        "runtime": 93,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Нечестивая троица",
+        "video": false,
+        "vote_average": 7.125,
+        "vote_count": 8
+      }
+    }
+  },
+  {
+    "rawName": "Каратэ-пацан: Легенды / Karate Kid: Legends / 2025 / ДБ, СТ / 4K, HEVC, HDR, Dolby Vision P8 / WEB-DL (2160p)",
+    "russianTitle": "Каратэ-пацан: Легенды",
+    "russianTitleAlt": null,
+    "originalTitle": "Karate Kid: Legends",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-14T05:23:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/lAnkMSDISzMYLWICS7m16rSTUHD.jpg",
+        "belongs_to_collection": {
+          "id": 8580,
+          "name": "Парень-каратист (Коллекция)",
+          "poster_path": "/7tuwH4tZZy4BHe7mivXmmSYg3kx.jpg",
+          "backdrop_path": "/vG9eCvIfSoucQZ9EFEOrSXhesws.jpg"
+        },
+        "budget": 45000000,
+        "genres": [
+          {
+            "id": 28,
+            "name": "боевик"
+          },
+          {
+            "id": 12,
+            "name": "приключения"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "",
+        "id": 1011477,
+        "imdb_id": "tt1674782",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Karate Kid: Legends",
+        "overview": "Молодой и талантливый каратист Ли Фонг из-за случившейся трагедии переезжает из Китая в США вместе с матерью. Ли нелегко расстаться с прошлой жизнью и адаптироваться к новой, требующей от него постоянной борьбы. Чтобы помочь новому другу, Ли записывается на соревнование по каратэ. Но понимает, что для выигрыша его умений недостаточно. Тогда его наставник мистер Хан обращается за помощью к Дэниелу Ларуссо, легендарному мастеру каратэ.",
+        "popularity": 48.7173,
+        "poster_path": "/qzJ3iolWhBT7HeFR2nmaeURnROq.jpg",
+        "production_companies": [
+          {
+            "id": 5,
+            "logo_path": "/71BqEFAF4V3qjjMPCpLuyJFB9A.png",
+            "name": "Columbia Pictures",
+            "origin_country": "US"
+          },
+          {
+            "id": 5219,
+            "logo_path": null,
+            "name": "Sunswept Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 22213,
+            "logo_path": "/qx9K6bFWJupwde0xQDwOvXkOaL8.png",
+            "name": "TSG Entertainment",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-05-08",
+        "revenue": 102939414,
+        "runtime": 94,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "«Две Ветки. Одно Дерево»",
+        "title": "Каратэ-пацан: Легенды",
+        "video": false,
+        "vote_average": 6.863,
+        "vote_count": 172
+      }
+    }
+  },
+  {
+    "rawName": "Верни её из мёртвых / Bring Her Back / 2025 / ДБ, ПМ,  СТ / 4K, HEVC, HDR10+ / WEB-DL (2160p)",
+    "russianTitle": "Верни её из мёртвых",
+    "russianTitleAlt": null,
+    "originalTitle": "Bring Her Back",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-14T04:03:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/lKFWRdkrWJLmY2eMd9WEFmXGphg.jpg",
+        "belongs_to_collection": null,
+        "budget": 15000000,
+        "genres": [
+          {
+            "id": 27,
+            "name": "ужасы"
+          }
+        ],
+        "homepage": "",
+        "id": 1151031,
+        "imdb_id": "tt32246771",
+        "origin_country": [
+          "AU"
+        ],
+        "original_language": "en",
+        "original_title": "Bring Her Back",
+        "overview": "Недавно осиротевшие брат и сестра находят новую семью в лице заботливой женщины. Однако, переехав в её уединённый дом, они начинают подозревать, что за любовью их приёмной матери скрывается нечто зловещее…",
+        "popularity": 10.1725,
+        "poster_path": "/8UK84AWmXEhBvq3lLPB3rGzrg8U.jpg",
+        "production_companies": [
+          {
+            "id": 32301,
+            "logo_path": "/5VG9QRUCSDez359VNqcTmOLOH3C.png",
+            "name": "Causeway Films",
+            "origin_country": "AU"
+          },
+          {
+            "id": 234094,
+            "logo_path": null,
+            "name": "Blue Bear",
+            "origin_country": "AU"
+          },
+          {
+            "id": 150239,
+            "logo_path": "/i2Gi8eJ8NH1MwpV0OJydTL0Eaui.png",
+            "name": "Salmira Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 41077,
+            "logo_path": "/1ZXsGaFPgrgS6ZZGS37AqD5uU12.png",
+            "name": "A24",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "AU",
+            "name": "Australia"
+          },
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-05-28",
+        "revenue": 22626466,
+        "runtime": 99,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          },
+          {
+            "english_name": "Russian",
+            "iso_639_1": "ru",
+            "name": "Pусский"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Верни её из мёртвых",
+        "video": false,
+        "vote_average": 6.877,
+        "vote_count": 53
+      }
+    }
+  },
+  {
+    "rawName": "Боб Дилан: Никому не известный / A Complete Unknown / 2024 / 2 x ДБ, СТ / 4K, HEVC, HDR, Dolby Vision P8 / WEB-DL (2160p)",
+    "russianTitle": "Боб Дилан: Никому не известный",
+    "russianTitleAlt": null,
+    "originalTitle": "A Complete Unknown",
+    "originalTitleAlt": null,
+    "year": 2024,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-14T03:00:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/kcCy5tKTe6WepVQ6SQaSewpmoCj.jpg",
+        "belongs_to_collection": null,
+        "budget": 65000000,
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 10402,
+            "name": "музыка"
+          }
+        ],
+        "homepage": "",
+        "id": 661539,
+        "imdb_id": "tt11563598",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "A Complete Unknown",
+        "overview": "1965-ый год. На музыкальном фестивале в Ньюпорте производит фурор выступление молодого Боба Дилана.",
+        "popularity": 8.2575,
+        "poster_path": "/zW0qxb8kvHzGM2oeAgLkytFcUqj.jpg",
+        "production_companies": [
+          {
+            "id": 123328,
+            "logo_path": "/rWle9OfyIp3Icg0sikmboQwCyhI.png",
+            "name": "Veritas Entertainment Group",
+            "origin_country": "US"
+          },
+          {
+            "id": 167684,
+            "logo_path": "/kzQwU2H6woBFti9cqjr9BrVXrst.png",
+            "name": "Range Media Partners",
+            "origin_country": "US"
+          },
+          {
+            "id": 99132,
+            "logo_path": "/oKjgNvaMndJiBmcngrSWPWb8VYO.png",
+            "name": "The Picture Company",
+            "origin_country": "US"
+          },
+          {
+            "id": 138755,
+            "logo_path": null,
+            "name": "Turnpike Films",
+            "origin_country": "US"
+          },
+          {
+            "id": 246289,
+            "logo_path": null,
+            "name": "White Water",
+            "origin_country": "US"
+          },
+          {
+            "id": 127929,
+            "logo_path": "/7DLKyL15ETI9645XSr9JcbMV79c.png",
+            "name": "Searchlight Pictures",
+            "origin_country": "US"
+          },
+          {
+            "id": 22213,
+            "logo_path": "/qx9K6bFWJupwde0xQDwOvXkOaL8.png",
+            "name": "TSG Entertainment",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2024-12-18",
+        "revenue": 138003641,
+        "runtime": 141,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "«Он Бросил Вызов Всем, чтобы Всё Изменить»",
+        "title": "Боб Дилан: Никому Не Известный",
+        "video": false,
+        "vote_average": 7.135,
+        "vote_count": 1108
+      }
+    }
+  },
+  {
+    "rawName": "Балерина (Вселенная Джона Уика: Балерина) / Ballerina / 2025 / ПМ, ЛМ, АП (Есарев), СТ / 4K, HEVC, HDR, Dolby Vision P8 / WEB-DL (2160p)",
+    "russianTitle": "Балерина",
+    "russianTitleAlt": "Вселенная Джона Уика: Балерина",
+    "originalTitle": "Ballerina",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-13T10:57:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/sItIskd5xpiE64bBWYwZintkGf3.jpg",
+        "belongs_to_collection": {
+          "id": 1494663,
+          "name": "Ballerina Collection",
+          "poster_path": "/xzAyYTHqWtLmqtscUr8cZqaP7lu.jpg",
+          "backdrop_path": null
+        },
+        "budget": 90000000,
+        "genres": [
+          {
+            "id": 28,
+            "name": "боевик"
+          },
+          {
+            "id": 53,
+            "name": "триллер"
+          },
+          {
+            "id": 80,
+            "name": "криминал"
+          }
+        ],
+        "homepage": "",
+        "id": 541671,
+        "imdb_id": "tt7181546",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Ballerina",
+        "overview": "Опытная наёмница и по совместительству профессиональная балерина охотится на убийц своей семьи.",
+        "popularity": 85.7095,
+        "poster_path": "/oKD6ggXEN1WGPPDiVAuOfdDLBNv.jpg",
+        "production_companies": [
+          {
+            "id": 3528,
+            "logo_path": "/cCzCClIzIh81Fa79hpW5nXoUsHK.png",
+            "name": "Thunder Road",
+            "origin_country": "US"
+          },
+          {
+            "id": 23008,
+            "logo_path": "/5SarYupipdiejsEqUkwu1SpYfru.png",
+            "name": "87Eleven",
+            "origin_country": "US"
+          },
+          {
+            "id": 1632,
+            "logo_path": "/cisLn1YAUuptXVBa0xjq7ST9cH0.png",
+            "name": "Lionsgate",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-06-04",
+        "revenue": 100818000,
+        "runtime": 89,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "«Месть обрела новое лицо»",
+        "title": "Балерина",
+        "video": false,
+        "vote_average": 7.046,
+        "vote_count": 406
+      }
+    }
+  },
+  {
+    "rawName": "На вершине горы / Mountainhead / 2025 / 4 x ПМ, СТ /  4K, HEVC, HDR10+ / WEB-DL (2160p)",
+    "russianTitle": "На вершине горы",
+    "russianTitleAlt": null,
+    "originalTitle": "Mountainhead",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-13T08:01:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/8LjN496M9Mo0b5M6uvlVObz81bn.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 35,
+            "name": "комедия"
+          }
+        ],
+        "homepage": "",
+        "id": 1417059,
+        "imdb_id": "tt35396529",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Mountainhead",
+        "overview": "Группа друзей-миллиардеров собирается на горнолыжном курорте во время глобального финансового кризиса и им нужно определиться с дальнейшими действиями. Между героями вспыхивают конфликты, когда становится ясно, что их платформы причастны к фейкам, панике и экономическим потрясениям. «Всё началось с нас», — говорит один из них. Постепенно идиллия ретрита превращается в напряженную борьбу за этику и влияние.",
+        "popularity": 8.3416,
+        "poster_path": "/jZKK5mFKWbquxhAGMkRJtNYwk0I.jpg",
+        "production_companies": [
+          {
+            "id": 7429,
+            "logo_path": "/6in9uMqxXEHx5XgYgkeRBpZ4rPw.png",
+            "name": "HBO Films",
+            "origin_country": "US"
+          },
+          {
+            "id": 222466,
+            "logo_path": null,
+            "name": "Hot Seat Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 169639,
+            "logo_path": null,
+            "name": "Project Zeus",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-06-01",
+        "revenue": 0,
+        "runtime": 108,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "«Человечество находится в их руках»",
+        "title": "На вершине горы",
+        "video": false,
+        "vote_average": 5.382,
+        "vote_count": 93
+      }
+    }
+  },
+  {
+    "rawName": "Сёрфер / The Surfer / 2024 / 2 x ПМ, АП (Яроцкий), СТ / 4K, HEVC, HDR, Dolby Vision P7 / Blu-Ray Remux (2160p)",
+    "russianTitle": "Сёрфер",
+    "russianTitleAlt": null,
+    "originalTitle": "The Surfer",
+    "originalTitleAlt": null,
+    "year": 2024,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-13T05:35:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/fSAjCiIaG5J1fDlIhYmNN6Kd5vh.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 53,
+            "name": "триллер"
+          }
+        ],
+        "homepage": "",
+        "id": 1128655,
+        "imdb_id": "tt27813235",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "The Surfer",
+        "overview": "Вернувшись в свой родной город в Австралии, во время прогулки у моря мужчина сталкивается с местной бандой сёрферов. Нахалы унижают его прямо на глазах у сына-подростка, заявляя, что этот пляж, на котором герой провел все свое детство, отныне принадлежит им. Оскорбленный отец понимает, что должен отомстить подонкам и восстановить свою репутацию в глазах сына.",
+        "popularity": 7.1198,
+        "poster_path": "/ovrW4PqMXt1VcB2idJgT7uCeiPX.jpg",
+        "production_companies": [
+          {
+            "id": 7888,
+            "logo_path": "/6HhOnizpDOvKjprTl47tPqvHLvZ.png",
+            "name": "ScreenWest",
+            "origin_country": "AU"
+          },
+          {
+            "id": 831,
+            "logo_path": "/vLENXiYTyITnMDrTKabUXhgTKX2.png",
+            "name": "Saturn Films",
+            "origin_country": "US"
+          },
+          {
+            "id": 15780,
+            "logo_path": "/bdQFj7E5yNsir5pMgacux2SoLGQ.png",
+            "name": "Arenamedia",
+            "origin_country": "AU"
+          },
+          {
+            "id": 111422,
+            "logo_path": "/6H3JNNi6bFy7RAMYcTHbf0uSozR.png",
+            "name": "Lovely Productions",
+            "origin_country": "IE"
+          },
+          {
+            "id": 155758,
+            "logo_path": "/iZi0zd9ijrcWR9zlEUUthG8d600.png",
+            "name": "Tea Shop Productions",
+            "origin_country": "GB"
+          },
+          {
+            "id": 74346,
+            "logo_path": "/1akCJMjyZsiS4v3NTJD5Y0LFZ4R.png",
+            "name": "Stan",
+            "origin_country": "AU"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "AU",
+            "name": "Australia"
+          },
+          {
+            "iso_3166_1": "IE",
+            "name": "Ireland"
+          },
+          {
+            "iso_3166_1": "GB",
+            "name": "United Kingdom"
+          },
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-04-11",
+        "revenue": 0,
+        "runtime": 100,
+        "spoken_languages": [
+          {
+            "english_name": "French",
+            "iso_639_1": "fr",
+            "name": "Français"
+          },
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Сёрфер",
+        "video": false,
+        "vote_average": 6.322,
+        "vote_count": 87
+      }
+    }
+  },
+  {
+    "rawName": "Кирпич / Brick / 2025 / 2 x ПМ, СТ / 4K, HEVC, HDR / WEB-DL (2160p)",
+    "russianTitle": "Кирпич",
+    "russianTitleAlt": null,
+    "originalTitle": "Brick",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-13T04:22:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/apNfldKI3RiaukNwJzr8EjRG7Wc.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 878,
+            "name": "фантастика"
+          },
+          {
+            "id": 53,
+            "name": "триллер"
+          }
+        ],
+        "homepage": "https://www.netflix.com/ru/title/81731553",
+        "id": 1425045,
+        "imdb_id": "tt31806049",
+        "origin_country": [
+          "DE"
+        ],
+        "original_language": "de",
+        "original_title": "Brick",
+        "overview": "Многоквартирный дом Тима и Оливии внезапно оказывается окружен таинственной кирпичной стеной. Чтобы выбраться живыми, им придется найти общий язык с недоверчивыми соседями.",
+        "popularity": 2.3745,
+        "poster_path": "/hPgEmkYgPXCxz98Q189FfrmdBVX.jpg",
+        "production_companies": [
+          {
+            "id": 129014,
+            "logo_path": "/prEkjaZmlInntYbwTCJvgpAzd8E.png",
+            "name": "Leonine Studios",
+            "origin_country": "DE"
+          },
+          {
+            "id": 218757,
+            "logo_path": "/gtaS9qruBQ9nXuMCjzzKzOGjeT8.png",
+            "name": "Nocturna Productions",
+            "origin_country": "DE"
+          },
+          {
+            "id": 40788,
+            "logo_path": "/ydsYNksXNi0NzkCDSjnpsPRUCGI.png",
+            "name": "Wiedemann & Berg Television",
+            "origin_country": "DE"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "DE",
+            "name": "Germany"
+          }
+        ],
+        "release_date": "2025-07-09",
+        "revenue": 0,
+        "runtime": 99,
+        "spoken_languages": [
+          {
+            "english_name": "German",
+            "iso_639_1": "de",
+            "name": "Deutsch"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Кирпич",
+        "video": false,
+        "vote_average": 5.208,
+        "vote_count": 12
+      }
+    }
+  },
+  {
+    "rawName": "Кулаки против зомби / Ziam / 2025 / ЛД, СТ / 4K, HEVC,  HDR / WEB-DL (2160p)",
+    "russianTitle": "Кулаки против зомби",
+    "russianTitleAlt": null,
+    "originalTitle": "Ziam",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "2160p",
+    "releaseDateISO": "2025-07-13T01:35:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/rrtmEp5jwhmgDx4U68yyJeydY3w.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 27,
+            "name": "ужасы"
+          },
+          {
+            "id": 53,
+            "name": "триллер"
+          },
+          {
+            "id": 28,
+            "name": "боевик"
+          }
+        ],
+        "homepage": "https://www.netflix.com/ru/title/81739744",
+        "id": 1429744,
+        "imdb_id": "tt35669009",
+        "origin_country": [
+          "TH"
+        ],
+        "original_language": "th",
+        "original_title": "ปากกัด ตีนถีบ",
+        "overview": "В смертельной схватке с ужасающей армией зомби бывшему бойцу муай-тай понадобится мастерство, скорость и смелость, чтобы спасти любимую.",
+        "popularity": 4.207,
+        "poster_path": "/crYBmWgznCvCkVZZrELlf4ZU9ao.jpg",
+        "production_companies": [
+          {
+            "id": 15484,
+            "logo_path": "/xXDT7uk6tDabMZAUUS2s8PJiSUu.png",
+            "name": "Kantana Motion Pictures",
+            "origin_country": "TH"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "TH",
+            "name": "Thailand"
+          }
+        ],
+        "release_date": "2025-07-08",
+        "revenue": 0,
+        "runtime": 95,
+        "spoken_languages": [
+          {
+            "english_name": "Thai",
+            "iso_639_1": "th",
+            "name": "ภาษาไทย"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Кулаки против зомби",
+        "video": false,
+        "vote_average": 6.7,
+        "vote_count": 5
+      }
+    }
+  },
+  {
+    "rawName": "Пункт назначения: Узы крови / Final Destination: Bloodlines / 2025 / 2 x ДБ, 3 x ПМ, 2 x АП, СТ / BDRip (1080p)",
+    "russianTitle": "Пункт назначения: Узы крови",
+    "russianTitleAlt": null,
+    "originalTitle": "Final Destination: Bloodlines",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "1080p",
+    "releaseDateISO": "2025-07-15T03:28:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/uIpJPDNFoeX0TVml9smPrs9KUVx.jpg",
+        "belongs_to_collection": {
+          "id": 8864,
+          "name": "Пункт назначения (Коллекция)",
+          "poster_path": "/kbUErmzI30Dsi4ou0P2pn114JI4.jpg",
+          "backdrop_path": "/y3aWOInifbGKXM34KjtcMITrZRZ.jpg"
+        },
+        "budget": 50000000,
+        "genres": [
+          {
+            "id": 27,
+            "name": "ужасы"
+          },
+          {
+            "id": 9648,
+            "name": "детектив"
+          }
+        ],
+        "homepage": "",
+        "id": 574475,
+        "imdb_id": "tt9619824",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Final Destination Bloodlines",
+        "overview": "Уже два месяца студентке Стефани снится один и тот же страшный сон, как в 1960-ых люди гибнут при обрушении телебашни. Подозревая, что этот кошмар связан с её семьёй, девушка возвращается домой, чтобы разузнать о бабушке, с которой её родители и дядя с тётей давно порвали все связи, поскольку считают её опасной сумасшедшей, одержимой идеей смерти.",
+        "popularity": 578.4099,
+        "poster_path": "/A6SyVtXBxU6S5LfDg0tz7lUXhJq.jpg",
+        "production_companies": [
+          {
+            "id": 12,
+            "logo_path": "/2ycs64eqV5rqKYHyQK0GVoKGvfX.png",
+            "name": "New Line Cinema",
+            "origin_country": "US"
+          },
+          {
+            "id": 48788,
+            "logo_path": null,
+            "name": "Practical Pictures",
+            "origin_country": "US"
+          },
+          {
+            "id": 252366,
+            "logo_path": null,
+            "name": "Freshman Year",
+            "origin_country": ""
+          },
+          {
+            "id": 252367,
+            "logo_path": null,
+            "name": "Fireside Films",
+            "origin_country": "US"
+          },
+          {
+            "id": 216687,
+            "logo_path": "/kKVYqekveOvLK1IgqdJojLjQvtu.png",
+            "name": "Domain Entertainment",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-05-14",
+        "revenue": 283289961,
+        "runtime": 110,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "«Станьте свидетелем рождения смерти»",
+        "title": "Пункт назначения: Узы крови",
+        "video": false,
+        "vote_average": 7.188,
+        "vote_count": 1411
+      }
+    }
+  },
+  {
+    "rawName": "Слепой меч. Око за око / Mu zhong wu ren 2 (Eye for an Eye 2) / 2024 / ДБ, СТ / BDRip (1080p)",
+    "russianTitle": "Слепой меч. Око за око",
+    "russianTitleAlt": null,
+    "originalTitle": "Mu zhong wu ren 2",
+    "originalTitleAlt": "Eye for an Eye 2",
+    "year": 2024,
+    "quality": "1080p",
+    "releaseDateISO": "2025-07-14T10:58:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/bx6LoGl8L3hwgOCoD2H8JgIu7uC.jpg",
+        "belongs_to_collection": {
+          "id": 1242377,
+          "name": "目中无人 （系列）",
+          "poster_path": "/qVeDusHsxk0A8095tIlQvjq8L8D.jpg",
+          "backdrop_path": "/quQ1vCS3uVLpiuVnrndOWhj0JXd.jpg"
+        },
+        "budget": 0,
+        "genres": [
+          {
+            "id": 28,
+            "name": "боевик"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "",
+        "id": 1235623,
+        "imdb_id": "tt30972810",
+        "origin_country": [
+          "CN"
+        ],
+        "original_language": "zh",
+        "original_title": "目中无人2",
+        "overview": "Слепой фехтовальщик неохотно становится наставником девочки-сироты, жаждущей отомстить за свою разрушенную семью, обучая её боевым искусствам.",
+        "popularity": 7.4799,
+        "poster_path": "/27rGxaLVlfECWvV5d881N6XStYv.jpg",
+        "production_companies": [
+          {
+            "id": 172414,
+            "logo_path": "/fNxBFqWr7eWEgNeBDvvCxsSItXx.png",
+            "name": "iQIYI",
+            "origin_country": "CN"
+          },
+          {
+            "id": 131092,
+            "logo_path": "/dtsMvAgTenOlDWnqaa4pEovx6d5.png",
+            "name": "Zhejiang Hengdian Film Production",
+            "origin_country": "CN"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "CN",
+            "name": "China"
+          }
+        ],
+        "release_date": "2024-07-21",
+        "revenue": 0,
+        "runtime": 90,
+        "spoken_languages": [
+          {
+            "english_name": "Mandarin",
+            "iso_639_1": "zh",
+            "name": "普通话"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Слепой меч. Око за око",
+        "video": false,
+        "vote_average": 6.361,
+        "vote_count": 54
+      }
+    }
+  },
+  {
+    "rawName": "Таро / Taro / 2024 / ПМ, СТ / WEB-DL (1080p)",
+    "russianTitle": "Таро",
+    "russianTitleAlt": null,
+    "originalTitle": "Taro",
+    "originalTitleAlt": null,
+    "year": 2024,
+    "quality": "1080p",
+    "releaseDateISO": "2025-07-13T04:58:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/otfoeC96neoOdA4HqsX06OWuzE9.jpg",
+        "belongs_to_collection": null,
+        "budget": 8000000,
+        "genres": [
+          {
+            "id": 27,
+            "name": "ужасы"
+          }
+        ],
+        "homepage": "",
+        "id": 719221,
+        "imdb_id": "tt14088510",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Tarot",
+        "overview": "Когда компания друзей безрассудно нарушает священное правило гадания на Таро — никогда не использовать чужую колоду — они неосознанно высвобождают зло, запертое в проклятых картах. Один за другим они оказываются лицом к лицу с судьбой и вступают в гонку со смертью, чтобы избежать будущего, предсказанного в их гаданиях.",
+        "popularity": 8.0505,
+        "poster_path": "/qYJ3pWNWzGw2w0y1k41507GkAB.jpg",
+        "production_companies": [
+          {
+            "id": 3287,
+            "logo_path": "/bz6GbCQQXGNE56LTW9dwgksW0Iw.png",
+            "name": "Screen Gems",
+            "origin_country": "US"
+          },
+          {
+            "id": 10067,
+            "logo_path": "/p1kZoVNfkVvk7xyJZEposRxcfh8.png",
+            "name": "Alloy Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 95434,
+            "logo_path": "/iKqEhbzYfb6YHwRlhqcvX1NIZbt.png",
+            "name": "Ground Control Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 154063,
+            "logo_path": "/r4anaxYa8OL5KaUbU35VkrIe88L.png",
+            "name": "Capstone Pictures",
+            "origin_country": "US"
+          },
+          {
+            "id": 22213,
+            "logo_path": "/qx9K6bFWJupwde0xQDwOvXkOaL8.png",
+            "name": "TSG Entertainment",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2024-05-01",
+        "revenue": 49256239,
+        "runtime": 92,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "",
+        "title": "Таро: Карта смерти",
+        "video": false,
+        "vote_average": 6.458,
+        "vote_count": 1217
+      }
+    }
+  },
+  {
+    "rawName": "Главы государств / Heads of State / 2025 / ДБ, 3 x ПМ, АП (Яроцкий), СТ / HEVC / WEB-DL (1080p)",
+    "russianTitle": "Главы государств",
+    "russianTitleAlt": null,
+    "originalTitle": "Heads of State",
+    "originalTitleAlt": null,
+    "year": 2025,
+    "quality": "1080p",
+    "releaseDateISO": "2025-07-12T17:55:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/xABhldZaMb6wfCH5oigV333OYnb.jpg",
+        "belongs_to_collection": null,
+        "budget": 0,
+        "genres": [
+          {
+            "id": 28,
+            "name": "боевик"
+          },
+          {
+            "id": 53,
+            "name": "триллер"
+          },
+          {
+            "id": 35,
+            "name": "комедия"
+          }
+        ],
+        "homepage": "https://www.primevideo.com/detail/0Q0ZD7AIZGM4ISJE4J5T9AF9FA",
+        "id": 749170,
+        "imdb_id": "tt13357520",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_title": "Heads of State",
+        "overview": "Когда премьер-министр Великобритании и президент США становятся целями иностранного противника, им приходится полагаться друг на друга, чтобы помешать мировому заговору.",
+        "popularity": 22.085,
+        "poster_path": "/j2IEKt3uWGFrHxWpPY9mVSL3lHV.jpg",
+        "production_companies": [
+          {
+            "id": 11565,
+            "logo_path": "/S74cHHbIrdmb5M51Pft72Uo9Gz.png",
+            "name": "The Safran Company",
+            "origin_country": "US"
+          },
+          {
+            "id": 6831,
+            "logo_path": "/fWSI4EjIDEEzCNJC8OTPX9Pdbxv.png",
+            "name": "Big Indie Pictures",
+            "origin_country": "US"
+          },
+          {
+            "id": 21,
+            "logo_path": "/usUnaYV6hQnlVAXP6r4HwrlLFPG.png",
+            "name": "Metro-Goldwyn-Mayer",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "release_date": "2025-06-24",
+        "revenue": 0,
+        "runtime": 113,
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Released",
+        "tagline": "«Две Головы Лучше, Чем Одна»",
+        "title": "Главы Государств",
+        "video": false,
+        "vote_average": 7.444,
+        "vote_count": 18
+      }
+    }
+  }
+]

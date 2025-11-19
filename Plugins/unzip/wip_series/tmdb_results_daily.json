@@ -1,0 +1,5633 @@
+[
+  {
+    "rawName": "Два холма (3 сезон: 1-10 серии из 13) / 2025 / РУ, СТ / 4K, SDR / WEB-DL (2160p)",
+    "russianTitle": "Два холма",
+    "originalTitle": null,
+    "year": 2025,
+    "quality": "2160p",
+    "season": 3,
+    "episode": 10,
+    "totalEpisodes": 13,
+    "releaseDateISO": "2025-07-14T17:05:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/ixFXZMJwtXavPFiIAOTqxRHkNW7.jpg",
+        "created_by": [],
+        "episode_run_time": [],
+        "first_air_date": "2022-04-28",
+        "genres": [
+          {
+            "id": 35,
+            "name": "комедия"
+          }
+        ],
+        "homepage": "",
+        "id": 157769,
+        "in_production": true,
+        "languages": [
+          "ru"
+        ],
+        "last_air_date": "2025-05-27",
+        "last_episode_to_air": {
+          "id": 6203226,
+          "name": "Эпизод 9",
+          "overview": "Барон ищет понимания с иностранными гостями — не без патриархального варварства. Мэри хочет достучаться до Юлика, вставшего на сторону отца.",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-08",
+          "episode_number": 9,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 3,
+          "show_id": 157769,
+          "still_path": "/hQUyJiSDjXheei0Z8YPvmlGqVqx.jpg"
+        },
+        "name": "Два холма",
+        "next_episode_to_air": {
+          "id": 6203227,
+          "name": "Эпизод 10",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-15",
+          "episode_number": 10,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 3,
+          "show_id": 157769,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 2493,
+            "logo_path": "/4WexbzcfwxtGtnhvAoHWhKrA1jt.png",
+            "name": "START",
+            "origin_country": "RU"
+          }
+        ],
+        "number_of_episodes": 39,
+        "number_of_seasons": 3,
+        "origin_country": [
+          "RU"
+        ],
+        "original_language": "ru",
+        "original_name": "Два холма",
+        "overview": "2140 год. Страшный вирус выкосил 99,9% мужского населения планеты. Теперь почти все женщины Земли живут в высокотехнологичных эко-поселениях в отдалении от крупных городов. А выжившие мужчины вынуждены или деградировать, живя на остатках былой цивилизации, или стать «содержанками», которые нужны женщинам для продолжения рода.",
+        "popularity": 15.9845,
+        "poster_path": "/nrJe7ndAoZ8obw2fUlG4oLhX2sh.jpg",
+        "production_companies": [
+          {
+            "id": 114676,
+            "logo_path": "/aVsos0RDN9Ib7H8nW5Vv5kHKykz.png",
+            "name": "START Studio",
+            "origin_country": "RU"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "RU",
+            "name": "Russia"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2022-04-28",
+            "episode_count": 13,
+            "id": 244182,
+            "name": "Сезон 1",
+            "overview": "2140 год. Страшный вирус выкосил 99,9% мужского населения планеты. Теперь почти все женщины Земли живут в высокотехнологичных эко-поселениях в отдалении от крупных городов. А выжившие мужчины вынуждены или деградировать, живя на остатках былой цивилизации, или стать «содержанками», которые нужны женщинам для продолжения рода.",
+            "poster_path": "/1wN7ajqpMMD2thwRQKwWna8TUUv.jpg",
+            "season_number": 1,
+            "vote_average": 7.8
+          },
+          {
+            "air_date": "2023-06-06",
+            "episode_count": 13,
+            "id": 343233,
+            "name": "Сезон 2",
+            "overview": "В женском мире светлого будущего снова неспокойно! Новая Мать города, мэрка Елена Зоевна, чувствует себя на высокой должности не так уверенно, как ее опальная предшественница, но уже всерьез берется за приматский вопрос. Она решает искоренить патриархальную чуму раз и навсегда, отселив москвичей как можно дальше от дорогих подруг — в плодородные земли Полесья! Но приматы почему-то не спешат выполнять приказы и намерены постоять за свои права.",
+            "poster_path": "/3Zig12FnkkKkoQdf3lnfXnpUiRw.jpg",
+            "season_number": 2,
+            "vote_average": 0
+          },
+          {
+            "air_date": "2025-05-27",
+            "episode_count": 13,
+            "id": 454224,
+            "name": "Сезон 3",
+            "overview": "Добро пожаловать в постапокалипсис. Когда приходит суровая зима, оказывается, что без приматов нефтяного века женщинам уже не выжить. Действие 3 сезона разворачивается через полгода после событий 2 сезона. Саботаж искусственного интеллекта «Лариса» не прошел бесследно и обернулся технической катастрофой. Так подруги из некогда процветающего экогорода остались без привычного комфорта и теперь вынуждены, объединившись с мужчинами, пережидать зиму прямо в московском метро. А руководство в новых реалиях переходит к Барону. Неожиданностью становится появление нового гостя. Бывший начальник Деда выдвигается в столицу, где планирует создать новую нейросеть. Устремляются следом и наши герои, но путешествие за лучшей жизнью легким не будет.",
+            "poster_path": "/nrJe7ndAoZ8obw2fUlG4oLhX2sh.jpg",
+            "season_number": 3,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Russian",
+            "iso_639_1": "ru",
+            "name": "Pусский"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Miniseries",
+        "vote_average": 7.881,
+        "vote_count": 42
+      }
+    }
+  },
+  {
+    "rawName": "Медведь (4 сезон: 1-10 серии из 10) / The Bear / 2025 / СТ / 4K, HEVC, SDR / WEB-DL (2160p)",
+    "russianTitle": "Медведь",
+    "originalTitle": "The Bear",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 4,
+    "episode": 10,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-14T14:43:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/AjdEGHt5GGhe6VWdcYkWdLyfY9D.jpg",
+        "created_by": [
+          {
+            "id": 1057655,
+            "credit_id": "62965a8b7e403d006682157d",
+            "name": "Кристофер Сторер",
+            "original_name": "Christopher Storer",
+            "gender": 2,
+            "profile_path": "/kG6I1GlaUtENJoJzrP7uxiJovy9.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2022-06-23",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 35,
+            "name": "комедия"
+          }
+        ],
+        "homepage": "https://www.fxnetworks.com/shows/the-bear",
+        "id": 136315,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-06-25",
+        "last_episode_to_air": {
+          "id": 6231158,
+          "name": "До свидания",
+          "overview": "Время никого не ждёт.",
+          "vote_average": 7.8,
+          "vote_count": 10,
+          "air_date": "2025-06-25",
+          "episode_number": 10,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 34,
+          "season_number": 4,
+          "show_id": 136315,
+          "still_path": "/15SHizNHlCOjnOmNYNVdxPhZDUQ.jpg"
+        },
+        "name": "Медведь",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 453,
+            "logo_path": "/pqUTCleNUiTLAVlelGxUgWn1ELh.png",
+            "name": "Hulu",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 38,
+        "number_of_seasons": 4,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The Bear",
+        "overview": "Молодой и амбициозный шеф-повар Карми после самоубийства старшего брата возвращается в родной Чикаго, чтобы руководить семейным бизнесом по продаже сэндвичей. Крохотная забегаловка сильно отличается от ресторанов изысканной кухни, в которых Карми привык работать. Он хочет сделать это место более престижным, но ему придётся столкнуться с множеством мелких проблем, от капризных клиентов до сломанного унитаза. А самая сложная задача — завоевать доверие несговорчивых сотрудников.",
+        "popularity": 78.7952,
+        "poster_path": "/vOOXaq6ITcTSYGISVYhmJjcCyxz.jpg",
+        "production_companies": [
+          {
+            "id": 15990,
+            "logo_path": "/5cT4zwHA66uNAr2p3CcBDLddXu2.png",
+            "name": "FX Productions",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2022-06-23",
+            "episode_count": 8,
+            "id": 215540,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/i6sJI3O1874FBdDtM0jn6fpPE0x.jpg",
+            "season_number": 1,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2023-06-22",
+            "episode_count": 10,
+            "id": 332307,
+            "name": "Сезон 2",
+            "overview": "Во втором сезоне Кармен \"Карми\" Берзатто, Сидни Адаму и Ричард \"Ричи\" Джеримович работают над тем, чтобы превратить свою грязную закусочную с бутербродами в заведение нового уровня. По мере того как они разбирают ресторан до основания, команда предпринимает собственные трансформационные путешествия, каждый из которых вынужден смотреть в лицо прошлому и думать о том, кем он хочет быть в будущем.",
+            "poster_path": "/3MVHF64rlvH1eofKefIoazXwOK0.jpg",
+            "season_number": 2,
+            "vote_average": 8.4
+          },
+          {
+            "air_date": "2024-06-26",
+            "episode_count": 10,
+            "id": 392941,
+            "name": "Сезон 3",
+            "overview": "В третьем сезоне Кармен «Карми» Берзатто, Сидни Адаму и Ричард «Ричи» Джеримович делают все возможное, чтобы поднять «Медведя», их мясную лавку, превратившуюся в заведение изысканной кухни, на самый высокий уровень, при этом делая все возможное, чтобы просто остаться в бизнес. Наши повара поняли, что каждая секунда имеет значение, но в этом сезоне мы узнаем, есть ли у них все необходимое, чтобы дожить до завтра.",
+            "poster_path": "/kmKOXOC6txne2tXjcnZPHNtsY9E.jpg",
+            "season_number": 3,
+            "vote_average": 7.6
+          },
+          {
+            "air_date": "2025-06-25",
+            "episode_count": 10,
+            "id": 456296,
+            "name": "Сезон 4",
+            "overview": "",
+            "poster_path": "/vOOXaq6ITcTSYGISVYhmJjcCyxz.jpg",
+            "season_number": 4,
+            "vote_average": 7.1
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Вернулись за добавкой.",
+        "type": "Scripted",
+        "vote_average": 8.2,
+        "vote_count": 1387
+      }
+    }
+  },
+  {
+    "rawName": "Дастер (1 сезон: 1-8 серии из 8) / Duster / 2025 / ДБ, 6 x ПМ, ЛМ, СТ / 4K, HEVC, HDR, Dolby Vision P8 / WEB-DL (2160p)",
+    "russianTitle": "Дастер",
+    "originalTitle": "Duster",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 1,
+    "episode": 8,
+    "totalEpisodes": 8,
+    "releaseDateISO": "2025-07-14T12:36:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/8UuyKCIaX0MqcECmcgPxFCANkq4.jpg",
+        "created_by": [
+          {
+            "id": 15344,
+            "credit_id": "681d125a41c91d7b2f88c403",
+            "name": "Джей Джей Абрамс",
+            "original_name": "J.J. Abrams",
+            "gender": 2,
+            "profile_path": "/uiEVOx3QclxnN76t8PU6v5IcUUP.jpg"
+          },
+          {
+            "id": 1539831,
+            "credit_id": "681d126bd83a0d2a3401eaf5",
+            "name": "Латойя Морган",
+            "original_name": "LaToya Morgan",
+            "gender": 1,
+            "profile_path": "/bSmB4SmYg21XRI8FhaWYzSOLFMB.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2025-05-15",
+        "genres": [
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://www.max.com/shows/duster/44cf11c4-1a5f-439b-85d0-3b8114616493",
+        "id": 113959,
+        "in_production": false,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-03",
+        "last_episode_to_air": {
+          "id": 6060407,
+          "name": "Две шестёрки с разделением в Рено",
+          "overview": "Сэкстон узнаёт правду о Джиме и Нине и решает раз и навсегда покончить с ними, а заодно и со своими врагами из враждебной группировки.",
+          "vote_average": 1.6,
+          "vote_count": 5,
+          "air_date": "2025-07-03",
+          "episode_number": 8,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 54,
+          "season_number": 1,
+          "show_id": 113959,
+          "still_path": "/haQzIm5rflWGoDeIhlXXAXwhI1v.jpg"
+        },
+        "name": "Дастер",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 6783,
+            "logo_path": "/rAb4M1LjGpWASxpk6Va791A7Nkw.png",
+            "name": "Max",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 8,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Duster",
+        "overview": "1972 год. Нина, первая чернокожая женщина-агент ФБР, отправляется на юго-запад США и вербует отчаянного водителя, специализирующегося на побегах с мест преступлений. Это становится началом операции против расширяющейся преступной сети.",
+        "popularity": 40.9216,
+        "poster_path": "/nXagru48CybMjgd85fVsmam0IdH.jpg",
+        "production_companies": [
+          {
+            "id": 11461,
+            "logo_path": "/p9FoEt5shEKRWRKVIlvFaEmRnun.png",
+            "name": "Bad Robot",
+            "origin_country": "US"
+          },
+          {
+            "id": 1957,
+            "logo_path": "/pJJw98MtNFC9cHn3o15G7vaUnnX.png",
+            "name": "Warner Bros. Television",
+            "origin_country": "US"
+          },
+          {
+            "id": 193566,
+            "logo_path": "/mI6yzj2P56XP8LS8pqbYIqQIeB2.png",
+            "name": "TinkerToy Productions",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-05-15",
+            "episode_count": 8,
+            "id": 170741,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/wYBsKEFU0qHdhSI9QtQjL8HELMn.jpg",
+            "season_number": 1,
+            "vote_average": 3.3
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Canceled",
+        "tagline": "Каждому нужен свой человек.",
+        "type": "Scripted",
+        "vote_average": 5.972,
+        "vote_count": 36
+      }
+    }
+  },
+  {
+    "rawName": "Основание (3 сезон: 1 серия из 10) / Foundation / 2025 / 5 x ПМ, ЛМ, СТ / 4K, HEVC, SDR / WEB-DL (2160p)",
+    "russianTitle": "Основание",
+    "originalTitle": "Foundation",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 3,
+    "episode": 1,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-14T03:32:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/7NNNXo0qG2SqH4JoG7GPvJ2hzes.jpg",
+        "created_by": [
+          {
+            "id": 3893,
+            "credit_id": "5ddadaec0cd44600142a7859",
+            "name": "Дэвид Гойер",
+            "original_name": "David S. Goyer",
+            "gender": 2,
+            "profile_path": "/gf44Hr3HJuWK7ZMHQKzDNBe0ylI.jpg"
+          },
+          {
+            "id": 507,
+            "credit_id": "6849e60cf9e72b4f49b0d131",
+            "name": "Джош Фридман",
+            "original_name": "Josh Friedman",
+            "gender": 2,
+            "profile_path": "/uThNFxSfRXGIGwsFU3SEutSqVwL.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2021-09-23",
+        "genres": [
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://tv.apple.com/show/umc.cmc.5983fipzqbicvrve6jdfep4x3",
+        "id": 93740,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-10",
+        "last_episode_to_air": {
+          "id": 6215082,
+          "name": "Песня для конца всего сущего",
+          "overview": "",
+          "vote_average": 5.5,
+          "vote_count": 8,
+          "air_date": "2025-07-10",
+          "episode_number": 1,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 52,
+          "season_number": 3,
+          "show_id": 93740,
+          "still_path": "/9YXWjKj6SDCaE3SaWbyfjjrPJIt.jpg"
+        },
+        "name": "Основание",
+        "next_episode_to_air": {
+          "id": 6215876,
+          "name": "Эпизод 2",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-17",
+          "episode_number": 2,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 49,
+          "season_number": 3,
+          "show_id": 93740,
+          "still_path": "/wJGsaCKAQYwSnD972hWsPKTn13W.jpg"
+        },
+        "networks": [
+          {
+            "id": 2552,
+            "logo_path": "/4KAy34EHvRM25Ih8wb82AuGU7zJ.png",
+            "name": "Apple TV+",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 30,
+        "number_of_seasons": 3,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Foundation",
+        "overview": "Сериал \"Основание\" повествует о кучке изгнанников, которые отправляются в грандиозное путешествие ради спасения человечества и восстановления цивилизации после грядущего падения Галактической Империи",
+        "popularity": 116.0991,
+        "poster_path": "/b68nx8h5Lag2j0TSUkg6Xg6F7l8.jpg",
+        "production_companies": [
+          {
+            "id": 87731,
+            "logo_path": "/8PeKdSO13vYTod2HAJsV2m7mRr0.png",
+            "name": "Skydance Television",
+            "origin_country": "US"
+          },
+          {
+            "id": 423,
+            "logo_path": "/uvA6e2O31qaonsbYd8tjvgqmNXh.png",
+            "name": "Phantom Four",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2021-09-23",
+            "episode_count": 10,
+            "id": 154362,
+            "name": "Сезон 1",
+            "overview": "Человечество основало Галактическую империю, которая за 12 000 лет расширила свои границы более чем на 25 миллионов планет. Хари Селдон, известный математик, разрабатывает новую ветвь математики - психоисторию. С ее помощью он может предсказывать будущее и обнаруживает, что Империи осталось жить всего 500 лет. Все знания человечества будут потеряны.",
+            "poster_path": "/d2wVWrW1jDm9gbp7K9sTWFmMDD.jpg",
+            "season_number": 1,
+            "vote_average": 6.9
+          },
+          {
+            "air_date": "2023-07-13",
+            "episode_count": 10,
+            "id": 322843,
+            "name": "Сезон 2",
+            "overview": "Спустя более века после событий финала первого сезона в галактике нарастает напряжение. В то время как правящая династия начинает распадаться, молодая королева замышляет месть. Тем временем колония людей с особыми способностями представляет собой новую угрозу. И все это ведет к столкновению и войне.",
+            "poster_path": "/b68nx8h5Lag2j0TSUkg6Xg6F7l8.jpg",
+            "season_number": 2,
+            "vote_average": 6.9
+          },
+          {
+            "air_date": "2025-07-10",
+            "episode_count": 10,
+            "id": 455160,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/tg9I5pOY4M9CKj8U0cxVBTsm5eh.jpg",
+            "season_number": 3,
+            "vote_average": 5.5
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Будущее не может длиться вечно.",
+        "type": "Scripted",
+        "vote_average": 7.8,
+        "vote_count": 1408
+      }
+    }
+  },
+  {
+    "rawName": "Декстер: Воскрешение (1 сезон: 1-2 серии из 10) / Dexter: Resurrection / 2025 / 3 x ПМ / 4K, HEVC, SDR / WEB-DL (2160p)",
+    "russianTitle": "Декстер: Воскрешение",
+    "originalTitle": "Dexter: Resurrection",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 1,
+    "episode": 2,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-13T14:28:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/UI2S7dJdGylqp9xK3GwRt7zz68.jpg",
+        "created_by": [
+          {
+            "id": 1212409,
+            "credit_id": "67bdd41976904c59c85e9f6c",
+            "name": "Клайд Филлипс",
+            "original_name": "Clyde Phillips",
+            "gender": 2,
+            "profile_path": "/ue6gnd9FRbl5wKZ9yHVtWp6ra4y.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2025-07-13",
+        "genres": [
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://www.paramountplus.com/shows/dexter-resurrection/",
+        "id": 259909,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-13",
+        "last_episode_to_air": {
+          "id": 6192926,
+          "name": "Эпизод 2",
+          "overview": "",
+          "vote_average": 10,
+          "vote_count": 1,
+          "air_date": "2025-07-13",
+          "episode_number": 2,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 48,
+          "season_number": 1,
+          "show_id": 259909,
+          "still_path": "/gxTEgknl8AequxdxtkLHOMFN5T3.jpg"
+        },
+        "name": "Декстер: Воскрешение",
+        "next_episode_to_air": {
+          "id": 6192927,
+          "name": "Эпизод 3",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-20",
+          "episode_number": 3,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 259909,
+          "still_path": "/5iLgsIH9fWeXRRQlTSVm9XtPVzp.jpg"
+        },
+        "networks": [
+          {
+            "id": 6631,
+            "logo_path": "/zFEsDBjBEj5OiM0FDRYY1NnG7a9.png",
+            "name": "Paramount+ with Showtime",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 10,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Dexter: Resurrection",
+        "overview": "Декстер Морган приходит в себя после комы и обнаруживает, что Гаррисон исчез без следа. Осознав, через что пришлось пройти его сыну, Декстер отправляется в Нью-Йорк, полный решимости найти его и всё исправить. Но покоя не будет. Когда Анхель Батиста из полиции Майами появляется с вопросами, Декстер понимает, что прошлое настигает его. Отец и сын пытаются справиться со своей тьмой в городе, который никогда не спит, но вскоре оказываются в водовороте событий, из которого есть только один выход — пройти через это вместе.",
+        "popularity": 145.7102,
+        "poster_path": "/yFQFozGDLl7RFzupKuilh66OFuW.jpg",
+        "production_companies": [
+          {
+            "id": 6329,
+            "logo_path": "/inqnY5MWKZ2HnFR9xOUvfP7fwqk.png",
+            "name": "MTV Entertainment Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 238897,
+            "logo_path": null,
+            "name": "Showtime Studios",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-13",
+            "episode_count": 10,
+            "id": 403778,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/hRD9kvYLbySRvtt9Nh7QK6XECZX.jpg",
+            "season_number": 1,
+            "vote_average": 9.2
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 8.83,
+        "vote_count": 44
+      }
+    }
+  },
+  {
+    "rawName": "Песочный человек (2 сезон: 1-6 серии из 12) / The Sandman / 2025 / 6 x ПМ, ЛМ, СТ / 4K, HEVC, HDR10, Dolby Vision P8  / WEB-DL (2160p)",
+    "russianTitle": "Песочный человек",
+    "originalTitle": "The Sandman",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 2,
+    "episode": 6,
+    "totalEpisodes": 12,
+    "releaseDateISO": "2025-07-13T13:44:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/6KyJeOW7vTW0czdR0S6wzXAcfmw.jpg",
+        "created_by": [
+          {
+            "id": 23446,
+            "credit_id": "62ec7761091e62005ae54146",
+            "name": "Нил Гейман",
+            "original_name": "Neil Gaiman",
+            "gender": 2,
+            "profile_path": "/wXPREg2zhD9gsycde7AoMebVyfA.jpg"
+          },
+          {
+            "id": 3893,
+            "credit_id": "62ec776a2dc44e005d6e2e07",
+            "name": "Дэвид Гойер",
+            "original_name": "David S. Goyer",
+            "gender": 2,
+            "profile_path": "/gf44Hr3HJuWK7ZMHQKzDNBe0ylI.jpg"
+          },
+          {
+            "id": 1213170,
+            "credit_id": "62ec77728566d2005fb0f350",
+            "name": "Аллан Хейнберг",
+            "original_name": "Allan Heinberg",
+            "gender": 2,
+            "profile_path": "/mfwsR12OwlpxrJoEcQiBLJmGG8S.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2022-08-05",
+        "genres": [
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          }
+        ],
+        "homepage": "https://thesandman.com",
+        "id": 90802,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-03",
+        "last_episode_to_air": {
+          "id": 6139762,
+          "name": "Семейная кровь",
+          "overview": "Морфей нанимает эксперта по оккультизму, чтобы тот вывез из Парижа нечто очень личное и помог им с Сумасшествием найти ответы.",
+          "vote_average": 5.3,
+          "vote_count": 7,
+          "air_date": "2025-07-03",
+          "episode_number": 6,
+          "episode_type": "mid_season",
+          "production_code": "",
+          "runtime": 59,
+          "season_number": 2,
+          "show_id": 90802,
+          "still_path": "/erwC0kan9E1iDJQ0hOTSk7nb2y3.jpg"
+        },
+        "name": "Песочный человек",
+        "next_episode_to_air": {
+          "id": 6139763,
+          "name": "Эпизод 7",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-24",
+          "episode_number": 7,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 2,
+          "show_id": 90802,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 213,
+            "logo_path": "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+            "name": "Netflix",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 23,
+        "number_of_seasons": 2,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The Sandman",
+        "overview": "После долгих лет заключения повелитель снов Морфей отправляется в путешествие по мирам, чтобы отыскать то, что у него украли, и вернуть прежнее могущество.",
+        "popularity": 99.7178,
+        "poster_path": "/b1pOlDWMOJKdPlAoOKkMUsJRlT1.jpg",
+        "production_companies": [
+          {
+            "id": 1957,
+            "logo_path": "/pJJw98MtNFC9cHn3o15G7vaUnnX.png",
+            "name": "Warner Bros. Television",
+            "origin_country": "US"
+          },
+          {
+            "id": 9993,
+            "logo_path": "/2Tc1P3Ac8M479naPp1kYT3izLS5.png",
+            "name": "DC Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 179997,
+            "logo_path": null,
+            "name": "Purepop",
+            "origin_country": "US"
+          },
+          {
+            "id": 423,
+            "logo_path": "/uvA6e2O31qaonsbYd8tjvgqmNXh.png",
+            "name": "Phantom Four",
+            "origin_country": "US"
+          },
+          {
+            "id": 90828,
+            "logo_path": null,
+            "name": "The Blank Corporation",
+            "origin_country": "US"
+          },
+          {
+            "id": 429,
+            "logo_path": "/4Y00XuSMuP1gimd0jP6JT57QbCI.png",
+            "name": "DC",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2022-08-10",
+            "episode_count": 1,
+            "id": 304236,
+            "name": "Спецматериалы",
+            "overview": "",
+            "poster_path": null,
+            "season_number": 0,
+            "vote_average": 0
+          },
+          {
+            "air_date": "2022-08-05",
+            "episode_count": 11,
+            "id": 127007,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/swUpzGhRPhLAYpwJymJTZidPA60.jpg",
+            "season_number": 1,
+            "vote_average": 7.1
+          },
+          {
+            "air_date": "2025-07-03",
+            "episode_count": 12,
+            "id": 395169,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/28hHCpng5SfPtrHolkPW2S5WNX1.jpg",
+            "season_number": 2,
+            "vote_average": 5.5
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "«Войди в королевство мечты»",
+        "type": "Scripted",
+        "vote_average": 7.928,
+        "vote_count": 2239
+      }
+    }
+  },
+  {
+    "rawName": "Игра в кальмара (3 сезон: 1-6 серии из 6) / Ojingeo geim (Squid Game) / 2025 / ДБ (Red Head Sound), СТ / 4K, HEVC, HDR, DV P8 / WEB-DL (2160p)",
+    "russianTitle": "Игра в кальмара",
+    "originalTitle": "Ojingeo geim (Squid Game)",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 3,
+    "episode": 6,
+    "totalEpisodes": 6,
+    "releaseDateISO": "2025-07-13T10:55:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/2meX1nMdScFOoV4370rqHWKmXhY.jpg",
+        "created_by": [],
+        "episode_run_time": [],
+        "first_air_date": "2021-09-17",
+        "genres": [
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          },
+          {
+            "id": 9648,
+            "name": "детектив"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://www.netflix.com/title/81040344",
+        "id": 93405,
+        "in_production": false,
+        "languages": [
+          "en",
+          "ko",
+          "ur"
+        ],
+        "last_air_date": "2025-06-27",
+        "last_episode_to_air": {
+          "id": 5884557,
+          "name": "Мы люди",
+          "overview": "В то время как Чун Хо мчится к острову, напряжение в финальном раунде достигает пика. В заключительные минуты игры последние игроки оказываются в безвыходной ситуации.",
+          "vote_average": 7.655,
+          "vote_count": 58,
+          "air_date": "2025-06-27",
+          "episode_number": 6,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 56,
+          "season_number": 3,
+          "show_id": 93405,
+          "still_path": "/vzYGUdGRm1bl7WoPmhZd8bSh6gN.jpg"
+        },
+        "name": "Игра в кальмара",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 213,
+            "logo_path": "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+            "name": "Netflix",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 22,
+        "number_of_seasons": 3,
+        "origin_country": [
+          "KR"
+        ],
+        "original_language": "ko",
+        "original_name": "오징어 게임",
+        "overview": "Из-за нужды в деньгах сотни игроков принимают странное приглашение поучаствовать в детских соревнованиях. Их ждет заманчивый приз, но ставки смертельно высоки.",
+        "popularity": 682.4894,
+        "poster_path": "/vDppycTvnKItQZezcpxCi04ifli.jpg",
+        "production_companies": [
+          {
+            "id": 112647,
+            "logo_path": null,
+            "name": "Siren Pictures",
+            "origin_country": "KR"
+          },
+          {
+            "id": 203249,
+            "logo_path": null,
+            "name": "Firstman Studio",
+            "origin_country": "KR"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "KR",
+            "name": "South Korea"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2021-09-17",
+            "episode_count": 9,
+            "id": 131977,
+            "name": "Сезон 1",
+            "overview": "Из-за нужды в деньгах сотни игроков принимают странное приглашение поучаствовать в детских соревнованиях. Их ждет заманчивый приз, но ставки смертельно высоки.",
+            "poster_path": "/7XtNXjHADVph4SUfKubWfYid7To.jpg",
+            "season_number": 1,
+            "vote_average": 8.3
+          },
+          {
+            "air_date": "2024-12-26",
+            "episode_count": 7,
+            "id": 287516,
+            "name": "Сезон 2",
+            "overview": "Готовы бороться за жизнь? Игрок 456 возвращается. Его ждут волнующие детские игры и новые смертельные испытания. Но теперь у него есть тайная цель.",
+            "poster_path": "/3vMCgpRa5cdutE56AXqeEkGHtxI.jpg",
+            "season_number": 2,
+            "vote_average": 8.4
+          },
+          {
+            "air_date": "2025-06-27",
+            "episode_count": 6,
+            "id": 435948,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/vDppycTvnKItQZezcpxCi04ifli.jpg",
+            "season_number": 3,
+            "vote_average": 7.9
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          },
+          {
+            "english_name": "Korean",
+            "iso_639_1": "ko",
+            "name": "한국어/조선말"
+          },
+          {
+            "english_name": "Urdu",
+            "iso_639_1": "ur",
+            "name": "اردو"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "«Финальные игры начинаются»",
+        "type": "Scripted",
+        "vote_average": 7.9,
+        "vote_count": 16328
+      }
+    }
+  },
+  {
+    "rawName": "Киллербот (1 сезон: 1-10 серии из 10) / Murderbot / 2025 / ПМ (Red Head Sound), СТ / 4K, HEVC, HDR, HDR10+, Dolby Vision P8 / WEB-DL (2160p)",
+    "russianTitle": "Киллербот",
+    "originalTitle": "Murderbot",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 1,
+    "episode": 10,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-12T22:47:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/svdtJsa1ZhZ31zcc5XGEMbbI52j.jpg",
+        "created_by": [
+          {
+            "id": 3288,
+            "credit_id": "682585a4b90c27d095ada261",
+            "name": "Крис Вайц",
+            "original_name": "Chris Weitz",
+            "gender": 2,
+            "profile_path": "/u0zSPgtetcsRpqwUqNtVkBYPAnU.jpg"
+          },
+          {
+            "id": 3289,
+            "credit_id": "682585aaf603e29841767c23",
+            "name": "Пол Вайц",
+            "original_name": "Paul Weitz",
+            "gender": 2,
+            "profile_path": "/54Np4lBqGM36uwpzRc4KztJxGJz.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2025-05-15",
+        "genres": [
+          {
+            "id": 35,
+            "name": "комедия"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "https://tv.apple.com/show/umc.cmc.5owrzntj9v1gpg31wshflud03",
+        "id": 241554,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-10",
+        "last_episode_to_air": {
+          "id": 5995963,
+          "name": "Периметр",
+          "overview": "Судьба Киллербота висит на волоске. «Сохранение» озвучивает радикальную просьбу в Корпоративном кольце.",
+          "vote_average": 4.6,
+          "vote_count": 10,
+          "air_date": "2025-07-10",
+          "episode_number": 10,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 35,
+          "season_number": 1,
+          "show_id": 241554,
+          "still_path": "/v9JZhOqICU2d1Lv1x1L1Mk7SC9N.jpg"
+        },
+        "name": "Дневники Киллербота",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 2552,
+            "logo_path": "/4KAy34EHvRM25Ih8wb82AuGU7zJ.png",
+            "name": "Apple TV+",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 10,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Murderbot",
+        "overview": "Далёкое будущее. Андроиды-охранники стали незаменимыми спутниками космических экспедиций, надежно защищая людей от любых угроз. Один из таких андроидов внезапно обретает сознание и свободу воли благодаря взлому системы безопасности. Теперь он вынужден скрывать свои новые способности, продолжая выполнять опасные задания.",
+        "popularity": 116.7733,
+        "poster_path": "/qF69jbF0vK7XImxEj9ktWCgFASE.jpg",
+        "production_companies": [
+          {
+            "id": 1473,
+            "logo_path": null,
+            "name": "Depth of Field",
+            "origin_country": "US"
+          },
+          {
+            "id": 423,
+            "logo_path": "/uvA6e2O31qaonsbYd8tjvgqmNXh.png",
+            "name": "Phantom Four",
+            "origin_country": "US"
+          },
+          {
+            "id": 228633,
+            "logo_path": "/of4mmVt6egYaO9oERJbuUxMOTkj.png",
+            "name": "Paramount Television Studios",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-05-15",
+            "episode_count": 10,
+            "id": 369826,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/qF69jbF0vK7XImxEj9ktWCgFASE.jpg",
+            "season_number": 1,
+            "vote_average": 5.4
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Робот скрывает свободу воли и обожает смотреть сериалы.",
+        "type": "Scripted",
+        "vote_average": 7.5,
+        "vote_count": 212
+      }
+    }
+  },
+  {
+    "rawName": "И просто так (3 сезон: 1-7 серии из 12) / And Just Like That... / 2025 / 4 x ПМ, ЛМ / 4K, HEVC, HDR / WEB-DL (2160p)",
+    "russianTitle": "И просто так",
+    "originalTitle": "And Just Like That...",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 3,
+    "episode": 7,
+    "totalEpisodes": 12,
+    "releaseDateISO": "2025-07-12T19:50:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/sHvTsXSWxuW7hoXAqWM4lBLJI50.jpg",
+        "created_by": [
+          {
+            "id": 47915,
+            "credit_id": "61b447429d8939001c17334b",
+            "name": "Darren Star",
+            "original_name": "Darren Star",
+            "gender": 2,
+            "profile_path": "/lh6yexxHGKpLViBUBCWvBzP8kIq.jpg"
+          }
+        ],
+        "episode_run_time": [
+          45
+        ],
+        "first_air_date": "2021-12-09",
+        "genres": [
+          {
+            "id": 35,
+            "name": "комедия"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://www.max.com/shows/b9c27771-247a-459d-b751-85460d3fd5a2",
+        "id": 116450,
+        "in_production": true,
+        "languages": [
+          "en",
+          "es"
+        ],
+        "last_air_date": "2025-07-10",
+        "last_episode_to_air": {
+          "id": 6135825,
+          "name": "Девочки хотят веселиться",
+          "overview": "",
+          "vote_average": 8,
+          "vote_count": 1,
+          "air_date": "2025-07-10",
+          "episode_number": 7,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 43,
+          "season_number": 3,
+          "show_id": 116450,
+          "still_path": "/fLbMaRYzJG69D4Tirj7eLEWRvxv.jpg"
+        },
+        "name": "И просто так",
+        "next_episode_to_air": {
+          "id": 6135826,
+          "name": "Эпизод 8",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-17",
+          "episode_number": 8,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 3,
+          "show_id": 116450,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 3186,
+            "logo_path": "/nmU0UMDJB3dRRQSTUqawzF2Od1a.png",
+            "name": "HBO Max",
+            "origin_country": ""
+          },
+          {
+            "id": 6783,
+            "logo_path": "/rAb4M1LjGpWASxpk6Va791A7Nkw.png",
+            "name": "Max",
+            "origin_country": ""
+          },
+          {
+            "id": 8304,
+            "logo_path": "/gqWI9y0owo9sxgzZD7TXOeILYI9.png",
+            "name": "HBO Max",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 33,
+        "number_of_seasons": 3,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "And Just Like That…",
+        "overview": "Сиквел легендарного сериала «Секс в большом городе». События «И просто так» развиваются спустя 20 лет после окончания оригинального шоу. Кэрри, Миранда и Шарлотта прошли большой путь, их дружба все так же крепка, хотя Саманты больше нет рядом. Зато рядом семья, новые люди и карьерные вызовы — например, Брэдшоу теперь записывает собственный подкаст.",
+        "popularity": 42.6798,
+        "poster_path": "/oauewqi33LCp7kql1jigXIKFaYh.jpg",
+        "production_companies": [
+          {
+            "id": 10614,
+            "logo_path": null,
+            "name": "Michael Patrick King Productions",
+            "origin_country": ""
+          },
+          {
+            "id": 79896,
+            "logo_path": null,
+            "name": "Pretty Matches Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 166115,
+            "logo_path": null,
+            "name": "Rialto Films",
+            "origin_country": ""
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2021-12-09",
+            "episode_count": 10,
+            "id": 175997,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/8jsiOQWw97qL3plQKMXcfVzQgfE.jpg",
+            "season_number": 1,
+            "vote_average": 6.6
+          },
+          {
+            "air_date": "2023-06-22",
+            "episode_count": 11,
+            "id": 338679,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/ckl3YTckH7JeeTx55NQMFf7pMRL.jpg",
+            "season_number": 2,
+            "vote_average": 7.2
+          },
+          {
+            "air_date": "2025-05-29",
+            "episode_count": 12,
+            "id": 405310,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/2b6E0pN19IGsmxSv6HyTKydKKdb.jpg",
+            "season_number": 3,
+            "vote_average": 8
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          },
+          {
+            "english_name": "Spanish",
+            "iso_639_1": "es",
+            "name": "Español"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "«Лето в городе.»",
+        "type": "Scripted",
+        "vote_average": 7.4,
+        "vote_count": 504
+      }
+    }
+  },
+  {
+    "rawName": "Нарковоры (1 сезон: 1-8 серии из 8) / Dope Thief  / 2025 / 5 x ПМ, ПД (Кубик В Кубе), ЛМ (LE-Production), СТ / 4K, HEVC, SDR / WEB-DL (2160p)",
+    "russianTitle": "Нарковоры",
+    "originalTitle": "Dope Thief",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 1,
+    "episode": 8,
+    "totalEpisodes": 8,
+    "releaseDateISO": "2025-07-12T19:40:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/qbUeqIQAn1cy01OuSctGmatVJCC.jpg",
+        "created_by": [
+          {
+            "id": 225633,
+            "credit_id": "631b6728a5d849007d5a2dcd",
+            "name": "Питер Крейг",
+            "original_name": "Peter Craig",
+            "gender": 2,
+            "profile_path": "/5r0nnz5JJ8bIiUfcK2TaasmJm3h.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2025-03-13",
+        "genres": [
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://tv.apple.com/show/umc.cmc.2prcvu6fnh4bue7d9iaswpsw7",
+        "id": 209876,
+        "in_production": false,
+        "languages": [
+          "en",
+          "es",
+          "vi"
+        ],
+        "last_air_date": "2025-04-24",
+        "last_episode_to_air": {
+          "id": 4332954,
+          "name": "Невинные люди",
+          "overview": "Рэй раскрывает карты и находит неожиданного союзника в поисках истины.",
+          "vote_average": 6.3,
+          "vote_count": 10,
+          "air_date": "2025-04-24",
+          "episode_number": 8,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 50,
+          "season_number": 1,
+          "show_id": 209876,
+          "still_path": "/iJopDWRqkWTXE2INNdza9bmQm0d.jpg"
+        },
+        "name": "Нарковоры",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 2552,
+            "logo_path": "/4KAy34EHvRM25Ih8wb82AuGU7zJ.png",
+            "name": "Apple TV+",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 8,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Dope Thief",
+        "overview": "В Филадельфии двое давних друзей выдают себя за агентов УБН, чтобы грабить мелких наркоторговцев. Афера проходит гладко, пока они не выбирают не ту цель и не становятся мишенью масштабной операции наркобизнеса.",
+        "popularity": 26.5844,
+        "poster_path": "/yea7rbx5321J8TBG1o0dx2xIQum.jpg",
+        "production_companies": [
+          {
+            "id": 194232,
+            "logo_path": "/oE7H93u8sy5vvW5EH3fpCp68vvB.png",
+            "name": "Apple Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 221347,
+            "logo_path": "/6Ry6uNBaa0IbbSs1XYIgX5DkA9r.png",
+            "name": "Scott Free Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 256258,
+            "logo_path": null,
+            "name": "Night Owl Stories",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-03-13",
+            "episode_count": 8,
+            "id": 307984,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/sIed5PCiMNHd7G55DR9ObSRV9v2.jpg",
+            "season_number": 1,
+            "vote_average": 6.3
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          },
+          {
+            "english_name": "Spanish",
+            "iso_639_1": "es",
+            "name": "Español"
+          },
+          {
+            "english_name": "Vietnamese",
+            "iso_639_1": "vi",
+            "name": "Tiếng Việt"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "Никто не уйдет от расплаты.",
+        "type": "Miniseries",
+        "vote_average": 6.724,
+        "vote_count": 78
+      }
+    }
+  },
+  {
+    "rawName": "Институт (1 сезон: 1-2 серии из 8) / The Institute / 2025 / ЛМ (LE-Production) / WEB-DL (1080p)",
+    "russianTitle": "Институт",
+    "originalTitle": "The Institute",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 2,
+    "totalEpisodes": 8,
+    "releaseDateISO": "2025-07-15T03:27:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/mcU5nwUqPJB6GeElDhKA68LKhqD.jpg",
+        "created_by": [
+          {
+            "id": 3027,
+            "credit_id": "6873e1e60849184ac2ba3a1b",
+            "name": "Стивен Кинг",
+            "original_name": "Stephen King",
+            "gender": 2,
+            "profile_path": "/7r5nEzNanuEhmxtpsKE1uCBU5Jd.jpg"
+          }
+        ],
+        "episode_run_time": [
+          58
+        ],
+        "first_air_date": "2025-07-13",
+        "genres": [
+          {
+            "id": 9648,
+            "name": "детектив"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "",
+        "id": 253372,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-13",
+        "last_episode_to_air": {
+          "id": 6306761,
+          "name": "Эпизод 2",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-13",
+          "episode_number": 2,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 54,
+          "season_number": 1,
+          "show_id": 253372,
+          "still_path": "/5f5a9nh5WpXxKGv6c78Utn56QHy.jpg"
+        },
+        "name": "Институт",
+        "next_episode_to_air": {
+          "id": 6306762,
+          "name": "Эпизод 3",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-20",
+          "episode_number": 3,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 253372,
+          "still_path": "/sGk8FC0rbMcl7BkXNzcWWmsx3Ns.jpg"
+        },
+        "networks": [
+          {
+            "id": 6219,
+            "logo_path": "/89TXvQzvoKvyqD9EEogohzMJ8D6.png",
+            "name": "MGM+",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 8,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The Institute",
+        "overview": "Сериал рассказывает историю гениального подростка Люка Эллиса (Джо Фримен), который был похищен и очнулся в Институте — учреждении, полном детей, которые попали туда так же, как и он, и все обладают необычными способностями. Тем временем в соседний город приезжает бывший полицейский Тим Джеймисон (Бен Барнс), мечтающий начать новую жизнь, но эти планы изменятся, когда история мужчины пересечется с историей Люка",
+        "popularity": 26.4092,
+        "poster_path": "/7JXZdWifaa6wL0XLRi0GJOlOA8y.jpg",
+        "production_companies": [
+          {
+            "id": 190164,
+            "logo_path": "/1ZjUvqLGbp5vUcY235LAvQyI6N3.png",
+            "name": "MGM+ Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 210099,
+            "logo_path": "/d6HwljzlOzxJ4tXlrpRkNZaZMWL.png",
+            "name": "Amazon MGM Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 143790,
+            "logo_path": "/wo1smiXdiwwxai2dwJlRiGwE7rS.png",
+            "name": "Spyglass Media Group",
+            "origin_country": "US"
+          },
+          {
+            "id": 267875,
+            "logo_path": null,
+            "name": "Sashajo Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 267876,
+            "logo_path": null,
+            "name": "Nomadicfilm",
+            "origin_country": ""
+          },
+          {
+            "id": 178864,
+            "logo_path": "/5xti6WP3i8AoI9o4Wl813JA98CF.png",
+            "name": "ZDFneo",
+            "origin_country": "DE"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          },
+          {
+            "iso_3166_1": "CA",
+            "name": "Canada"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-13",
+            "episode_count": 8,
+            "id": 391947,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/7JXZdWifaa6wL0XLRi0GJOlOA8y.jpg",
+            "season_number": 1,
+            "vote_average": 8
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Miniseries",
+        "vote_average": 8.3,
+        "vote_count": 7
+      }
+    }
+  },
+  {
+    "rawName": "Инкассаторы (1 сезон: 1-2 серии из 8) / 2025 / РУ / WEB-DL (1080p)",
+    "russianTitle": "Инкассаторы",
+    "originalTitle": null,
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 2,
+    "totalEpisodes": 8,
+    "releaseDateISO": "2025-07-14T14:12:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/ba6cj78aG2y3qeERJiOmGx5dtEM.jpg",
+        "created_by": [
+          {
+            "id": 229351,
+            "credit_id": "5e00a1fad236e6001290ec60",
+            "name": "Юрий Быков",
+            "original_name": "Юрий Быков",
+            "gender": 2,
+            "profile_path": "/2ZAUkaYqyr0jmqS6bl02yAJA8CE.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2012-06-04",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 80,
+            "name": "криминал"
+          }
+        ],
+        "homepage": "",
+        "id": 96780,
+        "in_production": false,
+        "languages": [
+          "ru"
+        ],
+        "last_air_date": "2012-06-07",
+        "last_episode_to_air": {
+          "id": 2026748,
+          "name": "Эпизод 8",
+          "overview": "Полиция узнала о перевозке ценного груза и устроила засаду, надеясь задержать преступников, собиравшихся напасть на охраняемую машину. В результате оказалось, что «крысой» в коллективе инкассаторов оказался друг Вадима…",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2012-06-07",
+          "episode_number": 8,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 96780,
+          "still_path": "/agm1BqDfvrIKdvmmPNm1EyvMHXL.jpg"
+        },
+        "name": "Инкассаторы",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 412,
+            "logo_path": "/t96cnWLH1OivW91EXygZDNSmhAK.png",
+            "name": "Russia-1",
+            "origin_country": "RU"
+          },
+          {
+            "id": 1197,
+            "logo_path": "/liqQQATn4eTB72ZK4dFYfTv0F4x.png",
+            "name": "Russia-2",
+            "origin_country": "RU"
+          },
+          {
+            "id": 2516,
+            "logo_path": "/qkvQRIdnAbGEc4g9S4ZPPv0Ll2M.png",
+            "name": "Пятый канал",
+            "origin_country": "RU"
+          }
+        ],
+        "number_of_episodes": 8,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "RU"
+        ],
+        "original_language": "ru",
+        "original_name": "Инкассаторы",
+        "overview": "Новости о нападениях на инкассаторов в наше время, увы, стали чем-то будничным, но это событие буквально потрясло общественность: один сотрудник известной инкассаторской службы убит, другой тяжело ранен. Кровавое преступление совершено столь четко и слаженно, что следователи не могут не заподозрить: у налетчиков есть информатор среди инкассаторов. Не подозревают они лишь о том, что денег украдено гораздо больше, чем значится по документам: в машине был «черный нал», о котором органам знать не следует.\n\nНачальник службы инкассации решает втайне от следствия внедрить в группу инкассаторов своего человека, бывшего сослуживца Вадима. Его задача — вычислить предателя, цинично работающего на «два фронта». Трудность в том, что мотивы и возможности есть практически у всех…",
+        "popularity": 3.8681,
+        "poster_path": "/pTzRMbR2BWLbLepvp1ZJBRbfpJ5.jpg",
+        "production_companies": [
+          {
+            "id": 3419,
+            "logo_path": "/byrxE2pJD9JLyBCIzyK0pYVanyG.png",
+            "name": "Central Partnership",
+            "origin_country": "RU"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "RU",
+            "name": "Russia"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2012-06-04",
+            "episode_count": 8,
+            "id": 138912,
+            "name": "Season 1",
+            "overview": "Начальник службы инкассации внедряет в коллектив «своего» человека, чтобы вычислить предателя среди сотрудников",
+            "poster_path": "/k6Vn4U9JPH3P8uMBp4FIqJNvVbM.jpg",
+            "season_number": 1,
+            "vote_average": 8
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Russian",
+            "iso_639_1": "ru",
+            "name": "Pусский"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 6.3,
+        "vote_count": 3
+      }
+    }
+  },
+  {
+    "rawName": "Дым (1 сезон: 1-4 серии из 9) / Smoke / 2025 / ПМ (HDRezka Studio, 1WIN Studio, LostFilm, Red Head Sound, TVShows), ЛМ, СТ / WEB-DL (1080p)",
+    "russianTitle": "Дым",
+    "originalTitle": "Smoke",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 4,
+    "totalEpisodes": 9,
+    "releaseDateISO": "2025-07-14T12:28:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/2gfOS8A4gBAf8O9SjpgZIc2Z5yI.jpg",
+        "created_by": [
+          {
+            "id": 4722,
+            "credit_id": "6392163b647654008cc9a9a0",
+            "name": "Деннис Лихейн",
+            "original_name": "Dennis Lehane",
+            "gender": 2,
+            "profile_path": "/9pY4fW3bCG0q6vilEvvswIAbAK0.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2025-06-26",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 80,
+            "name": "криминал"
+          }
+        ],
+        "homepage": "https://tv.apple.com/show/umc.cmc.4lplbt076d3um4tenis7k58e3",
+        "id": 215995,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-10",
+        "last_episode_to_air": {
+          "id": 6136857,
+          "name": "Клубника",
+          "overview": "Гудсен проливает свет на свое темное прошлое. Кэлдерон копает глубже. Фредди катится по наклонной.",
+          "vote_average": 1,
+          "vote_count": 2,
+          "air_date": "2025-07-10",
+          "episode_number": 4,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 41,
+          "season_number": 1,
+          "show_id": 215995,
+          "still_path": "/rXPlMSnFpL0KHsPmFfMXBHiaaPF.jpg"
+        },
+        "name": "Дым",
+        "next_episode_to_air": {
+          "id": 6136858,
+          "name": "Размер имеет значение",
+          "overview": "Пока Гудсен уезжает из города на конференцию, Кэлдерон пытается выследить его старого напарника. Фредди жаждет мести.",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-17",
+          "episode_number": 5,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 53,
+          "season_number": 1,
+          "show_id": 215995,
+          "still_path": "/gYSANhr2wqugtpMFZyGzvGMbLWq.jpg"
+        },
+        "networks": [
+          {
+            "id": 2552,
+            "logo_path": "/4KAy34EHvRM25Ih8wb82AuGU7zJ.png",
+            "name": "Apple TV+",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 9,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Smoke",
+        "overview": "Когда специалист по расследованию поджогов неохотно объединяется с полицейским детективом, их стремление поймать двух поджигателей порождает запутанную игру, полную тайн и подозрений.",
+        "popularity": 68.818,
+        "poster_path": "/8eeLf47fDJsF09jMs20cdgwtMW8.jpg",
+        "production_companies": [
+          {
+            "id": 22475,
+            "logo_path": "/bwF8Ma4fEVtCSunu3Rrmx55StCz.png",
+            "name": "EDEN Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 81121,
+            "logo_path": "/1z9ocv9A1qlXhH1ehq2hFqIl0J5.png",
+            "name": "Imperative Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 194232,
+            "logo_path": "/oE7H93u8sy5vvW5EH3fpCp68vvB.png",
+            "name": "Apple Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 156311,
+            "logo_path": "/a95cDQP1ifQFdokN0BcLKXY4AHd.png",
+            "name": "Crime Story Media",
+            "origin_country": "US"
+          },
+          {
+            "id": 181707,
+            "logo_path": "/gpMEfG14q5g1TjvqdQ0kLWLtvTH.png",
+            "name": "Hans Bubby",
+            "origin_country": "US"
+          },
+          {
+            "id": 138607,
+            "logo_path": "/m52Wl1fiB6sBzGSVVCsdW1dXqLd.png",
+            "name": "truth.media",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-06-26",
+            "episode_count": 9,
+            "id": 319403,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/p789YfZtMqe3ErII3t61FWmAaFQ.jpg",
+            "season_number": 1,
+            "vote_average": 1.7
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Расследование поджогов порождает запутанную игру, полную тайн и подозрений.",
+        "type": "Miniseries",
+        "vote_average": 5.7,
+        "vote_count": 27
+      }
+    }
+  },
+  {
+    "rawName": "Семья по выбору (1 сезон: 1-16 серии из 16) / Jolibsik Gajok (Family by Choice) / 2024 / ПМ (Тайм Медиа Групп), СТ / WEB-DL (1080p)",
+    "russianTitle": "Семья по выбору",
+    "originalTitle": "Jolibsik Gajok (Family by Choice)",
+    "year": 2024,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 16,
+    "totalEpisodes": 16,
+    "releaseDateISO": "2025-07-14T10:27:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/26hCPlTtSqxnW6HMSzvir9umFCW.jpg",
+        "created_by": [
+          {
+            "id": 3134694,
+            "credit_id": "66d706d8a3256d4c58f02030",
+            "name": "Kim Seung-ho",
+            "original_name": "Kim Seung-ho",
+            "gender": 2,
+            "profile_path": null
+          }
+        ],
+        "episode_run_time": [
+          70
+        ],
+        "first_air_date": "2024-10-09",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 10751,
+            "name": "семейный"
+          }
+        ],
+        "homepage": "https://tv.jtbc.co.kr/familybychoice",
+        "id": 237565,
+        "in_production": false,
+        "languages": [
+          "ko"
+        ],
+        "last_air_date": "2024-11-27",
+        "last_episode_to_air": {
+          "id": 5658950,
+          "name": "Эпизод 16",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2024-11-27",
+          "episode_number": 16,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 64,
+          "season_number": 1,
+          "show_id": 237565,
+          "still_path": "/z6kfLga7lBqWOM0MGmcg2wnbq4i.jpg"
+        },
+        "name": "Семья по выбору",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 885,
+            "logo_path": "/44I4aVlasm8Blb8WPGXTkMYuZJF.png",
+            "name": "JTBC",
+            "origin_country": "KR"
+          }
+        ],
+        "number_of_episodes": 16,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "KR"
+        ],
+        "original_language": "ko",
+        "original_name": "조립식 가족",
+        "overview": "Друзья детства — два парня и девушка — встречаются спустя 10 лет, но между ними возникает напряжение.",
+        "popularity": 23.1725,
+        "poster_path": "/fQmC6mDWI00yaLhNxyKJEhFbDUB.jpg",
+        "production_companies": [
+          {
+            "id": 139166,
+            "logo_path": "/yBd9hNUQmh7LPMyM1RVazM3C9ki.png",
+            "name": "HighZium Studio",
+            "origin_country": "KR"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "KR",
+            "name": "South Korea"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2024-10-09",
+            "episode_count": 16,
+            "id": 361652,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/zaDLpenJGn5JZ0xMTarZKmma4sf.jpg",
+            "season_number": 1,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Korean",
+            "iso_639_1": "ko",
+            "name": "한국어/조선말"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.815,
+        "vote_count": 54
+      }
+    }
+  },
+  {
+    "rawName": "Медики Чикаго (1-10 сезоны: 1-198 серии из 198) / Chicago Med / 2015-2025 / ПМ (TVShows) / HEVC / WEB-DLRip (1080p)",
+    "russianTitle": "Медики Чикаго (1-)",
+    "originalTitle": "Chicago Med",
+    "year": 2015,
+    "quality": "1080p",
+    "season": 10,
+    "episode": 198,
+    "totalEpisodes": 198,
+    "releaseDateISO": "2025-07-14T08:21:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/cUh0d1ev6cEQ8KxCe3YQYa8AR50.jpg",
+        "created_by": [
+          {
+            "id": 1214477,
+            "credit_id": "554da1fcc3a36824cd0035d3",
+            "name": "Мэтт Олмстед",
+            "original_name": "Matt Olmstead",
+            "gender": 2,
+            "profile_path": "/3tK3c9pZlGFBJaOxwH00svHtu8U.jpg"
+          },
+          {
+            "id": 117443,
+            "credit_id": "554da1ef9251410afb001132",
+            "name": "Дик Вульф",
+            "original_name": "Dick Wolf",
+            "gender": 2,
+            "profile_path": "/tRMEuYNVFjXYJ7gh1sGJSxq9Vwq.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2015-11-17",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "http://www.nbc.com/chicago-med",
+        "id": 62650,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-05-21",
+        "last_episode_to_air": {
+          "id": 6108933,
+          "name": "Эпизод 22",
+          "overview": "",
+          "vote_average": 8,
+          "vote_count": 1,
+          "air_date": "2025-05-21",
+          "episode_number": 22,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 43,
+          "season_number": 10,
+          "show_id": 62650,
+          "still_path": "/kS01FrkLLZ4CNWPuDiwebm3ekuS.jpg"
+        },
+        "name": "Медики Чикаго",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 6,
+            "logo_path": "/cm111bsDVlYaC1foL0itvEI4yLG.png",
+            "name": "NBC",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 198,
+        "number_of_seasons": 10,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Chicago Med",
+        "overview": "Сериал рассказывает о команде врачей, работающих в чикагской больнице. Каждый день им приходится работать в полном хаосе и разбираться с уникальными случаями.",
+        "popularity": 220.3682,
+        "poster_path": "/xIBljvbjoFg8EM6EYXtMWgyt6Ud.jpg",
+        "production_companies": [
+          {
+            "id": 26727,
+            "logo_path": "/jeTxdjXhzgKZyLr3l9MllkTn3fy.png",
+            "name": "Universal Television",
+            "origin_country": "US"
+          },
+          {
+            "id": 25545,
+            "logo_path": "/8Lqf0okunSPAwBBL08Ua1IRe1xi.png",
+            "name": "Wolf Entertainment",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2015-11-16",
+            "episode_count": 18,
+            "id": 66624,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/49LPQsmjxfqIC2Yva5JNylHIMgy.jpg",
+            "season_number": 1,
+            "vote_average": 7.1
+          },
+          {
+            "air_date": "2016-09-21",
+            "episode_count": 23,
+            "id": 79671,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/nfUKh7ScIgzBbWRmscjwnUZL7Gc.jpg",
+            "season_number": 2,
+            "vote_average": 6.7
+          },
+          {
+            "air_date": "2017-11-20",
+            "episode_count": 20,
+            "id": 94595,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/ospEQcKUjzvesnHI13vgycrnSDI.jpg",
+            "season_number": 3,
+            "vote_average": 5.9
+          },
+          {
+            "air_date": "2018-09-25",
+            "episode_count": 22,
+            "id": 105456,
+            "name": "Сезон 4",
+            "overview": "",
+            "poster_path": "/6ZBfSUzPfFPGcpbcHcwFRTEL4uG.jpg",
+            "season_number": 4,
+            "vote_average": 7.3
+          },
+          {
+            "air_date": "2019-09-24",
+            "episode_count": 20,
+            "id": 126165,
+            "name": "Сезон 5",
+            "overview": "",
+            "poster_path": "/vSgtqgqYb0hdvGemUOyjSSduvz1.jpg",
+            "season_number": 5,
+            "vote_average": 7.8
+          },
+          {
+            "air_date": "2020-11-10",
+            "episode_count": 16,
+            "id": 160632,
+            "name": "Сезон 6",
+            "overview": "",
+            "poster_path": "/8mFhW6fJlapqq3cmQjxcG5h4KFa.jpg",
+            "season_number": 6,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2021-09-21",
+            "episode_count": 22,
+            "id": 202462,
+            "name": "Сезон 7",
+            "overview": "",
+            "poster_path": "/dzRU492K7yWwiEqVnjm4CurJmn2.jpg",
+            "season_number": 7,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2022-09-20",
+            "episode_count": 22,
+            "id": 299103,
+            "name": "Сезон 8",
+            "overview": "",
+            "poster_path": "/gHP1tbA9XZ8rQTwgNpNKP8p3H9Z.jpg",
+            "season_number": 8,
+            "vote_average": 7.5
+          },
+          {
+            "air_date": "2024-01-16",
+            "episode_count": 13,
+            "id": 366614,
+            "name": "Сезон 9",
+            "overview": "",
+            "poster_path": "/erd3D0LHJYgEDJEqKxz6czX6DAv.jpg",
+            "season_number": 9,
+            "vote_average": 8.6
+          },
+          {
+            "air_date": "2024-09-25",
+            "episode_count": 22,
+            "id": 401567,
+            "name": "Сезон 10",
+            "overview": "",
+            "poster_path": "/8UXGfvjKzzkGepXZU43dgpK48oY.jpg",
+            "season_number": 10,
+            "vote_average": 7.5
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 8.3,
+        "vote_count": 1196
+      }
+    }
+  },
+  {
+    "rawName": "Засланец из космоса (4 сезон: 1-6 серии из 10) / Resident Alien / 2025 / ПМ (LostFilm) / WEB-DL (1080p)",
+    "russianTitle": "Засланец из космоса",
+    "originalTitle": "Resident Alien",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 4,
+    "episode": 6,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-13T17:28:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/aCbOj4wc6vQUUVNKppssj2PYUy0.jpg",
+        "created_by": [
+          {
+            "id": 170819,
+            "credit_id": "5df8c01965686e001889436c",
+            "name": "Крис Шеридан",
+            "original_name": "Chris Sheridan",
+            "gender": 2,
+            "profile_path": null
+          }
+        ],
+        "episode_run_time": [
+          45
+        ],
+        "first_air_date": "2021-01-27",
+        "genres": [
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "https://www.syfy.com/resident-alien",
+        "id": 96580,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-11",
+        "last_episode_to_air": {
+          "id": 6327497,
+          "name": "Поставщики душ",
+          "overview": "",
+          "vote_average": 1,
+          "vote_count": 1,
+          "air_date": "2025-07-11",
+          "episode_number": 6,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 45,
+          "season_number": 4,
+          "show_id": 96580,
+          "still_path": "/gzchccng1waxwPcOGbgyDMnJXs6.jpg"
+        },
+        "name": "Засланец из космоса",
+        "next_episode_to_air": {
+          "id": 6327500,
+          "name": "Эпизод 7",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-18",
+          "episode_number": 7,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 45,
+          "season_number": 4,
+          "show_id": 96580,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 30,
+            "logo_path": "/g1e0H0Ka97IG5SyInMXdJkHGKiH.png",
+            "name": "USA Network",
+            "origin_country": "US"
+          },
+          {
+            "id": 77,
+            "logo_path": "/iYfrkobwDhTOFJ4AXYPSLIEeaAT.png",
+            "name": "Syfy",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 44,
+        "number_of_seasons": 4,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Resident Alien",
+        "overview": "Доктор Гарри Вандершпигель — отшельник в небольшом городке в Колорадо. Ещё Вандершпигель — пришелец, который на самом деле упал на Землю и занял тело врача. Когда же доктора убивают, пришелец вынужден отложить миссию по возвращению домой и занять место убитого. Живя в новом теле, он постепенно начинает задаваться вопросами, стоят ли люди спасения или нет.",
+        "popularity": 51.5911,
+        "poster_path": "/hKFLa0u0jUaDv7SYXrueUjSBfQn.jpg",
+        "production_companies": [
+          {
+            "id": 7938,
+            "logo_path": "/8I52qpy2Dp48gD9Jf6W1D6E7Imo.png",
+            "name": "UCP",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2021-01-26",
+            "episode_count": 10,
+            "id": 138465,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/hOIEJIZuluKTlG0tIefRLemVOmy.jpg",
+            "season_number": 1,
+            "vote_average": 7.7
+          },
+          {
+            "air_date": "2022-01-26",
+            "episode_count": 16,
+            "id": 235503,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/onXQA3aDekb94QClxKQACN9Sqvv.jpg",
+            "season_number": 2,
+            "vote_average": 6.9
+          },
+          {
+            "air_date": "2024-02-14",
+            "episode_count": 8,
+            "id": 373762,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/kuyGmI3DMsjSMTjqTYb9XvYwIb0.jpg",
+            "season_number": 3,
+            "vote_average": 6.9
+          },
+          {
+            "air_date": "2025-06-06",
+            "episode_count": 10,
+            "id": 454227,
+            "name": "Сезон 4",
+            "overview": "",
+            "poster_path": "/hKFLa0u0jUaDv7SYXrueUjSBfQn.jpg",
+            "season_number": 4,
+            "vote_average": 4.9
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Телепортируй это наверх.",
+        "type": "Scripted",
+        "vote_average": 7.812,
+        "vote_count": 835
+      }
+    }
+  },
+  {
+    "rawName": "Опасный (1 сезон: 1-16 серии из 32) / 2024-2025 / РУ / WEB-DL (1080p)",
+    "russianTitle": "Опасный",
+    "originalTitle": null,
+    "year": 2024,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 16,
+    "totalEpisodes": 32,
+    "releaseDateISO": "2025-07-13T17:06:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/s1pIx94IaokrvqTC5p4rGuECKbW.jpg",
+        "created_by": [
+          {
+            "id": 1958873,
+            "credit_id": "5e8faa26fdc14600134667a1",
+            "name": "Christopher J. Nowak",
+            "original_name": "Christopher J. Nowak",
+            "gender": 2,
+            "profile_path": null
+          }
+        ],
+        "episode_run_time": [
+          23
+        ],
+        "first_air_date": "2020-03-28",
+        "genres": [
+          {
+            "id": 35,
+            "name": "комедия"
+          },
+          {
+            "id": 10751,
+            "name": "семейный"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "https://www.nick.com/shows/danger-force",
+        "id": 99583,
+        "in_production": false,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2024-02-21",
+        "last_episode_to_air": {
+          "id": 4382567,
+          "name": "Эпизод 13",
+          "overview": "",
+          "vote_average": 7,
+          "vote_count": 1,
+          "air_date": "2024-02-21",
+          "episode_number": 13,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 3,
+          "show_id": 99583,
+          "still_path": "/7rcUtNnMaqjkgJXztpPWhRDXFvk.jpg"
+        },
+        "name": "Опасный отряд",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 13,
+            "logo_path": "/aYkLXz4dxHgOrFNH7Jv7Cpy56Ms.png",
+            "name": "Nickelodeon",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 64,
+        "number_of_seasons": 3,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Danger Force",
+        "overview": "Новые захватывающие и фантастические приключения легендарных супергероев. Каждый день они борются против криминала. Капитан Чел и четвёрка подростков выступают борцами за справедливость. Вместе они способны справиться с любыми трудностями и решить все задачи.",
+        "popularity": 32.889,
+        "poster_path": "/a23BK1czo0CVFWBa1PsirnMVz0z.jpg",
+        "production_companies": [
+          {
+            "id": 5371,
+            "logo_path": "/2GFJ3jJ7dhjqcOGj41aTwd3OhQT.png",
+            "name": "Nickelodeon Productions",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2020-05-09",
+            "episode_count": 6,
+            "id": 150535,
+            "name": "Спецматериалы",
+            "overview": "",
+            "poster_path": "/cHwQcyoITw4HsrxDzN510EmfeAB.jpg",
+            "season_number": 0,
+            "vote_average": 0
+          },
+          {
+            "air_date": "2020-03-28",
+            "episode_count": 26,
+            "id": 143662,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/og07TmMAC8FOnbcCUcKntHWfCTJ.jpg",
+            "season_number": 1,
+            "vote_average": 7.1
+          },
+          {
+            "air_date": "2021-10-23",
+            "episode_count": 25,
+            "id": 197451,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/GjkOuSB6N95BUkBdm1m2YuylFJ.jpg",
+            "season_number": 2,
+            "vote_average": 7.6
+          },
+          {
+            "air_date": "2023-04-20",
+            "episode_count": 13,
+            "id": 335674,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/gsvZYRnpcYJoefRlFWFKx9o0P4H.jpg",
+            "season_number": 3,
+            "vote_average": 7.6
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.845,
+        "vote_count": 274
+      }
+    }
+  },
+  {
+    "rawName": "Библиотекари: Следующая глава (1 сезон: 1-8 серии из 12) / The Librarians: The Next Chapter / 2025 / 4 x ПМ, ЛМ (LE-Production), СТ / WEB-DL (1080p)",
+    "russianTitle": "Библиотекари: Следующая глава",
+    "originalTitle": "The Librarians: The Next Chapter",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 8,
+    "totalEpisodes": 12,
+    "releaseDateISO": "2025-07-13T13:42:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/7vonjNjQ272lz0rJYM31K8V7b2m.jpg",
+        "created_by": [
+          {
+            "id": 8676,
+            "credit_id": "682efa75f9ae293269343e4a",
+            "name": "Дин Девлин",
+            "original_name": "Dean Devlin",
+            "gender": 2,
+            "profile_path": "/1MQI0HiBMIC9y1H2KEp7LipEb2p.jpg"
+          },
+          {
+            "id": 19535,
+            "credit_id": "682efa77c92c408b553af7bd",
+            "name": "Джон Роджерс",
+            "original_name": "John Rogers",
+            "gender": 2,
+            "profile_path": "/6VxilKl6oIlxiyet26LabZIW8mG.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2025-05-25",
+        "genres": [
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          }
+        ],
+        "homepage": "https://www.tntdrama.com/shows/the-librarians-the-next-chapter",
+        "id": 226749,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-07",
+        "last_episode_to_air": {
+          "id": 6007756,
+          "name": "И адское похмелье",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-07",
+          "episode_number": 8,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 226749,
+          "still_path": "/9nsIMjNmA4rrlTbeUTW9wvM5ytW.jpg"
+        },
+        "name": "Библиотекари: Следующая глава",
+        "next_episode_to_air": {
+          "id": 6237181,
+          "name": "Эпизод 9",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-14",
+          "episode_number": 9,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 226749,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 41,
+            "logo_path": "/6ISsKwa2XUhSC6oBtHZjYf6xFqv.png",
+            "name": "TNT",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 12,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The Librarians: The Next Chapter",
+        "overview": "Библиотекарь-путешественник во времени попадает из прошлого в наше время. Он не может вернуться в свою эпоху, и поэтому ищет свой замок, но обнаруживает, что теперь там находится музей. Нечаянно путешественник выпускает магию, которая распространяется по всему континенту.",
+        "popularity": 21.9078,
+        "poster_path": "/w2PhnfYgY1yjxnUc1M4Jp5CjXvD.jpg",
+        "production_companies": [
+          {
+            "id": 3241,
+            "logo_path": "/kRAMCgp7zAmd1UnCPBHiEiopSm9.png",
+            "name": "Electric Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 137474,
+            "logo_path": "/QHSGa3v3rQUj6onVxiSOtvm1Mb.png",
+            "name": "Balkanic Media",
+            "origin_country": "US"
+          },
+          {
+            "id": 237127,
+            "logo_path": null,
+            "name": "The CW Studios",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-05-25",
+            "episode_count": 12,
+            "id": 341398,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/w2PhnfYgY1yjxnUc1M4Jp5CjXvD.jpg",
+            "season_number": 1,
+            "vote_average": 5.4
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Новое приключение только начинается!",
+        "type": "Scripted",
+        "vote_average": 8.6,
+        "vote_count": 19
+      }
+    }
+  },
+  {
+    "rawName": "Мыслить как преступник (8-18 сезоны: 1-192 серии из 192) / Criminal Minds / 2012-2025 / 3 x ПМ  / HEVC / WEB-DLRip (1080p)",
+    "russianTitle": "Мыслить как преступник (8-)",
+    "originalTitle": "Criminal Minds",
+    "year": 2012,
+    "quality": "1080p",
+    "season": 18,
+    "episode": 192,
+    "totalEpisodes": 192,
+    "releaseDateISO": "2025-07-13T11:39:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/w88B4ooZ2LSYPw5107JOkjvI8PI.jpg",
+        "created_by": [
+          {
+            "id": 1235310,
+            "credit_id": "52575b4d19c29531db186270",
+            "name": "Jeff Davis",
+            "original_name": "Jeff Davis",
+            "gender": 2,
+            "profile_path": "/c3M3mdKxFM2uTKHSVapRhWs93kY.jpg"
+          }
+        ],
+        "episode_run_time": [
+          42
+        ],
+        "first_air_date": "2005-09-22",
+        "genres": [
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 9648,
+            "name": "детектив"
+          }
+        ],
+        "homepage": "https://www.paramountplus.com/shows/criminal_minds",
+        "id": 4057,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-03",
+        "last_episode_to_air": {
+          "id": 6047502,
+          "name": "Эпизод 10",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-10",
+          "episode_number": 10,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 55,
+          "season_number": 18,
+          "show_id": 4057,
+          "still_path": "/mVs0sS6YiHpXmFFZ2lxdbBF2Zkn.jpg"
+        },
+        "name": "Мыслить как преступник",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 16,
+            "logo_path": "/wju8KhOUsR5y4bH9p3Jc50hhaLO.png",
+            "name": "CBS",
+            "origin_country": "US"
+          },
+          {
+            "id": 4330,
+            "logo_path": "/fi83B1oztoS47xxcemFdPMhIzK.png",
+            "name": "Paramount+",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 354,
+        "number_of_seasons": 18,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Criminal Minds",
+        "overview": "Главные герои сериала - команда лучших следователей Отдела Анализа Поведения (ОАП) ФБР, способных понять и проанализировать ход мыслей самых изощрённых преступников, предугадать их дальнейшие поступки и тем самым предотвратить ужасные преступления. Когда обычные криминалисты заходят в тупик, на помощь им приходят специалисты по поведенческому анализу. Вместо тщательного изучения улик они пытаются найти и понять мотивы преступления, досконально вникая в каждый шаг преступника и пытаясь мыслить, как он.",
+        "popularity": 207.4553,
+        "poster_path": "/AuQnXLFaCbhmE7gOPGWfJ9onzC.jpg",
+        "production_companies": [
+          {
+            "id": 1558,
+            "logo_path": "/wwaKUcOENHix2jxLfFBfNkCtOEQ.png",
+            "name": "Touchstone Television",
+            "origin_country": "US"
+          },
+          {
+            "id": 1557,
+            "logo_path": "/ccz9bqCu3jSFKbPFnfWmjAKZLBL.png",
+            "name": "The Mark Gordon Company",
+            "origin_country": "US"
+          },
+          {
+            "id": 9223,
+            "logo_path": "/40qzTBM38vokoWhLKurficZ5syV.png",
+            "name": "Paramount Television",
+            "origin_country": "US"
+          },
+          {
+            "id": 1081,
+            "logo_path": "/19kn4jVvpc3sAL3YpZNb3elhSMl.png",
+            "name": "CBS Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 173121,
+            "logo_path": null,
+            "name": "Erica Messer Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 19366,
+            "logo_path": "/vOH8dyQhLK01pg5fYkgiS31jlFm.png",
+            "name": "ABC Studios",
+            "origin_country": "US"
+          },
+          {
+            "id": 236613,
+            "logo_path": "/9DTggoZARHzATCRewGRs9XSNOWP.png",
+            "name": "ABC Signature",
+            "origin_country": "US"
+          },
+          {
+            "id": 51848,
+            "logo_path": "/jmrRZgqHnYmJC4uePQI2sLijpSk.png",
+            "name": "Entertainment One Television",
+            "origin_country": "CA"
+          },
+          {
+            "id": 28523,
+            "logo_path": "/zzULw9w7d50BHR8fE30PZT3zJ1D.png",
+            "name": "Lionsgate Television",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          },
+          {
+            "iso_3166_1": "CA",
+            "name": "Canada"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2005-09-22",
+            "episode_count": 22,
+            "id": 12013,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/7igSTed2htAIEXAMuUJSrk05ERV.jpg",
+            "season_number": 1,
+            "vote_average": 7.7
+          },
+          {
+            "air_date": "2006-09-20",
+            "episode_count": 23,
+            "id": 12014,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/5RkngSb1jo4DpFfTkxCdFGZtubO.jpg",
+            "season_number": 2,
+            "vote_average": 7.8
+          },
+          {
+            "air_date": "2007-09-26",
+            "episode_count": 20,
+            "id": 12015,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/iAMSBqbzn6sL1n2b5KM1INlBqko.jpg",
+            "season_number": 3,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2008-09-24",
+            "episode_count": 26,
+            "id": 12012,
+            "name": "Сезон 4",
+            "overview": "",
+            "poster_path": "/yNZ2AJpahtcAytB5IYdLpRmiDsZ.jpg",
+            "season_number": 4,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2009-09-23",
+            "episode_count": 23,
+            "id": 12016,
+            "name": "Сезон 5",
+            "overview": "",
+            "poster_path": "/1iwDVIK9Nc87dLZjJ52q7vs3qMB.jpg",
+            "season_number": 5,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2010-09-22",
+            "episode_count": 24,
+            "id": 12017,
+            "name": "Сезон 6",
+            "overview": "",
+            "poster_path": "/qpxsyOWjKaEIGZeKsgBwLgI9nPW.jpg",
+            "season_number": 6,
+            "vote_average": 7.8
+          },
+          {
+            "air_date": "2011-09-21",
+            "episode_count": 24,
+            "id": 12019,
+            "name": "Сезон 7",
+            "overview": "",
+            "poster_path": "/3YvJBXg3tAKGecUYmJoC3bJ1YHx.jpg",
+            "season_number": 7,
+            "vote_average": 7.8
+          },
+          {
+            "air_date": "2012-09-26",
+            "episode_count": 24,
+            "id": 12020,
+            "name": "Сезон 8",
+            "overview": "",
+            "poster_path": "/4uALnoRxuf0BRev5oDAdg4UbIBM.jpg",
+            "season_number": 8,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2013-09-25",
+            "episode_count": 24,
+            "id": 12021,
+            "name": "Сезон 9",
+            "overview": "",
+            "poster_path": "/q6QuddUnU2rrEU5dVdIiXYL5YxM.jpg",
+            "season_number": 9,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2014-10-01",
+            "episode_count": 23,
+            "id": 62052,
+            "name": "Сезон 10",
+            "overview": "",
+            "poster_path": "/tsb3HLnvcSEKZ9babz1fShHRYbM.jpg",
+            "season_number": 10,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2015-09-30",
+            "episode_count": 22,
+            "id": 70623,
+            "name": "Сезон 11",
+            "overview": "",
+            "poster_path": "/kKnmgCQCAiqnueSYeAtdhxRipAF.jpg",
+            "season_number": 11,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2016-09-28",
+            "episode_count": 22,
+            "id": 77046,
+            "name": "Сезон 12",
+            "overview": "",
+            "poster_path": "/43iR2A0BLsM3HmNIggogy9N7upc.jpg",
+            "season_number": 12,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2017-09-27",
+            "episode_count": 22,
+            "id": 93290,
+            "name": "Сезон 13",
+            "overview": "",
+            "poster_path": "/A3I2Zht6jqj2VS3eAqYq7NiqbQM.jpg",
+            "season_number": 13,
+            "vote_average": 8.1
+          },
+          {
+            "air_date": "2018-10-03",
+            "episode_count": 15,
+            "id": 109662,
+            "name": "Сезон 14",
+            "overview": "",
+            "poster_path": "/7TCwgX7oQKxcWYEhSPRmaHe6ULN.jpg",
+            "season_number": 14,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2020-01-08",
+            "episode_count": 10,
+            "id": 122207,
+            "name": "Сезон 15",
+            "overview": "",
+            "poster_path": "/d59nYgsPdnpCtAxVRpgMIiNfsW4.jpg",
+            "season_number": 15,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2022-11-24",
+            "episode_count": 10,
+            "id": 315208,
+            "name": "Сезон 16",
+            "overview": "",
+            "poster_path": "/4R3NdjNPfA2RTIrFnvFmoP4KGZQ.jpg",
+            "season_number": 16,
+            "vote_average": 8.3
+          },
+          {
+            "air_date": "2024-06-06",
+            "episode_count": 10,
+            "id": 392125,
+            "name": "Сезон 17",
+            "overview": "",
+            "poster_path": "/8d8qAa4Gt5Rmx0efTB9hNtPh8j3.jpg",
+            "season_number": 17,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2025-05-08",
+            "episode_count": 10,
+            "id": 423090,
+            "name": "Сезон 18",
+            "overview": "",
+            "poster_path": "/gigxjNnACiXAfrwoMox5WJFgc0I.jpg",
+            "season_number": 18,
+            "vote_average": 7.3
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "\"Чтобы поймать преступника, вы должны думать как преступник\"",
+        "type": "Scripted",
+        "vote_average": 8.306,
+        "vote_count": 3867
+      }
+    }
+  },
+  {
+    "rawName": "Испанская принцесса (1 сезон: 1-8 серии из 8) / The Spanish Princess / 2019 / ПМ (TVShows) / WEB-DL (1080p)",
+    "russianTitle": "Испанская принцесса",
+    "originalTitle": "The Spanish Princess",
+    "year": 2019,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 8,
+    "totalEpisodes": 8,
+    "releaseDateISO": "2025-07-13T08:01:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/eqOAW52GkgbMDGIzpqlz8zwTIiO.jpg",
+        "created_by": [
+          {
+            "id": 1261025,
+            "credit_id": "5cdd6698c3a36816a6c15cc6",
+            "name": "Emma Frost",
+            "original_name": "Emma Frost",
+            "gender": 1,
+            "profile_path": "/lpLqtqQf9eQfSekNdqEnMibOIsc.jpg"
+          },
+          {
+            "id": 1213831,
+            "credit_id": "5cdd66a19251416b5bd2c46c",
+            "name": "Matthew Graham",
+            "original_name": "Matthew Graham",
+            "gender": 2,
+            "profile_path": "/gCnEZr19KQGMtjl88F0rln8xOn.jpg"
+          }
+        ],
+        "episode_run_time": [
+          55
+        ],
+        "first_air_date": "2019-05-05",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://www.starz.com/us/en/series/the-spanish-princess/42457",
+        "id": 86428,
+        "in_production": false,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2020-11-29",
+        "last_episode_to_air": {
+          "id": 2460660,
+          "name": "Мир",
+          "overview": "Поскольку Генрих сходит с ума, ставки для Кэтрин как никогда высоки. Ёе муж стал угрозой для её жизни.",
+          "vote_average": 8,
+          "vote_count": 1,
+          "air_date": "2020-11-29",
+          "episode_number": 8,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 59,
+          "season_number": 2,
+          "show_id": 86428,
+          "still_path": "/2EzfKtfNJFEtGYABPBeKiHAXfGv.jpg"
+        },
+        "name": "Испанская принцесса",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 318,
+            "logo_path": "/GMDGZk9iDG4WDijY3VgUgJeyus.png",
+            "name": "Starz",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 16,
+        "number_of_seasons": 2,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The Spanish Princess",
+        "overview": "Брачный союз юной испанской принцессы Катерины Арагонской с принцем Артуром, наследником английского престола, обещал быть знаковым событием для представителей двух влиятельнейших династий средневековой Европы. По достижении пятнадцати лет помолвленная с детства главная героиня прибывает в незнакомую страну, где сразу же становится объектом пристального внимания со стороны окружения своего будущего супруга. Но столь тщательно спланированному союзу не суждено было продлиться долго - вскоре после свадьбы принц внезапно умирает от болезни. Однако молодая вдова настаивает на том, что поскольку факт консуммации не был подтвержден, она вправе претендовать на брак с принцем Гарри, который впоследствии станет королем Генрихом VIII.",
+        "popularity": 27.9142,
+        "poster_path": "/mr2B5YHhvFBsNyF4doSb8K08iQT.jpg",
+        "production_companies": [
+          {
+            "id": 8826,
+            "logo_path": "/cxW7pb2mG0VzqFCSk62ZnHvuBMn.png",
+            "name": "New Pictures",
+            "origin_country": "GB"
+          },
+          {
+            "id": 19089,
+            "logo_path": "/6uZ9wF94eMZaHmDayhxMy7q3ndo.png",
+            "name": "Playground Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 141699,
+            "logo_path": null,
+            "name": "Giddy Ink",
+            "origin_country": ""
+          },
+          {
+            "id": 141700,
+            "logo_path": null,
+            "name": "Jumping Joseph",
+            "origin_country": ""
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "GB",
+            "name": "United Kingdom"
+          },
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2019-05-05",
+            "episode_count": 8,
+            "id": 118005,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/bJptHT9r5B4ODAGTa1mDmrMQ9ML.jpg",
+            "season_number": 1,
+            "vote_average": 6.9
+          },
+          {
+            "air_date": "2020-10-11",
+            "episode_count": 8,
+            "id": 162225,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/34TxTzXkUnBHoiVInRGKrGf5Z7x.jpg",
+            "season_number": 2,
+            "vote_average": 6.3
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.57,
+        "vote_count": 447
+      }
+    }
+  },
+  {
+    "rawName": "Воскрешение (1 сезон: 1-5 серии из 10) / Revival / 2025 / ПМ (LostFilm) / WEB-DL (1080p)",
+    "russianTitle": "Воскрешение",
+    "originalTitle": "Revival",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 5,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-13T07:59:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/8sr3u0ozv4X5eQ5frMG6Y8g5gRJ.jpg",
+        "created_by": [
+          {
+            "id": 1288345,
+            "credit_id": "66eb6346b2917eb1800c1177",
+            "name": "Аарон Б. Кунц",
+            "original_name": "Aaron B. Koontz",
+            "gender": 2,
+            "profile_path": "/3i8wrVYl6IR9ltEC2gYhWAR2TwX.jpg"
+          },
+          {
+            "id": 1528783,
+            "credit_id": "66eb638e1beca8ce07d3ce29",
+            "name": "Люк Бойс",
+            "original_name": "Luke Boyce",
+            "gender": 0,
+            "profile_path": null
+          }
+        ],
+        "episode_run_time": [
+          43
+        ],
+        "first_air_date": "2025-06-12",
+        "genres": [
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          },
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 9648,
+            "name": "детектив"
+          }
+        ],
+        "homepage": "https://www.syfy.com/revival",
+        "id": 254013,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-10",
+        "last_episode_to_air": {
+          "id": 6212774,
+          "name": "Сортировка",
+          "overview": "Судьба Даны неизвестна. Уэйн ищет ответы, а Эм в гонке со временем пытается её спасти.",
+          "vote_average": 7.5,
+          "vote_count": 1,
+          "air_date": "2025-07-10",
+          "episode_number": 5,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 43,
+          "season_number": 1,
+          "show_id": 254013,
+          "still_path": "/hX9IUlYEEh75ZybWbWVtH7AUJUL.jpg"
+        },
+        "name": "Воскрешение",
+        "next_episode_to_air": {
+          "id": 6212775,
+          "name": "Кровные узы",
+          "overview": "В то время как Уэйн распутывает жуткую преступную группировку, а Ибрагим делает важное открытие, леденящее душу похищение подвергает опасности семью Сайпресс. Время на исходе!",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-17",
+          "episode_number": 6,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 42,
+          "season_number": 1,
+          "show_id": 254013,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 77,
+            "logo_path": "/iYfrkobwDhTOFJ4AXYPSLIEeaAT.png",
+            "name": "Syfy",
+            "origin_country": "US"
+          },
+          {
+            "id": 5337,
+            "logo_path": "/oAjADdeF36JnqUKU56In26FpwV0.png",
+            "name": "CTV Sci-Fi Channel",
+            "origin_country": "CA"
+          }
+        ],
+        "number_of_episodes": 10,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "CA",
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Revival",
+        "overview": "Однажды в провинциальном городке Висконсина покойники неожиданно поднимаются из могил. Они не зомби — выглядят и ведут себя как прежде. Пока одни люди принимают это за чудо, другие охвачены паникой. Офицеру полиции и матери-одиночке Дане Сайпресс предстоит расследовать убийство в городе, где прошлое оживает буквально — а преступник может скрываться и среди «воскресших», и среди живых. В атмосфере страха, недоверия и духовного потрясения героиня начинает распутывать клубок тайн, в котором оказывается замешана даже ее собственная семья.",
+        "popularity": 20.4073,
+        "poster_path": "/5dfoEEeKu9Am05YsrxduNTLCmj1.jpg",
+        "production_companies": [
+          {
+            "id": 82659,
+            "logo_path": "/3mZkZUZUaqXDcIoYnECLb98PSWC.png",
+            "name": "Blue Ice Pictures",
+            "origin_country": "CA"
+          },
+          {
+            "id": 223900,
+            "logo_path": null,
+            "name": "Hemmings Films",
+            "origin_country": "CA"
+          },
+          {
+            "id": 89269,
+            "logo_path": "/pKWk2XfT9xoHYdGKW1Bac7hFvrz.png",
+            "name": "Paper Street Pictures",
+            "origin_country": "US"
+          },
+          {
+            "id": 265273,
+            "logo_path": null,
+            "name": "Luke's Lens",
+            "origin_country": ""
+          },
+          {
+            "id": 149891,
+            "logo_path": "/2VFTrLBlFqDEPKuJgcqKTIQD8Gx.png",
+            "name": "Dynamic Television",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "CA",
+            "name": "Canada"
+          },
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-06-12",
+            "episode_count": 10,
+            "id": 392984,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/xf2u02mLodDN2ujMSfLFDkPVFac.jpg",
+            "season_number": 1,
+            "vote_average": 7.8
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "Некоторые тайны не хотят оставаться похороненными.",
+        "type": "Scripted",
+        "vote_average": 6.2,
+        "vote_count": 13
+      }
+    }
+  },
+  {
+    "rawName": "Цветы персика, покорившие мир (1 сезон: 1-18 серии из 36) / Tao Hua Ying Jiang Shan / 2025 / ЛД (DubLikTV, Light Breeze), СТ / WEB-DL (1080p)",
+    "russianTitle": "Цветы персика, покорившие мир",
+    "originalTitle": "Tao Hua Ying Jiang Shan",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 18,
+    "totalEpisodes": 36,
+    "releaseDateISO": "2025-07-13T07:24:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/7wOhqnvObBKj13dQnOD5J4tkkvK.jpg",
+        "created_by": [
+          {
+            "id": 4779394,
+            "credit_id": "666fc4ea4a6625dfab54706b",
+            "name": "白鹭成双",
+            "original_name": "白鹭成双",
+            "gender": 1,
+            "profile_path": null
+          }
+        ],
+        "episode_run_time": [
+          45
+        ],
+        "first_air_date": "2025-06-25",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://v.qq.com/x/cover/mzc0020087cqggc.html",
+        "id": 257010,
+        "in_production": false,
+        "languages": [
+          "zh"
+        ],
+        "last_air_date": "2025-07-11",
+        "last_episode_to_air": {
+          "id": 6323930,
+          "name": "Эпизод 36",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-11",
+          "episode_number": 36,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 41,
+          "season_number": 1,
+          "show_id": 257010,
+          "still_path": null
+        },
+        "name": "Цветы персика, покорившие мир",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 2007,
+            "logo_path": "/6Lfll43wYG2eyereOBjpYFRSGs4.png",
+            "name": "Tencent Video",
+            "origin_country": "CN"
+          }
+        ],
+        "number_of_episodes": 36,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "CN"
+        ],
+        "original_language": "zh",
+        "original_name": "桃花映江山",
+        "overview": "Шэнь Цзайе, левый министр государства Ци, оказывается в ловушке, устроенной политическим врагом, и вынужден заключить брак с принцессой Цзян Таохуа, прибывшей из государства Бэйюань. Он — коварный и безжалостный, она — хитрая и находчивая. В непростой политической обстановке двух государств они вступают в противостояние, соревнуясь в уме и отваге, плетя интриги друг против друга. Однако перед лицом общего врага им приходится объединить усилия, и, неожиданно для обоих, вынужденное сотрудничество пробуждает взаимные чувства. Оказавшись перед сложным выбором между долгом перед родиной и любовью, смогут ли они остаться вместе, преодолев все преграды?",
+        "popularity": 27.0503,
+        "poster_path": "/cQkTe3Qq0JKQKp8yEZCvNmzkJZi.jpg",
+        "production_companies": [
+          {
+            "id": 74457,
+            "logo_path": "/mPsCbXC5k20bpKErrbOQd1fG0L7.png",
+            "name": "Tencent Video",
+            "origin_country": "CN"
+          },
+          {
+            "id": 202518,
+            "logo_path": "/sw1lnHRGbtAhaLsyTN1m9KalINS.png",
+            "name": "Yinhekuyu Media",
+            "origin_country": "CN"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "CN",
+            "name": "China"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-06-25",
+            "episode_count": 36,
+            "id": 398646,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/u5l2snLyTey3D5hei3HyT2ZfNCf.jpg",
+            "season_number": 1,
+            "vote_average": 6
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Mandarin",
+            "iso_639_1": "zh",
+            "name": "普通话"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.667,
+        "vote_count": 6
+      }
+    }
+  },
+  {
+    "rawName": "Отец Браун (Патер Браун) (11 сезон: 1-10 серии из 10) / Father Brown / 2024 / ПМ (Jaskier) / BDRip (1080p)",
+    "russianTitle": "Отец Браун (Патер Браун)",
+    "originalTitle": "Father Brown",
+    "year": 2024,
+    "quality": "1080p",
+    "season": 11,
+    "episode": 10,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-13T07:24:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/eesuJC91i5MPGOZvEtoa11cPqe5.jpg",
+        "created_by": [
+          {
+            "id": 1374772,
+            "credit_id": "5440ca450e0a26293e00106b",
+            "name": "Tahsin Guner",
+            "original_name": "Tahsin Guner",
+            "gender": 2,
+            "profile_path": null
+          },
+          {
+            "id": 1374773,
+            "credit_id": "5440ca49c3a36861720010a1",
+            "name": "Rachel Flowerday",
+            "original_name": "Rachel Flowerday",
+            "gender": 1,
+            "profile_path": null
+          }
+        ],
+        "episode_run_time": [
+          45
+        ],
+        "first_air_date": "2013-01-14",
+        "genres": [
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 80,
+            "name": "криминал"
+          },
+          {
+            "id": 9648,
+            "name": "детектив"
+          }
+        ],
+        "homepage": "https://www.bbc.co.uk/programmes/b03pmw4m",
+        "id": 61511,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-03-14",
+        "last_episode_to_air": {
+          "id": 5831568,
+          "name": "Эпизод 10",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-03-14",
+          "episode_number": 10,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 45,
+          "season_number": 12,
+          "show_id": 61511,
+          "still_path": "/9MwvVAE3it8IY3wadudJDFEB0XS.jpg"
+        },
+        "name": "Отец Браун",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 4,
+            "logo_path": "/uJjcCg3O4DMEjM0xtno9OWFciRP.png",
+            "name": "BBC One",
+            "origin_country": "GB"
+          }
+        ],
+        "number_of_episodes": 130,
+        "number_of_seasons": 12,
+        "origin_country": [
+          "GB"
+        ],
+        "original_language": "en",
+        "original_name": "Father Brown",
+        "overview": "Действие происходит в начале 1950-х годов в небольшой вымышленной английской деревне Котсуолд графства Кемблфорд. Главный герой отец Браун, служащий приходским священником в католической Церкви святой Марии, увлекается раскрытием убийств с помощью не только наблюдательности и логики, но также и с пониманием человеческой природы. Он пытается понять преступника и по возможности помочь ему осознать свой грех и покаяться. Часто он стремится к справедливости в отношении преступника или подозреваемого, иногда вопреки букве закона, например, когда узнаёт об обстоятельствах преступления на исповеди и строго соблюдает её тайну), даже несмотря на ещё разрешённую в Великобритании смертную казнь через повешение за такие тяжёлые преступления, как убийство. Своими расследованиями вызывает большое раздражение у полиции, которая часто арестовывает не того подозреваемого. В различное время в раскрытии преступлений патеру помогают приходской секретарь миссис Маккарти, а также местная светская львица леди Фелисия Монтегю, её шофёр - Сид Картер и племянница - Пенелопа «Банти» Уиндермир.",
+        "popularity": 53.4641,
+        "poster_path": "/lo81kIAskR7zPRA7qw3levE880q.jpg",
+        "production_companies": [
+          {
+            "id": 3164,
+            "logo_path": "/h06QVxWESaOAfBwkgrWFdbkkccq.png",
+            "name": "BBC Worldwide",
+            "origin_country": "GB"
+          },
+          {
+            "id": 3324,
+            "logo_path": "/dqT3yOTlfJRmtvk52Ccd1O6dZ0A.png",
+            "name": "BBC",
+            "origin_country": "GB"
+          },
+          {
+            "id": 25570,
+            "logo_path": null,
+            "name": "BBC Drama Productions",
+            "origin_country": "GB"
+          },
+          {
+            "id": 214718,
+            "logo_path": "/3kybnp1s4DAlJw2kLAx9G7l9Bz7.png",
+            "name": "BBC Studios Productions",
+            "origin_country": "GB"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "GB",
+            "name": "United Kingdom"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2013-01-14",
+            "episode_count": 10,
+            "id": 63035,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/1Bm3PdtjP3CC0A2A7bpumVfbTO3.jpg",
+            "season_number": 1,
+            "vote_average": 7.3
+          },
+          {
+            "air_date": "2014-01-06",
+            "episode_count": 10,
+            "id": 63036,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/6czpx3biGHVQzBZMTke4divNyMy.jpg",
+            "season_number": 2,
+            "vote_average": 7.5
+          },
+          {
+            "air_date": "2015-01-05",
+            "episode_count": 15,
+            "id": 64500,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/3t79oNfAgrJhg8Xr6vToWKeL0vY.jpg",
+            "season_number": 3,
+            "vote_average": 7.5
+          },
+          {
+            "air_date": "2016-01-04",
+            "episode_count": 10,
+            "id": 73551,
+            "name": "Сезон 4",
+            "overview": "",
+            "poster_path": "/wyIqKCOk1q3YlCwbR48kyzob5pq.jpg",
+            "season_number": 4,
+            "vote_average": 7.5
+          },
+          {
+            "air_date": "2016-12-23",
+            "episode_count": 15,
+            "id": 83019,
+            "name": "Сезон 5",
+            "overview": "",
+            "poster_path": "/zCqaXAezCwA2wwT2nDMv4AZx23u.jpg",
+            "season_number": 5,
+            "vote_average": 7
+          },
+          {
+            "air_date": "2017-12-18",
+            "episode_count": 10,
+            "id": 96722,
+            "name": "Сезон 6",
+            "overview": "",
+            "poster_path": "/iaddrqtclK3pUtv1gO7qZvcxO0K.jpg",
+            "season_number": 6,
+            "vote_average": 8.1
+          },
+          {
+            "air_date": "2019-01-07",
+            "episode_count": 10,
+            "id": 115655,
+            "name": "Сезон 7",
+            "overview": "",
+            "poster_path": "/rTIrEDosqLIEfJUmKhJoVvaekFd.jpg",
+            "season_number": 7,
+            "vote_average": 4.7
+          },
+          {
+            "air_date": "2020-01-06",
+            "episode_count": 10,
+            "id": 140083,
+            "name": "Сезон 8",
+            "overview": "",
+            "poster_path": "/8Xoj7omKkBEdolO6Q8clDA9yMG1.jpg",
+            "season_number": 8,
+            "vote_average": 4.5
+          },
+          {
+            "air_date": "2022-01-03",
+            "episode_count": 10,
+            "id": 217972,
+            "name": "Сезон 9",
+            "overview": "",
+            "poster_path": "/vZCu8bOs9WL1xmEPnbuQbLJmglK.jpg",
+            "season_number": 9,
+            "vote_average": 5.1
+          },
+          {
+            "air_date": "2023-01-06",
+            "episode_count": 10,
+            "id": 320867,
+            "name": "Сезон 10",
+            "overview": "",
+            "poster_path": "/aNh5wP1lrirUokOGTod8Z75PHiE.jpg",
+            "season_number": 10,
+            "vote_average": 6.3
+          },
+          {
+            "air_date": "2024-01-05",
+            "episode_count": 10,
+            "id": 366695,
+            "name": "Сезон 11",
+            "overview": "",
+            "poster_path": "/mxsT4V319KdFHusfV4VtBRhc9kt.jpg",
+            "season_number": 11,
+            "vote_average": 0
+          },
+          {
+            "air_date": "2025-01-10",
+            "episode_count": 10,
+            "id": 432966,
+            "name": "Сезон 12",
+            "overview": "",
+            "poster_path": "/g4zJAlrYw8eouUCNzmLTiVe9c04.jpg",
+            "season_number": 12,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.521,
+        "vote_count": 120
+      }
+    }
+  },
+  {
+    "rawName": "Эти храбрые девочки (2 сезон: 1-6 серии из 6) / Such Brave Girls / 2025 / ПМ (Novamedia) / WEB-DL (1080p)",
+    "russianTitle": "Эти храбрые девочки",
+    "originalTitle": "Such Brave Girls",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 2,
+    "episode": 6,
+    "totalEpisodes": 6,
+    "releaseDateISO": "2025-07-13T05:59:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/crXtVaUWKDd2CihDmKGD6dUyMAV.jpg",
+        "created_by": [
+          {
+            "id": 3246110,
+            "credit_id": "656364c3fb529900e3e395ce",
+            "name": "Kat Sadler",
+            "original_name": "Kat Sadler",
+            "gender": 1,
+            "profile_path": "/9RWlZkJWgCpVwwmvYKiXIzpiMZy.jpg"
+          }
+        ],
+        "episode_run_time": [],
+        "first_air_date": "2023-11-22",
+        "genres": [
+          {
+            "id": 35,
+            "name": "комедия"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://www.bbc.co.uk/programmes/p0gqd7m8",
+        "id": 239614,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-03",
+        "last_episode_to_air": {
+          "id": 6320353,
+          "name": "Эпизод 4",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-10",
+          "episode_number": 4,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 26,
+          "season_number": 2,
+          "show_id": 239614,
+          "still_path": "/AsRbmi0l7l0zG5tKAVldfxY3UPU.jpg"
+        },
+        "name": "Эти храбрые девочки",
+        "next_episode_to_air": {
+          "id": 6320354,
+          "name": "Эпизод 5",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-17",
+          "episode_number": 5,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 28,
+          "season_number": 2,
+          "show_id": 239614,
+          "still_path": "/qHXYkdhNphgPxkFrrOdELAwV0hP.jpg"
+        },
+        "networks": [
+          {
+            "id": 3,
+            "logo_path": "/s22fRhj8xFPbiexrJwiAOcDEIrS.png",
+            "name": "BBC Three",
+            "origin_country": "GB"
+          }
+        ],
+        "number_of_episodes": 12,
+        "number_of_seasons": 2,
+        "origin_country": [
+          "GB"
+        ],
+        "original_language": "en",
+        "original_name": "Such Brave Girls",
+        "overview": "После тяжелого развода, мать по имени Деб и её две дочери, Джози и Билли, стараются справляться с новыми трудностями жизни. Однажды, возвращаясь домой, они подбирают Джози, которая неожиданно заявляет, что собирается покончить с собой из-за разбитого сердца. Деб пытается успокоить дочь, объясняя, что со временем она поймет, что любовь — это не самое важное в жизни. Тем временем, новый парень Деб приходит в гости, но пугается мыслей Джози о суициде. После их странного общения он начинает сомневаться в своих чувствах к Деб. Вдобавок ко всему, Джози с утра теряет самообладание, переживая паническую атаку. Сложные семейные отношения и личные проблемы мешают им двигаться дальше, но мать и дочери продолжают бороться за свое будущее, находя поддержку друг в друге.",
+        "popularity": 11.1864,
+        "poster_path": "/7g60yren32dIyR0ZsMFPXWn3vGt.jpg",
+        "production_companies": [
+          {
+            "id": 41077,
+            "logo_path": "/1ZXsGaFPgrgS6ZZGS37AqD5uU12.png",
+            "name": "A24",
+            "origin_country": "US"
+          },
+          {
+            "id": 132814,
+            "logo_path": "/e7qjB41ZkxBv7q1NUMS9PV3HJBp.png",
+            "name": "Various Artists Limited",
+            "origin_country": "GB"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "GB",
+            "name": "United Kingdom"
+          },
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2023-11-22",
+            "episode_count": 6,
+            "id": 365887,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/7g60yren32dIyR0ZsMFPXWn3vGt.jpg",
+            "season_number": 1,
+            "vote_average": 7.1
+          },
+          {
+            "air_date": "2025-07-03",
+            "episode_count": 6,
+            "id": 455782,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/dyg7yNhQPODkJ5LO59ghTbFRsM5.jpg",
+            "season_number": 2,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.029,
+        "vote_count": 35
+      }
+    }
+  },
+  {
+    "rawName": "Этерна (1 сезон: 1-3 серии из 6) / 2025 / РУ, СТ / ТК / WEB-DL (1080p)",
+    "russianTitle": "Этерна",
+    "originalTitle": null,
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 3,
+    "totalEpisodes": 6,
+    "releaseDateISO": "2025-07-13T04:14:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/75s7J5t7v9MKoomIwQwgWJI2kEU.jpg",
+        "created_by": [],
+        "episode_run_time": [],
+        "first_air_date": "2025-07-05",
+        "genres": [
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          },
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          }
+        ],
+        "homepage": "https://www.aeterna.tv/",
+        "id": 244992,
+        "in_production": true,
+        "languages": [
+          "ru"
+        ],
+        "last_air_date": "2025-07-12",
+        "last_episode_to_air": {
+          "id": 5110194,
+          "name": "Во имя Единого",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-12",
+          "episode_number": 3,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 244992,
+          "still_path": null
+        },
+        "name": "Этерна",
+        "next_episode_to_air": {
+          "id": 5110195,
+          "name": "Я не доверяю никому",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-19",
+          "episode_number": 4,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 244992,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 3827,
+            "logo_path": "/dvC56dxf4I2ghZwniRFBlpHBZJ0.png",
+            "name": "Kinopoisk",
+            "origin_country": "RU"
+          }
+        ],
+        "number_of_episodes": 6,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "RU"
+        ],
+        "original_language": "ru",
+        "original_name": "Этерна",
+        "overview": "На пороге Великого Излома — конца света, предсказанного богами-творцами — мир охвачен междоусобными конфликтами и бескомпромиссной борьбой за власть. Наследник свергнутой династии в изгнании и действующий король, религиозные фанатики и магия, враги и неожиданные союзники — у каждого свои интересы. Но изменить ход судьбы и спасти умирающий мир может только любовь.",
+        "popularity": 5.9674,
+        "poster_path": "/yEKBqnyuYVteTfTuGFciHUiL4nX.jpg",
+        "production_companies": [
+          {
+            "id": 119413,
+            "logo_path": null,
+            "name": "Plus Studio",
+            "origin_country": "RU"
+          },
+          {
+            "id": 166367,
+            "logo_path": null,
+            "name": "Black Prince Production",
+            "origin_country": "RU"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "RU",
+            "name": "Russia"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-05",
+            "episode_count": 6,
+            "id": 376697,
+            "name": "1 сезон",
+            "overview": "",
+            "poster_path": "/vg9FNfpx5W4McAagsdr8bmGepO0.jpg",
+            "season_number": 1,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Russian",
+            "iso_639_1": "ru",
+            "name": "Pусский"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Miniseries",
+        "vote_average": 7.5,
+        "vote_count": 2
+      }
+    }
+  },
+  {
+    "rawName": "Охотники на гринго (1-12 серии из 12) / Los Gringo Hunters (The Gringo Hunters) / 2025 / ПМ, 2 x ЛМ, СТ / WEB-DL (1080p)",
+    "russianTitle": "Охотники на гринго",
+    "originalTitle": "Los Gringo Hunters (The Gringo Hunters)",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 12,
+    "totalEpisodes": 12,
+    "releaseDateISO": "2025-07-13T04:09:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/onha1ViNuO04qLSSASx7hZC6TD3.jpg",
+        "created_by": [],
+        "episode_run_time": [],
+        "first_air_date": "2025-07-09",
+        "genres": [
+          {
+            "id": 80,
+            "name": "криминал"
+          }
+        ],
+        "homepage": "https://www.netflix.com/title/81645267",
+        "id": 246026,
+        "in_production": false,
+        "languages": [
+          "es",
+          "en"
+        ],
+        "last_air_date": "2025-07-09",
+        "last_episode_to_air": {
+          "id": 6350861,
+          "name": "428",
+          "overview": "Угрозы в адрес «Охотников за гринго» нарастают. Арест ввергает Картоландию в смятение. Обнаруживается последний кусочек головоломки.",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-09",
+          "episode_number": 12,
+          "episode_type": "finale",
+          "production_code": "",
+          "runtime": 53,
+          "season_number": 1,
+          "show_id": 246026,
+          "still_path": "/ik7eNgvrLiJCjN3EmPpLMO8THbX.jpg"
+        },
+        "name": "Охотники на гринго",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 213,
+            "logo_path": "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+            "name": "Netflix",
+            "origin_country": ""
+          }
+        ],
+        "number_of_episodes": 12,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "MX",
+          "US"
+        ],
+        "original_language": "es",
+        "original_name": "Los gringo hunters",
+        "overview": "В этом сериале, основанном на реальных событиях, лучшее подразделение мексиканской полиции охотится за беглецами из США, пока в их рядах разворачивается гнусный план.",
+        "popularity": 83.2564,
+        "poster_path": "/gut76EbVg6UoMKm3tBXDaAhAP1G.jpg",
+        "production_companies": [
+          {
+            "id": 29608,
+            "logo_path": "/8VcV7dxQ6dhqqQpx8etkrXoFFGg.png",
+            "name": "Woo Films",
+            "origin_country": "MX"
+          },
+          {
+            "id": 41921,
+            "logo_path": "/bSxCLP0hx6F9XzqaReXdEohJZ9y.png",
+            "name": "Redrum",
+            "origin_country": "MX"
+          },
+          {
+            "id": 23,
+            "logo_path": "/bJOFo2ufq7iFC1F4qZm8aLxF5aS.png",
+            "name": "Imagine Entertainment",
+            "origin_country": "US"
+          },
+          {
+            "id": 153673,
+            "logo_path": "/cTcnyHtt2qTIaBTHqghvDnU5PVc.png",
+            "name": "The Washington Post",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "MX",
+            "name": "Mexico"
+          },
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-09",
+            "episode_count": 12,
+            "id": 378431,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/fbTN7FUbxkYwpu4UocvpbHuEQAZ.jpg",
+            "season_number": 1,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Spanish",
+            "iso_639_1": "es",
+            "name": "Español"
+          },
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 7.4,
+        "vote_count": 7
+      }
+    }
+  },
+  {
+    "rawName": "Путешествие к бессмертию (4 сезон: 150-151 серии из 176) / Fanren Xiu Xian Chuan / 2025 / ПМ / 4K, HEVC, HDR / WEB-DL (2160p)",
+    "russianTitle": "Путешествие к бессмертию",
+    "originalTitle": "Fanren Xiu Xian Chuan",
+    "year": 2025,
+    "quality": "2160p",
+    "season": 4,
+    "episode": 151,
+    "totalEpisodes": 176,
+    "releaseDateISO": "2025-07-12T17:41:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/dVTtBUBqHJ9Ydrft9923no3XiiA.jpg",
+        "created_by": [],
+        "episode_run_time": [
+          20,
+          19
+        ],
+        "first_air_date": "2020-07-25",
+        "genres": [
+          {
+            "id": 16,
+            "name": "мультфильм"
+          },
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "https://www.bilibili.com/bangumi/media/md28223043",
+        "id": 106449,
+        "in_production": true,
+        "languages": [
+          "zh"
+        ],
+        "last_air_date": "2025-06-21",
+        "last_episode_to_air": {
+          "id": 5877523,
+          "name": "Эпизод 151",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-12",
+          "episode_number": 151,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 20,
+          "season_number": 1,
+          "show_id": 106449,
+          "still_path": "/sgAh4559ZeWcXfxamVIJ9vMHov.jpg"
+        },
+        "name": "Путешествие к бессмертию",
+        "next_episode_to_air": {
+          "id": 5877524,
+          "name": "Эпизод 152",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-19",
+          "episode_number": 152,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 20,
+          "season_number": 1,
+          "show_id": 106449,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 1605,
+            "logo_path": "/mtmMg3PD4YGfrlmqpEiO6NL2ch9.png",
+            "name": "bilibili",
+            "origin_country": "CN"
+          }
+        ],
+        "number_of_episodes": 182,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "CN"
+        ],
+        "original_language": "zh",
+        "original_name": "凡人修仙传",
+        "overview": "Обычный деревенский мальчишка случайно становится учеником небольшой секты. Несмотря на поджидающие трудности, он сразится с демонами и древними небожителями, чтобы найти свой собственный путь к бессмертию.",
+        "popularity": 17.9252,
+        "poster_path": "/viVBozYSdBf4CTg88sHHZuFXX49.jpg",
+        "production_companies": [
+          {
+            "id": 123270,
+            "logo_path": "/4KxfGr13VXMr44og11hzpdwfQDQ.png",
+            "name": "bilibili",
+            "origin_country": "CN"
+          },
+          {
+            "id": 71194,
+            "logo_path": "/vKZv8ACsYeJT7boZhENcKHBNCp0.png",
+            "name": "Original Force Animation",
+            "origin_country": "CN"
+          },
+          {
+            "id": 164933,
+            "logo_path": null,
+            "name": "猫片Mopi",
+            "origin_country": ""
+          },
+          {
+            "id": 164931,
+            "logo_path": "/o7wZ4YuZTmiBXVnR9VCkOspo4jQ.png",
+            "name": "Wonder Cat Animation",
+            "origin_country": "CN"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "CN",
+            "name": "China"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2020-07-25",
+            "episode_count": 182,
+            "id": 157272,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/scVyWKiWzxvndiocMrtl85UmwLW.jpg",
+            "season_number": 1,
+            "vote_average": 10
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Mandarin",
+            "iso_639_1": "zh",
+            "name": "普通话"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 9.136,
+        "vote_count": 44
+      }
+    }
+  },
+  {
+    "rawName": "Рик и Морти (8 сезон: 1-8 серии из 10) / Rick and Morty / 2025 / ЛО / WEB-DL (1080p)",
+    "russianTitle": "Рик и Морти",
+    "originalTitle": "Rick and Morty",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 8,
+    "episode": 8,
+    "totalEpisodes": 10,
+    "releaseDateISO": "2025-07-14T14:31:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/Ao5pBFuWY32cVuh6iYjEjZMEscN.jpg",
+        "created_by": [
+          {
+            "id": 57194,
+            "credit_id": "57bf826fc3a3684d25001b3c",
+            "name": "Dan Harmon",
+            "original_name": "Dan Harmon",
+            "gender": 2,
+            "profile_path": "/gDwFosoyPTd0pmnKParzGj3kaMg.jpg"
+          },
+          {
+            "id": 1245733,
+            "credit_id": "57bf827dc3a3684d3400183e",
+            "name": "Justin Roiland",
+            "original_name": "Justin Roiland",
+            "gender": 2,
+            "profile_path": "/wYApP38aXe6ZcEtlBAfNRxJTQQi.jpg"
+          }
+        ],
+        "episode_run_time": [
+          22
+        ],
+        "first_air_date": "2013-12-02",
+        "genres": [
+          {
+            "id": 16,
+            "name": "мультфильм"
+          },
+          {
+            "id": 35,
+            "name": "комедия"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          },
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          }
+        ],
+        "homepage": "http://www.adultswim.com/videos/rick-and-morty",
+        "id": 60625,
+        "in_production": true,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2025-07-13",
+        "last_episode_to_air": {
+          "id": 6122208,
+          "name": "Номортленд",
+          "overview": "",
+          "vote_average": 8.5,
+          "vote_count": 5,
+          "air_date": "2025-07-13",
+          "episode_number": 8,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 23,
+          "season_number": 8,
+          "show_id": 60625,
+          "still_path": "/8hVPCPuYVRTkG5DV3buLVTRhePU.jpg"
+        },
+        "name": "Рик и Морти",
+        "next_episode_to_air": {
+          "id": 6122209,
+          "name": "Папочка Морти",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-20",
+          "episode_number": 9,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 8,
+          "show_id": 60625,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 80,
+            "logo_path": "/tHZPHOLc6iF27G34cAZGPsMtMSy.png",
+            "name": "Adult Swim",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 81,
+        "number_of_seasons": 8,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Rick and Morty",
+        "overview": "В центре сюжета — школьник по имени Морти и его дедушка Рик. Морти — самый обычный мальчик, который ничем не отличается от своих сверстников. А вот его дедуля занимается необычными научными исследованиями и зачастую полностью неадекватен. Он может в любое время дня и ночи схватить внука и отправиться вместе с ним в межпространственные приключения с помощью построенной из разного хлама летающей тарелки, которая способна перемещаться сквозь временной тоннель. Каждый раз эта парочка оказывается в самых неожиданных местах и самых нелепых ситуациях.",
+        "popularity": 247.9266,
+        "poster_path": "/wdzk1wPGOnO8dCnaQozSpe1oH9l.jpg",
+        "production_companies": [
+          {
+            "id": 6760,
+            "logo_path": "/h3syDHowNmk61FzlW2GPY0vJCFh.png",
+            "name": "Williams Street",
+            "origin_country": "US"
+          },
+          {
+            "id": 8300,
+            "logo_path": null,
+            "name": "Harmonious Claptrap",
+            "origin_country": "US"
+          },
+          {
+            "id": 47394,
+            "logo_path": null,
+            "name": "Justin Roiland's Solo Vanity Card Productions",
+            "origin_country": "US"
+          },
+          {
+            "id": 32542,
+            "logo_path": null,
+            "name": "Starburns Industries",
+            "origin_country": "US"
+          },
+          {
+            "id": 131124,
+            "logo_path": null,
+            "name": "Green Portal Productions",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2016-10-24",
+            "episode_count": 36,
+            "id": 106178,
+            "name": "Спецматериалы",
+            "overview": "",
+            "poster_path": "/3my0MrOKCSYMw8VfLiiM9k00bdF.jpg",
+            "season_number": 0,
+            "vote_average": 0
+          },
+          {
+            "air_date": "2013-12-02",
+            "episode_count": 11,
+            "id": 60059,
+            "name": "Сезон 1",
+            "overview": "В первом сезоне Рик и Морти посещают ломбард в космосе, сталкиваются с различными альтернативными и виртуальными реальностями и встречают дьявола в его антикварной лавке.",
+            "poster_path": "/wl9UH8jZSRWaNLvBPWMFUOWsxeQ.jpg",
+            "season_number": 1,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2015-07-26",
+            "episode_count": 10,
+            "id": 66738,
+            "name": "Сезон 2",
+            "overview": "Рик и Морти решают разморозить время. Они сталкиваются с инопланетными паразитами, альтернативными версиями Джерри и разлагающимся, возможно, несуществующим измерением.",
+            "poster_path": "/A3S8YpamrFmo9uEfYnP4XnRCzXZ.jpg",
+            "season_number": 2,
+            "vote_average": 8.3
+          },
+          {
+            "air_date": "2017-04-01",
+            "episode_count": 10,
+            "id": 86926,
+            "name": "Сезон 3",
+            "overview": "В третьем сезоне Рик и Морти отправляются в Атлантиду, чтобы немного отдохнуть. А еще Рик превращается в соленый огурец и противостоит президенту.",
+            "poster_path": "/n8O3k1Rfb2T4Xmmn6ZaGVReQt3v.jpg",
+            "season_number": 3,
+            "vote_average": 8.3
+          },
+          {
+            "air_date": "2019-11-10",
+            "episode_count": 10,
+            "id": 128112,
+            "name": "Сезон 4",
+            "overview": "Когда эксцентричный гений Рик и его внук Морти путешествуют во времени и пространстве в другие измерения, понятно только одно: что ничего не понятно.",
+            "poster_path": "/5uuL24ewMNs8X9V9gKfZVxl6NLY.jpg",
+            "season_number": 4,
+            "vote_average": 7.8
+          },
+          {
+            "air_date": "2021-06-20",
+            "episode_count": 10,
+            "id": 188470,
+            "name": "Сезон 5",
+            "overview": "",
+            "poster_path": "/2f65S7JiOelrJ7nioY2ZNO7J1Gi.jpg",
+            "season_number": 5,
+            "vote_average": 7.3
+          },
+          {
+            "air_date": "2022-09-04",
+            "episode_count": 10,
+            "id": 302503,
+            "name": "Сезон 6",
+            "overview": "",
+            "poster_path": "/p9Qoy1WGyuzc1p38xcwwnuGpOu9.jpg",
+            "season_number": 6,
+            "vote_average": 7.7
+          },
+          {
+            "air_date": "2023-10-15",
+            "episode_count": 10,
+            "id": 354041,
+            "name": "Сезон 7",
+            "overview": "",
+            "poster_path": "/bfzD06QImwiUNgqu9GCUf8iIenX.jpg",
+            "season_number": 7,
+            "vote_average": 7.3
+          },
+          {
+            "air_date": "2025-05-25",
+            "episode_count": 10,
+            "id": 424080,
+            "name": "Сезон 8",
+            "overview": "",
+            "poster_path": "/ngcMoi2AHHbQXxVxNPMK6zpEpXP.jpg",
+            "season_number": 8,
+            "vote_average": 7.3
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "«Зачем семья, когда есть наука?»",
+        "type": "Scripted",
+        "vote_average": 8.69,
+        "vote_count": 10279
+      }
+    }
+  },
+  {
+    "rawName": "Обычное шоу (Обычный мультик) (1-8 сезоны: 1-244 серии из 244) / Regular Show / 2010-2017 / ДБ, ЛД, СТ / WEB-DL (1080p)",
+    "russianTitle": "Обычное шоу (Обычный мультик) (1-)",
+    "originalTitle": "Regular Show",
+    "year": 2010,
+    "quality": "1080p",
+    "season": 8,
+    "episode": 244,
+    "totalEpisodes": 244,
+    "releaseDateISO": "2025-07-13T18:46:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/bhF63Jd90gRYyTHd4y5GCGA2vX6.jpg",
+        "created_by": [
+          {
+            "id": 222169,
+            "credit_id": "52589cd8760ee346616116bf",
+            "name": "J.G. Quintel",
+            "original_name": "J.G. Quintel",
+            "gender": 2,
+            "profile_path": "/iVrY1k1ggfYUy8o9eY8XHAhu6f1.jpg"
+          }
+        ],
+        "episode_run_time": [
+          11
+        ],
+        "first_air_date": "2010-09-06",
+        "genres": [
+          {
+            "id": 16,
+            "name": "мультфильм"
+          },
+          {
+            "id": 35,
+            "name": "комедия"
+          }
+        ],
+        "homepage": "http://www.cartoonnetwork.com/tv_shows/regularshow/index.html",
+        "id": 31132,
+        "in_production": false,
+        "languages": [
+          "en"
+        ],
+        "last_air_date": "2017-01-16",
+        "last_episode_to_air": {
+          "id": 1257936,
+          "name": "Эпизод 28",
+          "overview": "",
+          "vote_average": 10,
+          "vote_count": 1,
+          "air_date": "2017-01-16",
+          "episode_number": 28,
+          "episode_type": "finale",
+          "production_code": "1043-264",
+          "runtime": 22,
+          "season_number": 8,
+          "show_id": 31132,
+          "still_path": "/wzqDJa2dPsEPIoIMS13ufpGn3aU.jpg"
+        },
+        "name": "Обычное шоу",
+        "next_episode_to_air": null,
+        "networks": [
+          {
+            "id": 56,
+            "logo_path": "/c5OC6oVCg6QP4eqzW6XIq17CQjI.png",
+            "name": "Cartoon Network",
+            "origin_country": "US"
+          }
+        ],
+        "number_of_episodes": 245,
+        "number_of_seasons": 8,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Regular Show",
+        "overview": "Сериал рассказывает о приключениях двух 23х-летних приятелей-раздолбаев — голубой сойки по имени Мордекай и енота Ригби. Устроившись в парк смотрителями, они целыми днями отлынивают от работы и ищут новые способы себя развлечь, что часто влечет за собой непредсказуемые (и сюрреалистические) последствия. За это они часто попадают под немилость своего босса Бенсона (живой автомат с жевательной резинкой), однако с помощью мудрого йети Скипса практически все проблемы удается разрешить.",
+        "popularity": 141.0071,
+        "poster_path": "/w3wUTrB0qzXQb0qn3sV1ArZxMGw.jpg",
+        "production_companies": [
+          {
+            "id": 7899,
+            "logo_path": "/qnhd98hnBxCMMMod58FJqbCZ5O7.png",
+            "name": "Cartoon Network Studios",
+            "origin_country": "US"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2010-05-09",
+            "episode_count": 24,
+            "id": 42723,
+            "name": "Спецматериалы",
+            "overview": "",
+            "poster_path": "/naAlurQdsCu50hDAbVm3RJc5JYY.jpg",
+            "season_number": 0,
+            "vote_average": 0
+          },
+          {
+            "air_date": "2010-09-06",
+            "episode_count": 12,
+            "id": 42727,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/mRWce3WBdN584m4GEZsmMijzOvf.jpg",
+            "season_number": 1,
+            "vote_average": 8.1
+          },
+          {
+            "air_date": "2010-11-29",
+            "episode_count": 28,
+            "id": 42724,
+            "name": "Сезон 2",
+            "overview": "",
+            "poster_path": "/zGfuagnlOcBuAsDFE38Ng4J3zYK.jpg",
+            "season_number": 2,
+            "vote_average": 8.6
+          },
+          {
+            "air_date": "2011-09-19",
+            "episode_count": 39,
+            "id": 42725,
+            "name": "Сезон 3",
+            "overview": "",
+            "poster_path": "/pTqLx1eteuPPeu5f8w60QpNRDEr.jpg",
+            "season_number": 3,
+            "vote_average": 8.5
+          },
+          {
+            "air_date": "2012-10-01",
+            "episode_count": 37,
+            "id": 42726,
+            "name": "Сезон 4",
+            "overview": "",
+            "poster_path": "/iwqVQHw4naS39nllhVOLER4uY47.jpg",
+            "season_number": 4,
+            "vote_average": 8
+          },
+          {
+            "air_date": "2013-09-02",
+            "episode_count": 37,
+            "id": 42728,
+            "name": "Сезон 5",
+            "overview": "",
+            "poster_path": "/nYpuEXRXJ4c5PfgCZqzFGCzry9r.jpg",
+            "season_number": 5,
+            "vote_average": 7.9
+          },
+          {
+            "air_date": "2014-10-09",
+            "episode_count": 28,
+            "id": 63616,
+            "name": "Сезон 6",
+            "overview": "",
+            "poster_path": "/d6cXb33tcyyOoSze3xSpyBSkRSW.jpg",
+            "season_number": 6,
+            "vote_average": 7.5
+          },
+          {
+            "air_date": "2015-07-06",
+            "episode_count": 36,
+            "id": 69527,
+            "name": "Сезон 7",
+            "overview": "",
+            "poster_path": "/jnCB9O0vHy91yGIiEgta770c1f9.jpg",
+            "season_number": 7,
+            "vote_average": 7.3
+          },
+          {
+            "air_date": "2016-09-26",
+            "episode_count": 28,
+            "id": 80509,
+            "name": "Сезон 8",
+            "overview": "",
+            "poster_path": "/bYK2inLj9sVuyTKJ2yPYRs9Encs.jpg",
+            "season_number": 8,
+            "vote_average": 8.9
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          }
+        ],
+        "status": "Ended",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 8.63,
+        "vote_count": 2117
+      }
+    }
+  },
+  {
+    "rawName": "Гачиакута (1-2 серии из 24) / Gachiakuta / 2025 / ДБ (DEEP), ЛМ (AniStar), СТ / WEB-DL (1080p)",
+    "russianTitle": "Гачиакута",
+    "originalTitle": "Gachiakuta",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 2,
+    "totalEpisodes": 24,
+    "releaseDateISO": "2025-07-13T16:47:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/mrapJp0qb6Fvo3IW9IrjCK9IgSo.jpg",
+        "created_by": [],
+        "episode_run_time": [
+          24
+        ],
+        "first_air_date": "2025-07-06",
+        "genres": [
+          {
+            "id": 16,
+            "name": "мультфильм"
+          },
+          {
+            "id": 10759,
+            "name": "Боевик и Приключения"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "https://gachiakuta-anime.com",
+        "id": 256721,
+        "in_production": true,
+        "languages": [
+          "de",
+          "es",
+          "fr",
+          "en",
+          "it",
+          "ja",
+          "pt"
+        ],
+        "last_air_date": "2025-07-13",
+        "last_episode_to_air": {
+          "id": 6358816,
+          "name": "Эпизод 2",
+          "overview": "",
+          "vote_average": 7.5,
+          "vote_count": 2,
+          "air_date": "2025-07-13",
+          "episode_number": 2,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 24,
+          "season_number": 1,
+          "show_id": 256721,
+          "still_path": "/bx5BDggucxheJqYfmMYzNRU3zfx.jpg"
+        },
+        "name": "Гачиакута",
+        "next_episode_to_air": {
+          "id": 6363198,
+          "name": "Эпизод 3",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-20",
+          "episode_number": 3,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": null,
+          "season_number": 1,
+          "show_id": 256721,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 94,
+            "logo_path": "/7RNXnyiMbjgqtPAjja13wchcrGI.png",
+            "name": "MBS",
+            "origin_country": "JP"
+          },
+          {
+            "id": 160,
+            "logo_path": "/lUACMATs6jcscXIrzNCQzbvNVN5.png",
+            "name": "TBS",
+            "origin_country": "JP"
+          },
+          {
+            "id": 201,
+            "logo_path": "/qNooLje0YQh1y3y9LUM2Y5QCtiF.png",
+            "name": "CBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 896,
+            "logo_path": "/qfUzYnpnN5bnd2bqGUH0OlAMell.png",
+            "name": "Tulip Television",
+            "origin_country": "JP"
+          },
+          {
+            "id": 1559,
+            "logo_path": "/artkCykJgOAh6lAjfrNNgANasgk.png",
+            "name": "SBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 2460,
+            "logo_path": "/34sNEcsgcTAuDidRMrgxdfNyVjL.png",
+            "name": "BSN",
+            "origin_country": "JP"
+          },
+          {
+            "id": 2461,
+            "logo_path": "/b4Ivxqz6UY0EogjYc09Y22ctC6F.png",
+            "name": "tys",
+            "origin_country": "JP"
+          },
+          {
+            "id": 2462,
+            "logo_path": "/7zXfwh5ZhFqvdOWgWX80weU6Sqb.png",
+            "name": "NBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3658,
+            "logo_path": "/sJwRsE1lfMwAwYZi1OtRfn7V03t.png",
+            "name": "HBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3705,
+            "logo_path": "/zOgixhlAa61yUb32bsXvRtD63wI.png",
+            "name": "RKK",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3969,
+            "logo_path": "/nhCsLIGjzIIp6jIFCdHN0cQEzjP.png",
+            "name": "i-Television",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3970,
+            "logo_path": "/9coKtCf4jSNCdSqGveVFyzvjrZt.png",
+            "name": "SBS",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3971,
+            "logo_path": "/6bhZ2SWdYTbSTQf8Bhmf1q0aBef.png",
+            "name": "IBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3972,
+            "logo_path": "/rL2IlndcEiQnIbym5EoSEM7rGlx.png",
+            "name": "BSS",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3973,
+            "logo_path": "/dh4E8hGvqD9Xqu51kbqUU06UKbt.png",
+            "name": "MRO",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3974,
+            "logo_path": "/yMQxsmGs88q54bslmcSeXlmpObC.png",
+            "name": "OBS",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3975,
+            "logo_path": "/6ACZlk44MWsIIwYHxjRGXGKlpRb.png",
+            "name": "TUF",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3977,
+            "logo_path": "/sGMMrdCmptaLLwJX7CsXTDaduLO.png",
+            "name": "RSK",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3978,
+            "logo_path": "/zOz9LK6WWLUWGuG0fthzDzCIXlA.png",
+            "name": "TUY",
+            "origin_country": "JP"
+          },
+          {
+            "id": 3979,
+            "logo_path": "/yWlWHPUn6FHjNUulL1vp8croYFw.png",
+            "name": "tbc",
+            "origin_country": "JP"
+          },
+          {
+            "id": 4748,
+            "logo_path": "/o5Hlt7ZXJPEm4Qrx2Pl2rtc9A5y.png",
+            "name": "RKB",
+            "origin_country": "JP"
+          },
+          {
+            "id": 4792,
+            "logo_path": "/8kzeHaKeW3gZubs3cqlGWFvfJI7.png",
+            "name": "KUTV",
+            "origin_country": "JP"
+          },
+          {
+            "id": 4859,
+            "logo_path": "/6jr76BpIItwLV5oKbZmRJsVh3c6.png",
+            "name": "RBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 6171,
+            "logo_path": "/ekXN1cfYutjLfudy1MKyGzNynEa.png",
+            "name": "UTY",
+            "origin_country": "JP"
+          },
+          {
+            "id": 6172,
+            "logo_path": "/mKslL0MTHHt9ukugWOv3Vh8Tn0E.png",
+            "name": "RCC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 6173,
+            "logo_path": "/YfewT1YYtAqkgvdu8oCX4mnJCs.png",
+            "name": "MRT",
+            "origin_country": "JP"
+          },
+          {
+            "id": 6174,
+            "logo_path": "/aawphEBuBGT9RVP6xG3BZV8NOCw.png",
+            "name": "ATV",
+            "origin_country": "JP"
+          },
+          {
+            "id": 6175,
+            "logo_path": "/iaaU6q82URj2mBbjQIbfAMUz14J.png",
+            "name": "MBC",
+            "origin_country": "JP"
+          }
+        ],
+        "number_of_episodes": 24,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "JP"
+        ],
+        "original_language": "ja",
+        "original_name": "ガチアクタ",
+        "overview": "Там, где живёт Рудо, мусор скидывают в бездну, которая начинается сразу за пределами города. Туда же сбрасывают и преступников, а тех, кто был с ними связан, отселяют в трущобы. Именно там обитал Рудо, заклеймённый как сын убийцы, пока его самого не обвинили в том, что он убил своего приёмного отца Регто. Рудо не успел и слова вставить в свою защиту, как его уже вышвырнули в мусорную бездну. Очутившись внизу, Рудо обнаружил, что находится на огромной свалке, которая тянется так далеко, насколько хватает взгляда. Так Рудо выяснил, что всё это время жил на острове, находящемся в небе, а бездна и есть настоящая поверхность. Наверняка он вскоре погиб бы от ядовитых испарений, но тут его атаковала ожившая мусорная куча. Всё идёт к тому, что Рудо предстоит узнать правду о самом себе и окружающем мире. Если он выживет, конечно. А уж если всё-таки выживет, то постараться выполнить последнюю волю умирающего Регто, который завещал ему изменить этот прогнивший мир.",
+        "popularity": 96.9432,
+        "poster_path": "/qU5hJXaY6IjDqBrlDaAhlbPvXVU.jpg",
+        "production_companies": [
+          {
+            "id": 244314,
+            "logo_path": "/4nqqgGYwWy65LNVqlcTrvUY1WR2.png",
+            "name": "BONES Film",
+            "origin_country": "JP"
+          },
+          {
+            "id": 55938,
+            "logo_path": "/ku5PUEwBjUx8XaYikgaXRVLIMbb.png",
+            "name": "avex pictures",
+            "origin_country": "JP"
+          },
+          {
+            "id": 2849,
+            "logo_path": "/cN3JNIKawjOMtfk0GBVIbsx69bg.png",
+            "name": "BONES",
+            "origin_country": "JP"
+          },
+          {
+            "id": 59118,
+            "logo_path": "/9nTCEBgGaaI5swkv8gy2vny0Mb5.png",
+            "name": "Kodansha",
+            "origin_country": "JP"
+          },
+          {
+            "id": 87211,
+            "logo_path": "/lzBP1lTYoqqfvGriMMdlvFWDRH7.png",
+            "name": "DMM.com",
+            "origin_country": "JP"
+          },
+          {
+            "id": 12384,
+            "logo_path": "/qNooLje0YQh1y3y9LUM2Y5QCtiF.png",
+            "name": "CBC",
+            "origin_country": "JP"
+          },
+          {
+            "id": 1778,
+            "logo_path": "/b5rT6VbYza3LyfltCmz1OcqzWJM.png",
+            "name": "dentsu",
+            "origin_country": "JP"
+          },
+          {
+            "id": 267226,
+            "logo_path": "/2LA2pKIPJghEvfF90HxAokeAjWY.png",
+            "name": "Com2uS",
+            "origin_country": "KR"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "JP",
+            "name": "Japan"
+          },
+          {
+            "iso_3166_1": "KR",
+            "name": "South Korea"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-06",
+            "episode_count": 24,
+            "id": 398115,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/RxuL7KuFoOzHC0htjtLGxJEGGx.jpg",
+            "season_number": 1,
+            "vote_average": 7.8
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "German",
+            "iso_639_1": "de",
+            "name": "Deutsch"
+          },
+          {
+            "english_name": "Spanish",
+            "iso_639_1": "es",
+            "name": "Español"
+          },
+          {
+            "english_name": "French",
+            "iso_639_1": "fr",
+            "name": "Français"
+          },
+          {
+            "english_name": "English",
+            "iso_639_1": "en",
+            "name": "English"
+          },
+          {
+            "english_name": "Italian",
+            "iso_639_1": "it",
+            "name": "Italiano"
+          },
+          {
+            "english_name": "Japanese",
+            "iso_639_1": "ja",
+            "name": "日本語"
+          },
+          {
+            "english_name": "Portuguese",
+            "iso_639_1": "pt",
+            "name": "Português"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 9.5,
+        "vote_count": 22
+      }
+    }
+  },
+  {
+    "rawName": "Запрещенный крот (1-2 серии из 12) / Dekin no Mogura / 2025 / ДБ (Amber), ЛМ (AniStar), СТ / WEB-DL (1080p)",
+    "russianTitle": "Запрещенный крот",
+    "originalTitle": "Dekin no Mogura",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 2,
+    "totalEpisodes": 12,
+    "releaseDateISO": "2025-07-13T09:51:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/4FaEZoLnxTsSV4829sy17SMiBvB.jpg",
+        "created_by": [],
+        "episode_run_time": [],
+        "first_air_date": "2025-07-07",
+        "genres": [
+          {
+            "id": 16,
+            "name": "мультфильм"
+          },
+          {
+            "id": 9648,
+            "name": "детектив"
+          },
+          {
+            "id": 18,
+            "name": "драма"
+          }
+        ],
+        "homepage": "https://dekinnomogura.com",
+        "id": 277581,
+        "in_production": true,
+        "languages": [
+          "ja"
+        ],
+        "last_air_date": "2025-07-07",
+        "last_episode_to_air": {
+          "id": 6362772,
+          "name": "Эпизод 2",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-14",
+          "episode_number": 2,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 24,
+          "season_number": 1,
+          "show_id": 277581,
+          "still_path": "/2NW4cHMKCONVMMFeaqkPszhH31q.jpg"
+        },
+        "name": "Запрещенный Крот",
+        "next_episode_to_air": {
+          "id": 6372100,
+          "name": "Эпизод 3",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-21",
+          "episode_number": 3,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 24,
+          "season_number": 1,
+          "show_id": 277581,
+          "still_path": null
+        },
+        "networks": [
+          {
+            "id": 614,
+            "logo_path": "/hSdroyVthq3CynxTIIY7lnS8w1.png",
+            "name": "Tokyo MX",
+            "origin_country": "JP"
+          }
+        ],
+        "number_of_episodes": 3,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "JP"
+        ],
+        "original_language": "ja",
+        "original_name": "出禁のモグラ",
+        "overview": "Отшельник по имени Момоюки Могура собирает блуждающие огоньки в свою лампу, чтобы однажды получить заветную возможность попасть в загробный мир, несмотря на запрет. Все, кто сталкивается с Могурой, начинают видеть странные явления.",
+        "popularity": 10.4133,
+        "poster_path": "/bcmZblOannHR42RQAfbqhMOW4Q3.jpg",
+        "production_companies": [
+          {
+            "id": 22602,
+            "logo_path": "/8IYhcuLMK8cdzlh3sugyOrWYGKJ.png",
+            "name": "Brain's Base",
+            "origin_country": "JP"
+          },
+          {
+            "id": 59118,
+            "logo_path": "/9nTCEBgGaaI5swkv8gy2vny0Mb5.png",
+            "name": "Kodansha",
+            "origin_country": "JP"
+          },
+          {
+            "id": 55938,
+            "logo_path": "/ku5PUEwBjUx8XaYikgaXRVLIMbb.png",
+            "name": "avex pictures",
+            "origin_country": "JP"
+          },
+          {
+            "id": 98553,
+            "logo_path": "/gNZh44MgDBwipGA9LwozlALjSdE.png",
+            "name": "Crunchyroll",
+            "origin_country": "JP"
+          },
+          {
+            "id": 187932,
+            "logo_path": "/5qlRgi2XlCSyKdN8wMSiLrA5uKO.png",
+            "name": "armabianca",
+            "origin_country": "JP"
+          },
+          {
+            "id": 194291,
+            "logo_path": null,
+            "name": "A-Sketch",
+            "origin_country": "JP"
+          },
+          {
+            "id": 157002,
+            "logo_path": "/hSdroyVthq3CynxTIIY7lnS8w1.png",
+            "name": "Tokyo MX",
+            "origin_country": "JP"
+          },
+          {
+            "id": 118502,
+            "logo_path": "/JQ5bx6n7Qmdmyqz6sqjo5Fz2iR.png",
+            "name": "BS11",
+            "origin_country": "JP"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "JP",
+            "name": "Japan"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-07",
+            "episode_count": 3,
+            "id": 429303,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/A2dxrXRLDMAP7Cp3xK3rvkxhz00.jpg",
+            "season_number": 1,
+            "vote_average": 0
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Japanese",
+            "iso_639_1": "ja",
+            "name": "日本語"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 10,
+        "vote_count": 1
+      }
+    }
+  },
+  {
+    "rawName": "Домашний репетитор герцогини (1-3 серии из 12) / Koujo Denka no Kateikyoushi / 2025 / ДБ (Дубляжная), ЛМ (AniStar), СТ / WEB-DL (1080p)",
+    "russianTitle": "Домашний репетитор герцогини",
+    "originalTitle": "Koujo Denka no Kateikyoushi",
+    "year": 2025,
+    "quality": "1080p",
+    "season": 1,
+    "episode": 3,
+    "totalEpisodes": 12,
+    "releaseDateISO": "2025-07-12T17:01:00.000Z",
+    "tmdb": {
+      "result": {
+        "adult": false,
+        "backdrop_path": "/jOOQ8JHCbgiPrTVGV3RnHEAIFQP.jpg",
+        "created_by": [],
+        "episode_run_time": [
+          24
+        ],
+        "first_air_date": "2025-07-05",
+        "genres": [
+          {
+            "id": 16,
+            "name": "мультфильм"
+          },
+          {
+            "id": 10765,
+            "name": "НФ и Фэнтези"
+          }
+        ],
+        "homepage": "https://koujodenka-anime.com",
+        "id": 284448,
+        "in_production": true,
+        "languages": [
+          "ja"
+        ],
+        "last_air_date": "2025-07-05",
+        "last_episode_to_air": {
+          "id": 6348647,
+          "name": "Что-то мешает",
+          "overview": "Аллен начинает занятия по магии с дочерью герцога Тиной и её служанкой Элли. И если последняя показывает хороший прогресс, то Тина так и не смогла сделать ни одного заклинания. Аллен, наблюдая за процессом, понимает, что ей что-то мешает довести дело до конца. Поскольку современные магические наработки пользы не принесли, то он пытается отыскать ответ на эту проблему ещё и в прошлом...",
+          "vote_average": 10,
+          "vote_count": 2,
+          "air_date": "2025-07-13",
+          "episode_number": 2,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 24,
+          "season_number": 1,
+          "show_id": 284448,
+          "still_path": "/1NO4a2p7Ue3ZdNKeQpZZrYTKOUd.jpg"
+        },
+        "name": "Домашний репетитор герцогини",
+        "next_episode_to_air": {
+          "id": 6348648,
+          "name": "Эпизод 3",
+          "overview": "",
+          "vote_average": 0,
+          "vote_count": 0,
+          "air_date": "2025-07-20",
+          "episode_number": 3,
+          "episode_type": "standard",
+          "production_code": "",
+          "runtime": 24,
+          "season_number": 1,
+          "show_id": 284448,
+          "still_path": "/ahKgxy0W9FEI6DqvyAonKcHUUAd.jpg"
+        },
+        "networks": [
+          {
+            "id": 614,
+            "logo_path": "/hSdroyVthq3CynxTIIY7lnS8w1.png",
+            "name": "Tokyo MX",
+            "origin_country": "JP"
+          },
+          {
+            "id": 861,
+            "logo_path": "/JQ5bx6n7Qmdmyqz6sqjo5Fz2iR.png",
+            "name": "BS11",
+            "origin_country": "JP"
+          }
+        ],
+        "number_of_episodes": 12,
+        "number_of_seasons": 1,
+        "origin_country": [
+          "JP"
+        ],
+        "original_language": "ja",
+        "original_name": "公女殿下の家庭教師",
+        "overview": "Аллен провалил экзамен на придворного мага, и даже денег на дорогу домой у него нет. Так что теперь он ищет работу. И вдруг — вот удача! — ему предлагают стать домашним репетитором для дочери герцога, юной герцогини. Дело выглядит сомнительным, но вряд ли ученица окажется более непутёвой, чем прежняя... Если не учитывать тот факт, что она вообще не владеет магией! Однако нестандартные уроки Аллена мало-помалу меняют жизнь девочки...",
+        "popularity": 6.3932,
+        "poster_path": "/dNX2wB1dBnNA76Vpj1ZyKOeUbi1.jpg",
+        "production_companies": [
+          {
+            "id": 120818,
+            "logo_path": "/trwh7fwDyrVrDT6P30VFWAFDyCA.png",
+            "name": "Studio Blanc.",
+            "origin_country": "JP"
+          },
+          {
+            "id": 162011,
+            "logo_path": "/bg6yrVhnmv6eNE8cMWehyE9wAeb.png",
+            "name": "GREE Entertainment",
+            "origin_country": "JP"
+          },
+          {
+            "id": 4673,
+            "logo_path": "/tXMheRYcKXCK1a90NRESqO1ibhQ.png",
+            "name": "King Records",
+            "origin_country": "JP"
+          },
+          {
+            "id": 2073,
+            "logo_path": "/tWxRSaKmRJNTcmtlXsmn5R4KOSU.png",
+            "name": "KADOKAWA",
+            "origin_country": "JP"
+          }
+        ],
+        "production_countries": [
+          {
+            "iso_3166_1": "JP",
+            "name": "Japan"
+          }
+        ],
+        "seasons": [
+          {
+            "air_date": "2025-07-05",
+            "episode_count": 12,
+            "id": 442705,
+            "name": "Сезон 1",
+            "overview": "",
+            "poster_path": "/kRtR5jUcKHeTM0JzaF9SbwI5FD.jpg",
+            "season_number": 1,
+            "vote_average": 9.7
+          }
+        ],
+        "spoken_languages": [
+          {
+            "english_name": "Japanese",
+            "iso_639_1": "ja",
+            "name": "日本語"
+          }
+        ],
+        "status": "Returning Series",
+        "tagline": "",
+        "type": "Scripted",
+        "vote_average": 10,
+        "vote_count": 1
+      }
+    }
+  }
+]
