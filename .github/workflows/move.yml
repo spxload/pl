@@ -1,0 +1,66 @@
+name: 📂 Move Folder via Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_path:
+        description: 'Какую папку переместить? (Путь от корня, например: Plugins/OldTool)'
+        required: true
+        type: string
+      target_path:
+        description: 'Новый путь для папки (Например: Archive/OldTool)'
+        required: true
+        type: string
+
+jobs:
+  move-folder:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Обязательно для записи изменений
+
+    steps:
+      # 1. Скачиваем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true # Включаем поддержку LFS на случай, если в папке есть тяжелые файлы
+
+      # 2. Скрипт перемещения
+      - name: Move Directory
+        id: move_step
+        shell: bash
+        run: |
+          SOURCE="${{ inputs.source_path }}"
+          TARGET="${{ inputs.target_path }}"
+
+          echo "🔄 Attempting to move: '$SOURCE' -> '$TARGET'"
+
+          # Проверка: Существует ли исходная папка?
+          if [ ! -d "$SOURCE" ]; then
+            echo "❌ Error: Source folder '$SOURCE' does not exist in the repository."
+            exit 1
+          fi
+
+          # Создаем родительскую папку для назначения, если её нет
+          # Например, если цель "A/B/C", а папки "A/B" нет, она создастся.
+          PARENT_DIR=$(dirname "$TARGET")
+          mkdir -p "$PARENT_DIR"
+
+          # Перемещаем
+          # Используем 'mv', так как git mv может капризничать в скриптах, 
+          # а git-auto-commit-action сам разберется с изменениями.
+          mv "$SOURCE" "$TARGET"
+
+          echo "✅ Successfully moved folder."
+          
+          # Проверяем структуру для отладки
+          ls -R "$TARGET"
+
+      # 3. Коммит изменений
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📂 Moved folder: ${{ inputs.source_path }} to ${{ inputs.target_path }}"
+          branch: ${{ github.ref }}
+          skip_dirty_check: false    
+          create_branch: false
