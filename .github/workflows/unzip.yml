@@ -1,21 +1,80 @@
-name: Unzip Manager
+name: 📦 Unpack Zip & Commit
 
 on:
-  workflow_dispatch: # Активируем возможность ручного запуска
+  workflow_dispatch:
     inputs:
-      zip_file: # Поле ввода для выбора ZIP файла
-        description: "Enter the name of the ZIP file (e.g., archive.zip)" 
-        required: true # Поле обязательно для заполнения
-        default: ""    # Значение по умолчанию пустое
+      search_pattern:
+        description: 'Какие файлы искать? (Например: **/*.zip или data.zip)'
+        required: true
+        default: '**/*.zip'
+        type: string
+      destination:
+        description: 'Куда распаковать? (Папка будет создана автоматически)'
+        required: false
+        default: 'unzipped_content'
+        type: string
+      clean_destination:
+        description: 'Очистить папку назначения перед распаковкой?'
+        required: true
+        default: false
+        type: boolean
 
 jobs:
-  unzip:
-    runs-on: ubuntu-latest # Работает на последней версии Ubuntu
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+  unpack-and-commit:
+    runs-on: ubuntu-latest
+    # Важно: даем права на запись в репозиторий, чтобы Action мог сделать git push
+    permissions:
+      contents: write
 
-      - name: Find ZIP File
-        id: search_zip
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Unzip
+        run: sudo apt-get install -y unzip
+
+      - name: Find and Unzip
+        id: unzip_step
+        shell: bash
         run: |
-          # Поиск файла
+          echo "🔎 Searching for archives matching: ${{ inputs.search_pattern }}"
+          
+          DEST_DIR="${{ inputs.destination }}"
+          mkdir -p "$DEST_DIR"
+          
+          # Если выбрана очистка - удаляем всё внутри папки назначения
+          if [ "${{ inputs.clean_destination }}" = "true" ]; then
+            echo "🧹 Cleaning destination directory..."
+            rm -rf "$DEST_DIR"/*
+          fi
+
+          # Включаем поддержку рекурсивного поиска (**/*.zip)
+          shopt -s globstar nullglob
+          
+          FILES=(${{ inputs.search_pattern }})
+          
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "❌ No archives found matching the pattern."
+            exit 1
+          fi
+
+          echo "✅ Found ${#FILES[@]} archive(s)."
+
+          for archive in "${FILES[@]}"; do
+            echo "📦 Unpacking: $archive -> $DEST_DIR"
+            # -o перезаписывает файлы, -d указывает папку
+            unzip -o "$archive" -d "$DEST_DIR"
+          done
+          
+          echo "🎉 Extraction complete."
+
+      # Шаг автоматического коммита изменений
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📦 Unpacked archives: ${{ inputs.search_pattern }}"
+          branch: ${{ github.ref }}
+          # Коммитим только папку, в которую распаковывали, чтобы не задеть лишнее
+          file_pattern: '${{ inputs.destination }}/*' 
+          skip_dirty_check: false    
+          create_branch: false
