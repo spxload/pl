@@ -6,6 +6,7 @@ on:
 
 jobs:
   unpack-selected:
+    # Запускаемся только если у Issue есть метка 'unzip-trigger'
     if: contains(github.event.issue.labels.*.name, 'unzip-trigger')
     runs-on: ubuntu-latest
     permissions:
@@ -26,50 +27,67 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          # --- ЛОГИКА ПАРСИНГА ПАПКИ ---
-          
-          # Ищем строку, начинающуюся с "TargetFolder:"
-          # cut -d ':' -f 2 берет всё после двоеточия
-          # xargs убирает пробелы по краям
+          # --- Читаем папку назначения из Issue ---
           CUSTOM_DIR=$(echo "$ISSUE_BODY" | grep "TargetFolder:" | cut -d ':' -f 2 | xargs)
           
-          # Если пользователь удалил строку или оставил пустой, используем дефолт
           if [ -z "$CUSTOM_DIR" ]; then
-             DEST_DIR="unzipped_content"
-             echo "⚠️ TargetFolder not found in issue body. Using default: $DEST_DIR"
+             BASE_DEST_DIR="unzipped_content"
+             echo "⚠️ TargetFolder not set. Using default: $BASE_DEST_DIR"
           else
-             DEST_DIR="$CUSTOM_DIR"
+             BASE_DEST_DIR="$CUSTOM_DIR"
           fi
           
-          echo "📂 Final Destination: $DEST_DIR"
-          mkdir -p "$DEST_DIR"
-          # -----------------------------
+          echo "📂 Base Destination: $BASE_DEST_DIR"
+          mkdir -p "$BASE_DEST_DIR"
+          # ----------------------------------------
 
+          # Читаем строки Issue
           echo "$ISSUE_BODY" | while IFS= read -r line; do
+            # Ищем отмеченные галочки
             if [[ "$line" == *"- [x] "* ]]; then
-              ARCHIVE=$(echo "${line:6}" | xargs)
               
-              echo "----------------------------------"
-              echo "🎯 Selected: '$ARCHIVE'"
+              # Получаем полный путь к архиву (например: ./Plugins/Data.zip)
+              ARCHIVE_PATH=$(echo "${line:6}" | xargs)
+              
+              if [ -f "$ARCHIVE_PATH" ]; then
+                 
+                 # 1. Получаем чистое имя файла (Data.zip)
+                 FILENAME=$(basename "$ARCHIVE_PATH")
+                 
+                 # 2. Убираем расширение (Data)
+                 FOLDER_NAME="${FILENAME%.*}"
+                 
+                 # 3. Формируем итоговый путь: unzipped_content/Data
+                 FINAL_OUTPUT_DIR="$BASE_DEST_DIR/$FOLDER_NAME"
+                 
+                 echo "----------------------------------"
+                 echo "🎯 Processing: '$ARCHIVE_PATH'"
+                 echo "📂 Creating sub-folder: '$FINAL_OUTPUT_DIR'"
+                 
+                 # Создаем подпапку
+                 mkdir -p "$FINAL_OUTPUT_DIR"
 
-              if [ -f "$ARCHIVE" ]; then
-                 # -oПапка (без пробела после -o для 7z)
-                 7z x "$ARCHIVE" -o"$DEST_DIR" -y
+                 # Распаковываем ВНУТРЬ этой подпапки
+                 if 7z x "$ARCHIVE_PATH" -o"$FINAL_OUTPUT_DIR" -y > /dev/null; then
+                    echo "✅ Success!"
+                 else
+                    echo "❌ Failed to unzip $ARCHIVE_PATH"
+                 fi
+
               else
-                 echo "⚠️ File not found: $ARCHIVE"
+                 echo "⚠️ File not found: $ARCHIVE_PATH"
               fi
             fi
           done
           
-          # Сохраняем путь в переменную среды, чтобы следующий шаг его видел
-          echo "SAVED_DEST_DIR=$DEST_DIR" >> $GITHUB_ENV
+          # Сохраняем базовую папку для шага коммита
+          echo "SAVED_DEST_DIR=$BASE_DEST_DIR" >> $GITHUB_ENV
 
-      # Коммитим именно в ту папку, которую вычислили выше
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📦 Unpacked files from Issue #${{ github.event.issue.number }}"
-          # Используем переменную из предыдущего шага
+          commit_message: "📦 Unpacked archives into subfolders (Issue #${{ github.event.issue.number }})"
+          # Коммитим всё внутри базовой папки (включая новые подпапки)
           file_pattern: '${{ env.SAVED_DEST_DIR }}/*'
 
       - name: Add Success Comment
@@ -78,4 +96,4 @@ jobs:
           ISSUE_ID: ${{ github.event.issue.number }}
           FINAL_DIR: ${{ env.SAVED_DEST_DIR }}
         run: |
-          gh issue comment "$ISSUE_ID" --body "✅ **Готово!** Файлы распакованы в папку: \`$FINAL_DIR\`"
+          gh issue comment "$ISSUE_ID" --body "✅ **Готово!** Каждый архив распакован в свою подпапку внутри: \`$FINAL_DIR\`"
