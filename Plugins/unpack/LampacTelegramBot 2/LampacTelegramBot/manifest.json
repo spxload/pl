@@ -1,0 +1,11 @@
+{
+  "enable": true,
+  "version": 2,
+  "initspace": "TelegramBot.ModInit",
+  "references": ["Telegram.Bot.dll"],
+  "params": {
+    "bottoken": "bottoken",
+    "adminid": id
+  }
+  
+}
