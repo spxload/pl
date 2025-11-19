@@ -1,0 +1,81 @@
+name: 2. ⚡ Auto Process on Close
+
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  unpack-selected:
+    if: contains(github.event.issue.labels.*.name, 'unzip-trigger')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Install 7-Zip
+        run: sudo apt-get update && sudo apt-get install -y p7zip-full
+
+      - name: Parse Config and Unzip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: |
+          # --- ЛОГИКА ПАРСИНГА ПАПКИ ---
+          
+          # Ищем строку, начинающуюся с "TargetFolder:"
+          # cut -d ':' -f 2 берет всё после двоеточия
+          # xargs убирает пробелы по краям
+          CUSTOM_DIR=$(echo "$ISSUE_BODY" | grep "TargetFolder:" | cut -d ':' -f 2 | xargs)
+          
+          # Если пользователь удалил строку или оставил пустой, используем дефолт
+          if [ -z "$CUSTOM_DIR" ]; then
+             DEST_DIR="unzipped_content"
+             echo "⚠️ TargetFolder not found in issue body. Using default: $DEST_DIR"
+          else
+             DEST_DIR="$CUSTOM_DIR"
+          fi
+          
+          echo "📂 Final Destination: $DEST_DIR"
+          mkdir -p "$DEST_DIR"
+          # -----------------------------
+
+          echo "$ISSUE_BODY" | while IFS= read -r line; do
+            if [[ "$line" == *"- [x] "* ]]; then
+              ARCHIVE=$(echo "${line:6}" | xargs)
+              
+              echo "----------------------------------"
+              echo "🎯 Selected: '$ARCHIVE'"
+
+              if [ -f "$ARCHIVE" ]; then
+                 # -oПапка (без пробела после -o для 7z)
+                 7z x "$ARCHIVE" -o"$DEST_DIR" -y
+              else
+                 echo "⚠️ File not found: $ARCHIVE"
+              fi
+            fi
+          done
+          
+          # Сохраняем путь в переменную среды, чтобы следующий шаг его видел
+          echo "SAVED_DEST_DIR=$DEST_DIR" >> $GITHUB_ENV
+
+      # Коммитим именно в ту папку, которую вычислили выше
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📦 Unpacked files from Issue #${{ github.event.issue.number }}"
+          # Используем переменную из предыдущего шага
+          file_pattern: '${{ env.SAVED_DEST_DIR }}/*'
+
+      - name: Add Success Comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_ID: ${{ github.event.issue.number }}
+          FINAL_DIR: ${{ env.SAVED_DEST_DIR }}
+        run: |
+          gh issue comment "$ISSUE_ID" --body "✅ **Готово!** Файлы распакованы в папку: \`$FINAL_DIR\`"
