@@ -1,7 +1,12 @@
-# Файл: .github/workflows/1-scan-archives.yml
-
 name: 1. 🔍 Scan & Create Menu
-# ... (начало файла остается прежним) ...
+
+on:
+  workflow_dispatch:
+    inputs:
+      search_pattern:
+        description: 'Где искать? (паттерн)'
+        default: '**/*.zip'
+        required: true
 
 jobs:
   create-selection-issue:
