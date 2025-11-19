@@ -1,4 +1,4 @@
-name: 📦 Unpack Zip & Commit (Fixed)
+name: 📦 Unpack Zip (7z) & Commit
 
 on:
   workflow_dispatch:
@@ -24,12 +24,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          lfs: true # ВАЖНО: Скачивает реальные файлы, если используется Git LFS
+          lfs: true
 
-      - name: Install Unzip
-        run: sudo apt-get install -y unzip
+      # Устанавливаем 7-Zip вместо обычного unzip
+      - name: Install 7-Zip
+        run: sudo apt-get update && sudo apt-get install -y p7zip-full
 
-      - name: Find and Unzip Safely
+      - name: Find and Unzip with 7z
         id: unzip_step
         shell: bash
         run: |
@@ -43,22 +44,22 @@ jobs:
 
           echo "🔎 Searching for .zip files recursively..."
           
-          # Находим все zip файлы. Используем -print0 для обработки имен с пробелами
+          # Ищем все файлы zip
           find . -type f -name "*.zip" -not -path "./.git/*" -print0 | while IFS= read -r -d '' archive; do
             
             echo "---------------------------------------------------"
-            echo "📦 Found archive: $archive"
+            echo "📦 Processing: $archive"
 
-            # Проверка: Действительно ли это ZIP файл?
-            if ! unzip -tq "$archive"; then
-               echo "⚠️ WARNING: File '$archive' is not a valid zip archive or is corrupted."
-               echo "It might be a Git LFS pointer that wasn't downloaded correctly."
-               continue # Пропускаем битый файл, но не ломаем весь процесс
+            # Команда распаковки через 7z
+            # x = распаковать с сохранением путей
+            # -o = папка назначения (слитно, без пробела!)
+            # -y = отвечать "да" на все вопросы (перезапись)
+            if 7z x "$archive" -o"$DEST_DIR" -y; then
+                echo "✅ Successfully unpacked: $archive"
+            else
+                echo "❌ Failed to unpack: $archive"
+                # Можно добавить exit 1, если хотите прервать процесс при ошибке
             fi
-
-            echo "🚀 Unzipping to: $DEST_DIR"
-            # -o перезаписывает, -d указывает папку
-            unzip -o "$archive" -d "$DEST_DIR"
             
           done
           
@@ -67,7 +68,7 @@ jobs:
       - name: Commit and Push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📦 Unpacked archives via Action"
+          commit_message: "📦 Unpacked archives via Action (7z)"
           branch: ${{ github.ref }}
           file_pattern: '${{ inputs.destination }}/*'
           skip_dirty_check: false    
