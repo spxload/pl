@@ -1,37 +1,21 @@
 name: Unzip Manager
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Активируем возможность ручного запуска
     inputs:
-      zip_name:
-        description: "Name of the ZIP file (without path, e.g., example.zip)"
-        required: true
-        default: "example.zip"
+      zip_file: # Поле ввода для выбора ZIP файла
+        description: "Enter the name of the ZIP file (e.g., archive.zip)" 
+        required: true # Поле обязательно для заполнения
+        default: ""    # Значение по умолчанию пустое
 
 jobs:
   unzip:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Работает на последней версии Ubuntu
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Search for ZIP File
+      - name: Find ZIP File
         id: search_zip
         run: |
-          # Search for the ZIP file by name
-          zip_path=$(find . -type f -name "${{ github.event.inputs.zip_name }}" -print -quit)
-          if [ -z "$zip_path" ]; then
-            echo "Error: File '${{ github.event.inputs.zip_name }}' not found!"
-            exit 1
-          fi
-          echo "File found at: $zip_path"
-          echo "zip_path=$zip_path" >> $GITHUB_ENV
-
-      - name: Display Found ZIP Path
-        run: echo "Found ZIP file at path: ${{ env.zip_path }}"
-
-      - name: Create output folder
-        run: mkdir -p extracted
-
-      - name: Unzip File
-        run: unzip ${{ env.zip_path }} -d ./extracted
+          # Поиск файла
