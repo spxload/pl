@@ -1,0 +1,58 @@
+name: 1. 🔍 Scan & Create Menu
+
+on:
+  workflow_dispatch:
+    inputs:
+      search_pattern:
+        description: 'Где искать? (паттерн)'
+        default: '**/*.zip'
+        required: true
+
+jobs:
+  create-selection-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Find Archives and Create Issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PATTERN: ${{ inputs.search_pattern }}
+        run: |
+          # ВАЖНО: Мы добавляем строку "TargetFolder: ..."
+          # Action 2 будет искать именно её.
+          BODY="### ⚙️ Настройки
+          **Папка назначения:**
+          TargetFolder: unzipped_content
+          *(Чтобы изменить папку: нажмите 'Edit' в правом верхнем углу этого сообщения и поменяйте текст выше)*
+
+          ---
+          ### 📦 Выберите файлы
+          Отметьте галочками нужные файлы и нажмите **Close issue** для запуска.
+          "
+          
+          shopt -s globstar nullglob
+          
+          FOUND=false
+          for file in $PATTERN; do
+            if [[ "$file" == .git* ]]; then continue; fi
+            FOUND=true
+            BODY+=$'\n- [ ] '"$file"
+          done
+          
+          if [ "$FOUND" = false ]; then
+            echo "❌ No files found."
+            exit 1
+          fi
+
+          gh issue create \
+            --title "Select archives to unzip [WAITING_SELECTION]" \
+            --body "$BODY" \
+            --label "unzip-trigger"
+
+          echo "✅ Issue created!"
