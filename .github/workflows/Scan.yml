@@ -1,12 +1,7 @@
-name: 1. 🔍 Scan & Create Menu
+# Файл: .github/workflows/1-scan-archives.yml
 
-on:
-  workflow_dispatch:
-    inputs:
-      search_pattern:
-        description: 'Где искать? (паттерн)'
-        default: '**/*.zip'
-        required: true
+name: 1. 🔍 Scan & Create Menu
+# ... (начало файла остается прежним) ...
 
 jobs:
   create-selection-issue:
@@ -24,8 +19,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PATTERN: ${{ inputs.search_pattern }}
         run: |
-          # ВАЖНО: Мы добавляем строку "TargetFolder: ..."
-          # Action 2 будет искать именно её.
+          # --- FIX: Обеспечиваем создание метки 'unzip-trigger' ---
+          echo "🏷️ Проверка наличия метки 'unzip-trigger'..."
+          # Создаем метку. Если она уже существует, '|| true' предотвратит остановку скрипта.
+          gh label create 'unzip-trigger' --description 'Trigger for automated unzipping workflow' --color 0e8a16 || true
+          # --------------------------------------------------------
+          
+          # Начало создания тела Issue
           BODY="### ⚙️ Настройки
           **Папка назначения:**
           TargetFolder: unzipped_content
@@ -50,9 +50,10 @@ jobs:
             exit 1
           fi
 
+          # Создаем Issue и присваиваем метку (теперь метка гарантированно существует)
           gh issue create \
             --title "Select archives to unzip [WAITING_SELECTION]" \
             --body "$BODY" \
             --label "unzip-trigger"
 
-          echo "✅ Issue created!"
+          echo "✅ Issue created! Go select files and close the issue."
