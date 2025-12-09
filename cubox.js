@@ -1,74 +1,66 @@
 (function () {
     'use strict';
 
+    console.log('[Cubox] Core v3.0 (endLoads) started');
+
     // ==========================================
-    // НАСТРОЙКИ
+    // НАСТРОЙКИ РЕПОЗИТОРИЯ
     // ==========================================
-    var GITHUB_USER = 'spxload'; 
-    var GITHUB_REPO = 'pl'; 
+    var GITHUB_USER = 'endLoads'; 
+    var GITHUB_REPO = 'pl-lm'; 
     var BRANCH = 'main';
-    var FOLDER_PATH = 'Cubox'; 
+    var FOLDER_PATH = 'Cubox'; // Ищет плагины здесь
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
-    
-    // ВАЖНО: Используем CDN для JSON (чтобы не было ошибки загрузки)
-    var MANIFEST_URL = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json';
+    var API_URL = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH;
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
 
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
 
-    // Загрузка плагина
+    // Функция загрузки через CDN
     function loadPlugin(filename) {
-        var url = CDN_BASE + filename + '?t=' + Date.now();
+        var timestamp = new Date().getTime();
+        var url = CDN_BASE + filename + '?t=' + timestamp;
+        
         var script = document.createElement('script');
+        script.type = 'text/javascript';
         script.src = url;
         script.async = true;
+        
+        script.onload = function() { console.log('[Cubox] OK:', filename); };
+        script.onerror = function() { console.error('[Cubox] FAIL:', filename, url); };
+        
         document.body.appendChild(script);
     }
-    
+
     // Старт
     function startPlugins() {
-        Object.keys(enabledPlugins).forEach(function(file) {
+        var list = Object.keys(enabledPlugins);
+        list.forEach(function(file) {
             if (enabledPlugins[file]) loadPlugin(file);
         });
     }
 
-    // Чтение JSON через CDN
-    function fetchManifest(callback) {
-        var url = MANIFEST_URL + '?t=' + Date.now();
-        
-        Lampa.Network.silent(url, function(data) {
-            try {
-                // Если пришел строкой - парсим
-                var json = (typeof data === 'string') ? JSON.parse(data) : data;
-                callback(json);
-            } catch (e) { 
-                console.error(e);
-                Lampa.Noty.show('Cubox: Ошибка структуры JSON'); 
+    // Список файлов
+    function fetchFileList(callback) {
+        Lampa.Network.silent(API_URL, function(data) {
+            if (Array.isArray(data)) {
+                var files = data
+                    .filter(function(f) { return f.name.endsWith('.js'); })
+                    .map(function(f) { return f.name; });
+                callback(files);
+            } else {
+                Lampa.Noty.show('Cubox: Ошибка API');
             }
-        }, function(a, c) {
-            // Если CDN не сработал (файла нет), пробуем Raw как запасной вариант
-            console.warn('CDN Fail, trying Raw...');
-            var rawUrl = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-            
-            Lampa.Network.silent(rawUrl, function(d) {
-                try {
-                    var j = (typeof d === 'string') ? JSON.parse(d) : d;
-                    callback(j);
-                } catch(e) { Lampa.Noty.show('Cubox: Файл plugins.json не найден'); }
-            }, function() {
-                Lampa.Noty.show('Cubox: Каталог пуст или недоступен');
-            });
         });
     }
 
     // Меню
     function addMenu() {
-        // Убрал data-component="cubox_core", чтобы не было ошибки Template not found
         var field = $(`
-            <div class="settings-folder selector" data-component="cubox_store">
+            <div class="settings-folder selector" data-component="cubox_core">
                 <div class="settings-folder__icon">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -83,52 +75,35 @@
         
         Lampa.Settings.listener.follow('open', function (e) {
             if (e.name == 'main') {
-                var timer = setInterval(function() {
-                    var scrollLayer = $('.settings__content .scroll__content');
-                    if (scrollLayer.length) {
-                        clearInterval(timer);
-                        var first = scrollLayer.find('.settings-folder').first();
-                        if (first.length) first.before(field);
-                        else scrollLayer.append(field);
-                        
-                        field.on('hover:enter', openStore);
-                    }
-                }, 50);
+                var container = $('.settings__content');
+                var pluginsItem = container.find('[data-component="plugins"]');
+                if (pluginsItem.length) pluginsItem.after(field);
+                else container.append(field);
+                
+                field.on('hover:enter', function () {
+                    openStore();
+                });
             }
         });
     }
 
+    // Магазин
     function openStore() {
         Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
-        
-        fetchManifest(function(plugins) {
+
+        fetchFileList(function(files) {
             Lampa.Loading.stop();
             var items = [];
-            
-            plugins.forEach(function(p) {
-                var isEnabled = enabledPlugins[p.file] === true;
-                
-                var statusText = isEnabled ? '<span style="color:#4bbc16;font-weight:bold">ВКЛЮЧЕНО</span>' : '<span style="color:#aaa">Выключено</span>';
-                var versionInfo = '<span style="opacity:0.7"> • v' + p.version + '</span>';
-                var descInfo = '<div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>';
-
-                var iconHtml = isEnabled ? 
-                    '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
-                    '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
-
+            files.forEach(function(filename) {
+                var isEnabled = enabledPlugins[filename] === true;
                 items.push({
-                    title: p.name,
-                    subtitle: statusText + versionInfo + descInfo,
-                    icon: iconHtml,
-                    file: p.file,
+                    title: filename,
+                    subtitle: isEnabled ? 'Включен' : 'Выключен',
+                    icon: isEnabled ? '<div style="width:20px;height:20px;background:#4bbc16;border-radius:50%"></div>' : '<div style="width:20px;height:20px;border:2px solid #fff;border-radius:50%"></div>',
+                    file: filename,
                     enabled: isEnabled
                 });
             });
-
-            if (items.length === 0) {
-                 Lampa.Noty.show('Каталог пуст. Добавьте плагины в репо.');
-                 return;
-            }
 
             Lampa.Select.show({
                 title: 'Cubox Store',
@@ -136,14 +111,16 @@
                 onSelect: function(item) {
                     enabledPlugins[item.file] = !item.enabled;
                     Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                    needReload = true;
+                    needReload = true; // Запоминаем, что нужно перезагрузиться
                     setTimeout(openStore, 50);
                 },
                 onBack: function() {
                     if (needReload) {
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
-                    } else Lampa.Controller.toggle('settings_component');
+                    } else {
+                        Lampa.Controller.toggle('settings_component');
+                    }
                 }
             });
         });
