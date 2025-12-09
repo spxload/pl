@@ -31,49 +31,52 @@
         });
     }
 
-    // Чтение JSON (Raw First -> CDN Fallback)
+    // Чтение JSON (Fetch API + Fallback)
     function fetchManifest(callback) {
-        // 1. Пробуем Raw (он обновляется мгновенно)
-        var rawUrl = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+        // Пробуем сначала API (свежие данные)
+        var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
         
-        console.log('[Cubox] Trying Raw:', rawUrl);
+        console.log('[Cubox] Fetching:', apiUrl);
 
-        Lampa.Network.silent(rawUrl, function(data) {
-            try {
-                var json = (typeof data === 'string') ? JSON.parse(data) : data;
-                if (Array.isArray(json)) {
-                    console.log('[Cubox] Raw Success');
-                    callback(json);
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('API Error: ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.content) {
+                    // Декодируем Base64
+                    try {
+                        var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
+                        var json = JSON.parse(jsonString);
+                        console.log('[Cubox] API Success', json);
+                        callback(json);
+                    } catch (e) {
+                        console.error('[Cubox] Decode/Parse Error', e);
+                        throw new Error('Decode Error');
+                    }
                 } else {
-                    throw "Not array";
+                    throw new Error('No content in API');
                 }
-            } catch (e) {
-                console.warn('[Cubox] Raw Parse Error, trying CDN...');
-                tryCDN(callback);
-            }
-        }, function(a, c) {
-            console.warn('[Cubox] Raw Failed (CORS?), trying CDN...');
-            tryCDN(callback);
-        });
-    }
-
-    function tryCDN(callback) {
-        // 2. Пробуем CDN (если Raw заблокирован)
-        var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-        
-        Lampa.Network.silent(cdnUrl, function(data) {
-            try {
-                var json = (typeof data === 'string') ? JSON.parse(data) : data;
-                if (Array.isArray(json)) callback(json);
-                else callback([]);
-            } catch(e) { 
-                Lampa.Noty.show('Ошибка JSON');
-                callback([]); 
-            }
-        }, function() {
-            Lampa.Noty.show('Не удалось загрузить plugins.json');
-            callback([]);
-        });
+            })
+            .catch(err => {
+                console.warn('[Cubox] API failed, trying CDN...', err);
+                
+                // Если API не сработало, пробуем CDN
+                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+                
+                fetch(cdnUrl)
+                    .then(r => r.json())
+                    .then(json => {
+                        console.log('[Cubox] CDN Success', json);
+                        callback(json);
+                    })
+                    .catch(e => {
+                        console.error('[Cubox] CDN Failed', e);
+                        Lampa.Noty.show('Не удалось загрузить список плагинов');
+                        callback([]);
+                    });
+            });
     }
 
     // Меню
@@ -135,8 +138,8 @@
                 });
             } else {
                 items.push({
-                    title: 'Список пуст',
-                    subtitle: 'Не удалось прочитать plugins.json',
+                    title: 'Нет доступных плагинов',
+                    subtitle: 'Список пуст или ошибка сети',
                     icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
                     file: 'none',
                     enabled: false
