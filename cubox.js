@@ -2,7 +2,7 @@
     'use strict';
 
     // ==========================================
-    // НАСТРОЙКИ
+    // НОВЫЕ НАСТРОЙКИ
     // ==========================================
     var GITHUB_USER = 'spxload'; 
     var GITHUB_REPO = 'pl'; 
@@ -31,7 +31,7 @@
         });
     }
 
-    // Чтение JSON через GitHub API
+    // Чтение JSON через API
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
         
@@ -39,24 +39,14 @@
             try {
                 if (data && data.content) {
                     var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                    var json = JSON.parse(jsonString);
-                    callback(json);
-                } else {
-                    callback([]); // Пустой список, если контента нет
-                }
-            } catch (e) { 
-                console.warn('[Cubox] API Error/Empty:', e);
-                callback([]); // Возвращаем пустой массив, чтобы не вешать интерфейс
-            }
-        }, function(a, c) {
-            console.warn('[Cubox] Manifest not found:', c);
-            callback([]); // Если файла нет - значит нет плагинов
-        });
+                    callback(JSON.parse(jsonString));
+                } else { callback([]); }
+            } catch (e) { callback([]); }
+        }, function() { callback([]); });
     }
 
-        // Меню
+    // Меню (Без data-component, чтобы не было ошибок)
     function addMenu() {
-        // УБРАЛИ data-component="...", добавили класс cubox-menu-item
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
                 <div class="settings-folder__icon">
@@ -77,15 +67,9 @@
                     var scrollLayer = $('.settings__content .scroll__content');
                     if (scrollLayer.length) {
                         clearInterval(timer);
-                        
-                        // Удаляем старую кнопку (если она осталась от прошлого открытия), чтобы не дублировалась
                         scrollLayer.find('.cubox-menu-item').remove();
-
                         var first = scrollLayer.find('.settings-folder').first();
-                        
-                        // Заново создаем обработчик, так как при .remove() он теряется
                         field.off('hover:enter click').on('hover:enter click', openStore);
-
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
                     }
@@ -94,15 +78,11 @@
         });
     }
 
-
     function openStore() {
         Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
-        
         fetchManifest(function(plugins) {
             Lampa.Loading.stop();
             var items = [];
-
-            // Если список не пуст - заполняем
             if (Array.isArray(plugins) && plugins.length > 0) {
                 plugins.forEach(function(p) {
                     var isEnabled = enabledPlugins[p.file] === true;
@@ -110,7 +90,6 @@
                     var iconHtml = isEnabled ? 
                         '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
                         '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
-
                     items.push({
                         title: p.name,
                         subtitle: statusText + '<span style="opacity:0.7"> • v' + p.version + '</span><div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>',
@@ -120,22 +99,13 @@
                     });
                 });
             } else {
-                // Если пусто - показываем заглушку
-                items.push({
-                    title: 'Нет доступных плагинов',
-                    subtitle: 'Добавьте описание @name в файлы .js',
-                    icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
-                    file: 'none',
-                    enabled: false
-                });
+                items.push({ title: 'Нет доступных плагинов', subtitle: 'Проверьте репозиторий spxload/pl', icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>', file: 'none', enabled: false });
             }
-
             Lampa.Select.show({
                 title: 'Cubox Store',
                 items: items,
                 onSelect: function(item) {
-                    if (item.file === 'none') return; // Игнорируем заглушку
-
+                    if (item.file === 'none') return;
                     enabledPlugins[item.file] = !item.enabled;
                     Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
                     needReload = true;
