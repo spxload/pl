@@ -31,61 +31,53 @@
         });
     }
 
-    // Чтение JSON через API
+    // Чтение JSON (Fetch API + Fallback)
     function fetchManifest(callback) {
+        // Пробуем сначала API (свежие данные)
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
         
-        console.log('[Cubox] Fetching manifest:', apiUrl);
+        console.log('[Cubox] Fetching:', apiUrl);
 
-        Lampa.Network.silent(apiUrl, function(data) {
-            try {
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) throw new Error('API Error: ' + response.status);
+                return response.json();
+            })
+            .then(data => {
                 if (data && data.content) {
-                    // Декодинг Base64
-                    var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                    console.log('[Cubox] Raw JSON:', jsonString);
-                    
-                    var json = JSON.parse(jsonString);
-                    
-                    if (Array.isArray(json)) {
-                        console.log('[Cubox] Parsed ' + json.length + ' plugins');
+                    // Декодируем Base64
+                    try {
+                        var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
+                        var json = JSON.parse(jsonString);
+                        console.log('[Cubox] API Success', json);
                         callback(json);
-                    } else {
-                        console.error('[Cubox] JSON is not an array:', json);
-                        Lampa.Noty.show('Ошибка: JSON не массив');
-                        callback([]);
+                    } catch (e) {
+                        console.error('[Cubox] Decode/Parse Error', e);
+                        throw new Error('Decode Error');
                     }
                 } else {
-                    console.error('[Cubox] No content in API response');
-                    callback([]);
+                    throw new Error('No content in API');
                 }
-            } catch (e) { 
-                console.error('[Cubox] JSON Parse Error:', e);
-                Lampa.Noty.show('Ошибка чтения JSON: ' + e.message);
-                callback([]); 
-            }
-        }, function(a, c) {
-            console.error('[Cubox] Network Error:', c);
-            // Если API упало (403 Limit), пробуем CDN как запасной вариант
-            fallbackCDN(callback);
-        });
+            })
+            .catch(err => {
+                console.warn('[Cubox] API failed, trying CDN...', err);
+                
+                // Если API не сработало, пробуем CDN
+                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+                
+                fetch(cdnUrl)
+                    .then(r => r.json())
+                    .then(json => {
+                        console.log('[Cubox] CDN Success', json);
+                        callback(json);
+                    })
+                    .catch(e => {
+                        console.error('[Cubox] CDN Failed', e);
+                        Lampa.Noty.show('Не удалось загрузить список плагинов');
+                        callback([]);
+                    });
+            });
     }
-
-    // Запасной вариант через CDN (если API недоступно)
-    function fallbackCDN(callback) {
-        var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-        console.log('[Cubox] Trying CDN fallback:', cdnUrl);
-        
-        Lampa.Network.silent(cdnUrl, function(data) {
-            try {
-                var json = (typeof data === 'string') ? JSON.parse(data) : data;
-                if (Array.isArray(json)) callback(json);
-                else callback([]);
-            } catch(e) { callback([]); }
-        }, function() {
-            callback([]);
-        });
-    }
-
 
     // Меню
     function addMenu() {
@@ -131,10 +123,11 @@
                 plugins.forEach(function(p) {
                     var isEnabled = enabledPlugins[p.file] === true;
                     var statusText = isEnabled ? '<span style="color:#4bbc16;font-weight:bold">ВКЛЮЧЕНО</span>' : '<span style="color:#aaa">Выключено</span>';
+                    
                     var iconHtml = isEnabled ? 
                         '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
                         '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
-                    
+
                     items.push({
                         title: p.name,
                         subtitle: statusText + '<span style="opacity:0.7"> • ' + p.version + '</span><div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>',
@@ -146,7 +139,7 @@
             } else {
                 items.push({
                     title: 'Нет доступных плагинов',
-                    subtitle: 'Список пуст или ошибка загрузки',
+                    subtitle: 'Список пуст или ошибка сети',
                     icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
                     file: 'none',
                     enabled: false
