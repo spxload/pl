@@ -2,7 +2,7 @@
     'use strict';
 
     // ==========================================
-    // НОВЫЕ НАСТРОЙКИ
+    // НАСТРОЙКИ
     // ==========================================
     var GITHUB_USER = 'spxload'; 
     var GITHUB_REPO = 'pl'; 
@@ -35,17 +35,59 @@
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
         
+        console.log('[Cubox] Fetching manifest:', apiUrl);
+
         Lampa.Network.silent(apiUrl, function(data) {
             try {
                 if (data && data.content) {
+                    // Декодинг Base64
                     var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                    callback(JSON.parse(jsonString));
-                } else { callback([]); }
-            } catch (e) { callback([]); }
-        }, function() { callback([]); });
+                    console.log('[Cubox] Raw JSON:', jsonString);
+                    
+                    var json = JSON.parse(jsonString);
+                    
+                    if (Array.isArray(json)) {
+                        console.log('[Cubox] Parsed ' + json.length + ' plugins');
+                        callback(json);
+                    } else {
+                        console.error('[Cubox] JSON is not an array:', json);
+                        Lampa.Noty.show('Ошибка: JSON не массив');
+                        callback([]);
+                    }
+                } else {
+                    console.error('[Cubox] No content in API response');
+                    callback([]);
+                }
+            } catch (e) { 
+                console.error('[Cubox] JSON Parse Error:', e);
+                Lampa.Noty.show('Ошибка чтения JSON: ' + e.message);
+                callback([]); 
+            }
+        }, function(a, c) {
+            console.error('[Cubox] Network Error:', c);
+            // Если API упало (403 Limit), пробуем CDN как запасной вариант
+            fallbackCDN(callback);
+        });
     }
 
-    // Меню (Без data-component, чтобы не было ошибок)
+    // Запасной вариант через CDN (если API недоступно)
+    function fallbackCDN(callback) {
+        var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+        console.log('[Cubox] Trying CDN fallback:', cdnUrl);
+        
+        Lampa.Network.silent(cdnUrl, function(data) {
+            try {
+                var json = (typeof data === 'string') ? JSON.parse(data) : data;
+                if (Array.isArray(json)) callback(json);
+                else callback([]);
+            } catch(e) { callback([]); }
+        }, function() {
+            callback([]);
+        });
+    }
+
+
+    // Меню
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -80,9 +122,11 @@
 
     function openStore() {
         Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
+        
         fetchManifest(function(plugins) {
             Lampa.Loading.stop();
             var items = [];
+
             if (Array.isArray(plugins) && plugins.length > 0) {
                 plugins.forEach(function(p) {
                     var isEnabled = enabledPlugins[p.file] === true;
@@ -90,17 +134,25 @@
                     var iconHtml = isEnabled ? 
                         '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
                         '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
+                    
                     items.push({
                         title: p.name,
-                        subtitle: statusText + '<span style="opacity:0.7"> • v' + p.version + '</span><div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>',
+                        subtitle: statusText + '<span style="opacity:0.7"> • ' + p.version + '</span><div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>',
                         icon: iconHtml,
                         file: p.file,
                         enabled: isEnabled
                     });
                 });
             } else {
-                items.push({ title: 'Нет доступных плагинов', subtitle: 'Проверьте репозиторий spxload/pl', icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>', file: 'none', enabled: false });
+                items.push({
+                    title: 'Нет доступных плагинов',
+                    subtitle: 'Список пуст или ошибка загрузки',
+                    icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
+                    file: 'none',
+                    enabled: false
+                });
             }
+
             Lampa.Select.show({
                 title: 'Cubox Store',
                 items: items,
