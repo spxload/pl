@@ -11,7 +11,12 @@
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
+    
+    // Ссылка на JSON (CDN)
+    var MANIFEST_URL = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json';
+    // База для плагинов
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
+
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
 
@@ -31,55 +36,44 @@
         });
     }
 
-    // Чтение JSON (Fetch API + Fallback)
+    // Чтение JSON (Простой метод)
     function fetchManifest(callback) {
-        // Пробуем сначала API (свежие данные)
-        var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
+        var url = MANIFEST_URL + '?t=' + Date.now();
         
-        console.log('[Cubox] Fetching:', apiUrl);
+        console.log('[Cubox] Loading manifest:', url);
 
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) throw new Error('API Error: ' + response.status);
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.content) {
-                    // Декодируем Base64
-                    try {
-                        var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                        var json = JSON.parse(jsonString);
-                        console.log('[Cubox] API Success', json);
-                        callback(json);
-                    } catch (e) {
-                        console.error('[Cubox] Decode/Parse Error', e);
-                        throw new Error('Decode Error');
-                    }
+        Lampa.Network.silent(url, function(data) {
+            try {
+                // Если пришло строкой - парсим, если объектом - берем так
+                var json = (typeof data === 'string') ? JSON.parse(data) : data;
+                
+                if (Array.isArray(json)) {
+                    callback(json);
                 } else {
-                    throw new Error('No content in API');
+                    console.error('[Cubox] JSON is not array');
+                    callback([]);
                 }
-            })
-            .catch(err => {
-                console.warn('[Cubox] API failed, trying CDN...', err);
-                
-                // Если API не сработало, пробуем CDN
-                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-                
-                fetch(cdnUrl)
-                    .then(r => r.json())
-                    .then(json => {
-                        console.log('[Cubox] CDN Success', json);
-                        callback(json);
-                    })
-                    .catch(e => {
-                        console.error('[Cubox] CDN Failed', e);
-                        Lampa.Noty.show('Не удалось загрузить список плагинов');
-                        callback([]);
-                    });
+            } catch (e) { 
+                console.error('[Cubox] JSON Error:', e);
+                Lampa.Noty.show('Ошибка структуры plugins.json');
+            }
+        }, function(a, c) {
+            console.warn('[Cubox] CDN Fail, trying Raw fallback...');
+            // Если CDN не сработал (редко), пробуем Raw
+            var rawUrl = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+            
+            Lampa.Network.silent(rawUrl, function(d) {
+                try {
+                    var j = (typeof d === 'string') ? JSON.parse(d) : d;
+                    callback(j);
+                } catch(e) { callback([]); }
+            }, function() {
+                Lampa.Noty.show('Не удалось загрузить каталог');
             });
+        });
     }
 
-    // Меню
+    // Меню (Без data-component)
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -138,8 +132,8 @@
                 });
             } else {
                 items.push({
-                    title: 'Нет доступных плагинов',
-                    subtitle: 'Список пуст или ошибка сети',
+                    title: 'Список пуст',
+                    subtitle: 'Проверьте файл plugins.json',
                     icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
                     file: 'none',
                     enabled: false
