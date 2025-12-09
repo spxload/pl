@@ -1,70 +1,8 @@
-name: Generate Cubox Store
-on:
-  push:
-    paths:
-      - 'Cubox/*.js'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Generate plugins.json
-        run: |
-          python3 -c "
-          import os
-          import json
-          import re
-
-          folder = 'Cubox'
-          plugins = []
-
-          # Регулярки
-          rx_name = re.compile(r'// @name: (.*)')
-          rx_ver = re.compile(r'// @version: (.*)')
-          rx_desc = re.compile(r'// @description: (.*)')
-
-          if os.path.exists(folder):
-              for filename in os.listdir(folder):
-                  if filename.endswith('.js'):
-                      filepath = os.path.join(folder, filename)
-                      
-                      # ВАЖНО: Проверяем, что файл реально существует и читается
-                      if os.path.isfile(filepath):
-                          with open(filepath, 'r', encoding='utf-8') as f:
-                              content = f.read()
-                              
-                              name_match = rx_name.search(content)
-                              ver_match = rx_ver.search(content)
-                              desc_match = rx_desc.search(content)
-
-                              if name_match:
-                                  plugins.append({
-                                      'name': name_match.group(1).strip(),
-                                      'version': ver_match.group(1).strip() if ver_match else '1.0',
-                                      'description': desc_match.group(1).strip() if desc_match else 'Описание отсутствует',
-                                      'file': filename
-                                  })
-
-          # Сортируем по имени
-          plugins.sort(key=lambda x: x['name'])
-
-          with open(f'{folder}/plugins.json', 'w', encoding='utf-8') as f:
-              json.dump(plugins, f, ensure_ascii=False, indent=2)
-          "
-
-      - name: Commit and Push
-        run: |
-          git config --global user.name 'Cubox Bot'
-          git config --global user.email 'bot@noreply.github.com'
-          git add Cubox/plugins.json
-          git commit -m "Auto-update plugins.json" || exit 0
-          git push
+[
+  {
+    "name": "Cub_off",
+    "version": "v1.1",
+    "description": "Отключение рекламы CUB",
+    "file": "cub_off.js"
+  }
+]
