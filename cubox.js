@@ -6,8 +6,8 @@
     // ==========================================
     // НАСТРОЙКИ РЕПОЗИТОРИЯ
     // ==========================================
-    var GITHUB_USER = 'endLoads'; 
-    var GITHUB_REPO = 'pl-lm'; 
+    var GITHUB_USER = 'spxload'; 
+    var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; // Ищет плагины здесь
     // ==========================================
