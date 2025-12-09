@@ -11,12 +11,7 @@
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
-    
-    // Ссылка на JSON (CDN)
-    var MANIFEST_URL = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json';
-    // База для плагинов
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
-
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
 
@@ -36,44 +31,52 @@
         });
     }
 
-    // Чтение JSON (Простой метод)
+    // Чтение JSON (Raw First -> CDN Fallback)
     function fetchManifest(callback) {
-        var url = MANIFEST_URL + '?t=' + Date.now();
+        // 1. Пробуем Raw (он обновляется мгновенно)
+        var rawUrl = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
         
-        console.log('[Cubox] Loading manifest:', url);
+        console.log('[Cubox] Trying Raw:', rawUrl);
 
-        Lampa.Network.silent(url, function(data) {
+        Lampa.Network.silent(rawUrl, function(data) {
             try {
-                // Если пришло строкой - парсим, если объектом - берем так
                 var json = (typeof data === 'string') ? JSON.parse(data) : data;
-                
                 if (Array.isArray(json)) {
+                    console.log('[Cubox] Raw Success');
                     callback(json);
                 } else {
-                    console.error('[Cubox] JSON is not array');
-                    callback([]);
+                    throw "Not array";
                 }
-            } catch (e) { 
-                console.error('[Cubox] JSON Error:', e);
-                Lampa.Noty.show('Ошибка структуры plugins.json');
+            } catch (e) {
+                console.warn('[Cubox] Raw Parse Error, trying CDN...');
+                tryCDN(callback);
             }
         }, function(a, c) {
-            console.warn('[Cubox] CDN Fail, trying Raw fallback...');
-            // Если CDN не сработал (редко), пробуем Raw
-            var rawUrl = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-            
-            Lampa.Network.silent(rawUrl, function(d) {
-                try {
-                    var j = (typeof d === 'string') ? JSON.parse(d) : d;
-                    callback(j);
-                } catch(e) { callback([]); }
-            }, function() {
-                Lampa.Noty.show('Не удалось загрузить каталог');
-            });
+            console.warn('[Cubox] Raw Failed (CORS?), trying CDN...');
+            tryCDN(callback);
         });
     }
 
-    // Меню (Без data-component)
+    function tryCDN(callback) {
+        // 2. Пробуем CDN (если Raw заблокирован)
+        var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+        
+        Lampa.Network.silent(cdnUrl, function(data) {
+            try {
+                var json = (typeof data === 'string') ? JSON.parse(data) : data;
+                if (Array.isArray(json)) callback(json);
+                else callback([]);
+            } catch(e) { 
+                Lampa.Noty.show('Ошибка JSON');
+                callback([]); 
+            }
+        }, function() {
+            Lampa.Noty.show('Не удалось загрузить plugins.json');
+            callback([]);
+        });
+    }
+
+    // Меню
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -133,7 +136,7 @@
             } else {
                 items.push({
                     title: 'Список пуст',
-                    subtitle: 'Проверьте файл plugins.json',
+                    subtitle: 'Не удалось прочитать plugins.json',
                     icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
                     file: 'none',
                     enabled: false
