@@ -11,7 +11,11 @@
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
+    
+    // ВАЖНО: Используем CDN для JSON (чтобы не было ошибки загрузки)
+    var MANIFEST_URL = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
+
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
 
@@ -31,58 +35,40 @@
         });
     }
 
-    // Чтение JSON (Fetch API + Fallback)
+    // Чтение JSON через CDN
     function fetchManifest(callback) {
-        // Пробуем сначала API (свежие данные)
-        var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
+        var url = MANIFEST_URL + '?t=' + Date.now();
         
-        console.log('[Cubox] Fetching:', apiUrl);
-
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) throw new Error('API Error: ' + response.status);
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.content) {
-                    // Декодируем Base64
-                    try {
-                        var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                        var json = JSON.parse(jsonString);
-                        console.log('[Cubox] API Success', json);
-                        callback(json);
-                    } catch (e) {
-                        console.error('[Cubox] Decode/Parse Error', e);
-                        throw new Error('Decode Error');
-                    }
-                } else {
-                    throw new Error('No content in API');
-                }
-            })
-            .catch(err => {
-                console.warn('[Cubox] API failed, trying CDN...', err);
-                
-                // Если API не сработало, пробуем CDN
-                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-                
-                fetch(cdnUrl)
-                    .then(r => r.json())
-                    .then(json => {
-                        console.log('[Cubox] CDN Success', json);
-                        callback(json);
-                    })
-                    .catch(e => {
-                        console.error('[Cubox] CDN Failed', e);
-                        Lampa.Noty.show('Не удалось загрузить список плагинов');
-                        callback([]);
-                    });
+        Lampa.Network.silent(url, function(data) {
+            try {
+                // Если пришел строкой - парсим
+                var json = (typeof data === 'string') ? JSON.parse(data) : data;
+                callback(json);
+            } catch (e) { 
+                console.error(e);
+                Lampa.Noty.show('Cubox: Ошибка структуры JSON'); 
+            }
+        }, function(a, c) {
+            // Если CDN не сработал (файла нет), пробуем Raw как запасной вариант
+            console.warn('CDN Fail, trying Raw...');
+            var rawUrl = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+            
+            Lampa.Network.silent(rawUrl, function(d) {
+                try {
+                    var j = (typeof d === 'string') ? JSON.parse(d) : d;
+                    callback(j);
+                } catch(e) { Lampa.Noty.show('Cubox: Файл plugins.json не найден'); }
+            }, function() {
+                Lampa.Noty.show('Cubox: Каталог пуст или недоступен');
             });
+        });
     }
 
     // Меню
     function addMenu() {
+        // Убрал data-component="cubox_core", чтобы не было ошибки Template not found
         var field = $(`
-            <div class="settings-folder selector cubox-menu-item">
+            <div class="settings-folder selector" data-component="cubox_store">
                 <div class="settings-folder__icon">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
@@ -101,11 +87,11 @@
                     var scrollLayer = $('.settings__content .scroll__content');
                     if (scrollLayer.length) {
                         clearInterval(timer);
-                        scrollLayer.find('.cubox-menu-item').remove();
                         var first = scrollLayer.find('.settings-folder').first();
-                        field.off('hover:enter click').on('hover:enter click', openStore);
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
+                        
+                        field.on('hover:enter', openStore);
                     }
                 }, 50);
             }
@@ -118,39 +104,36 @@
         fetchManifest(function(plugins) {
             Lampa.Loading.stop();
             var items = [];
+            
+            plugins.forEach(function(p) {
+                var isEnabled = enabledPlugins[p.file] === true;
+                
+                var statusText = isEnabled ? '<span style="color:#4bbc16;font-weight:bold">ВКЛЮЧЕНО</span>' : '<span style="color:#aaa">Выключено</span>';
+                var versionInfo = '<span style="opacity:0.7"> • v' + p.version + '</span>';
+                var descInfo = '<div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>';
 
-            if (Array.isArray(plugins) && plugins.length > 0) {
-                plugins.forEach(function(p) {
-                    var isEnabled = enabledPlugins[p.file] === true;
-                    var statusText = isEnabled ? '<span style="color:#4bbc16;font-weight:bold">ВКЛЮЧЕНО</span>' : '<span style="color:#aaa">Выключено</span>';
-                    
-                    var iconHtml = isEnabled ? 
-                        '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
-                        '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
+                var iconHtml = isEnabled ? 
+                    '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
+                    '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
 
-                    items.push({
-                        title: p.name,
-                        subtitle: statusText + '<span style="opacity:0.7"> • ' + p.version + '</span><div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>',
-                        icon: iconHtml,
-                        file: p.file,
-                        enabled: isEnabled
-                    });
-                });
-            } else {
                 items.push({
-                    title: 'Нет доступных плагинов',
-                    subtitle: 'Список пуст или ошибка сети',
-                    icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
-                    file: 'none',
-                    enabled: false
+                    title: p.name,
+                    subtitle: statusText + versionInfo + descInfo,
+                    icon: iconHtml,
+                    file: p.file,
+                    enabled: isEnabled
                 });
+            });
+
+            if (items.length === 0) {
+                 Lampa.Noty.show('Каталог пуст. Добавьте плагины в репо.');
+                 return;
             }
 
             Lampa.Select.show({
                 title: 'Cubox Store',
                 items: items,
                 onSelect: function(item) {
-                    if (item.file === 'none') return;
                     enabledPlugins[item.file] = !item.enabled;
                     Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
                     needReload = true;
