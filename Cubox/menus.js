@@ -1,3 +1,7 @@
+// @name: Backmenu
+// @version: 1
+// @description: Меню по кнопке назад
+
 (function () {
   "use strict";
 
