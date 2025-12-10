@@ -1,5 +1,5 @@
 // @name: Cub_off
-// @version: v1.1
+// @version: 1
 // @description: Отключение рекламы CUB
 
 (function () {
