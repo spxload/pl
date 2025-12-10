@@ -1,29 +1,35 @@
 (function () {
     'use strict';
     
-    // --- НАСТРОЙКИ ---
-    var GITHUB_USER = 'spxload';
-    var GITHUB_REPO = 'pl';
-    var BRANCH = 'main';
-    var CORE_FILE = 'cubox.js'; 
-    // -----------------
+    // --- НОВЫЕ НАСТРОЙКИ ---
+    var GITHUB_USER = 'spxload';    // Новый логин
+    var GITHUB_REPO = 'pl';         // Новый репозиторий
+    var CORE_FILE = 'cubox.js';     // Файл ядра в корне репо
+    // -----------------------
 
-    // Грузим через CDN (обход блокировок)
-    var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + CORE_FILE;
-    var timestamp = new Date().getTime();
-    var url = cdnUrl + '?t=' + timestamp;
+    console.log('[Loader] Requesting fresh core via API...');
+    var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + CORE_FILE + '?ref=main&_t=' + Date.now();
 
-    console.log('[Loader] Loading Core:', url);
+    Lampa.Network.silent(apiUrl, function(data) {
+        if (data && data.content) {
+            try {
+                var code = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.innerHTML = code;
+                document.body.appendChild(script);
+                console.log('[Loader] Core updated from spxload/pl');
+            } catch (e) {
+                console.error('[Loader] Decode error:', e);
+                loadFallback();
+            }
+        } else { loadFallback(); }
+    }, function() { loadFallback(); });
 
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-    script.async = true;
-    
-    script.onerror = function() {
-        console.error('[Loader] Failed to load Core! Check if cubox.js is in the root of the repo.');
-    };
-
-    document.body.appendChild(script);
-
+    function loadFallback() {
+        var url = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@main/' + CORE_FILE + '?t=' + Date.now();
+        var script = document.createElement('script');
+        script.src = url;
+        document.body.appendChild(script);
+    }
 })();
