@@ -1,5 +1,11 @@
 [
   {
+    "name": "Backmenu",
+    "version": "1",
+    "description": "Меню по кнопке назад",
+    "file": "menus.js"
+  },
+  {
     "name": "Cub_off",
     "version": "1",
     "description": "Отключение рекламы CUB",
