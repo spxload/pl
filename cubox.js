@@ -14,9 +14,8 @@
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
-    var lastFocused = null; // Для запоминания фокуса
+    var lastFocusedElement = null; // Переменная для хранения фокуса
 
-    // Загрузка плагина
     function loadPlugin(filename) {
         var url = CDN_BASE + filename + '?v=' + Date.now();
         var script = document.createElement('script');
@@ -31,24 +30,19 @@
         });
     }
 
-    // Чтение JSON
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
-        
-        fetch(apiUrl)
-            .then(res => res.json())
-            .then(data => {
-                if (data && data.content) {
-                    try {
-                        var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                        callback(JSON.parse(jsonString));
-                    } catch (e) { throw new Error('Decode Error'); }
-                } else { throw new Error('No content'); }
-            })
-            .catch(err => {
-                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-                fetch(cdnUrl).then(r=>r.json()).then(callback).catch(()=>callback([]));
-            });
+        fetch(apiUrl).then(res => res.json()).then(data => {
+            if (data && data.content) {
+                try {
+                    var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
+                    callback(JSON.parse(jsonString));
+                } catch (e) { throw new Error('Decode Error'); }
+            } else { throw new Error('No content'); }
+        }).catch(err => {
+            var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+            fetch(cdnUrl).then(r=>r.json()).then(callback).catch(()=>callback([]));
+        });
     }
 
     // Меню
@@ -77,15 +71,14 @@
                         var first = scrollLayer.find('.settings-folder').first();
                         
                         field.off('hover:enter click').on('hover:enter click', function() {
-                            // Запоминаем текущий элемент фокуса перед открытием
-                            lastFocused = $(this);
+                            // 1. Сохраняем текущий активный элемент (нашу кнопку)
+                            lastFocusedElement = $(this)[0];
                             openStore();
                         });
 
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
 
-                        // Пересчитываем навигацию для пульта
                         Lampa.Controller.enable('content'); 
                     }
                 }, 50);
@@ -135,13 +128,17 @@
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
                     } else {
-                        // 1. Закрываем Select
-                        Lampa.Controller.toggle('settings_component');
+                        // 2. Штатное закрытие меню
+                        Lampa.Select.close(); 
                         
-                        // 2. ВОССТАНАВЛИВАЕМ ФОКУС
-                        // Если мы запомнили кнопку, принудительно ставим фокус на неё
-                        if (lastFocused && lastFocused.length) {
-                             Lampa.Controller.collectionFocus(lastFocused[0], $('.settings__content .scroll__content'));
+                        // 3. Возврат контроллера в режим настроек (чтобы работали стрелки)
+                        Lampa.Controller.toggle('settings_component');
+
+                        // 4. ВОССТАНОВЛЕНИЕ ФОКУСА (Фикс для Android TV)
+                        // Если мы знаем, где были, принудительно ставим туда курсор
+                        if (lastFocusedElement) {
+                             // Используем Lampa.Controller.collectionFocus если возможно, или просто trigger hover
+                             Lampa.Controller.collectionFocus(lastFocusedElement, $('.settings__content .scroll__content'));
                         }
                     }
                 }
