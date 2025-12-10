@@ -14,7 +14,7 @@
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
-    var lastFocusedElement = null; // Переменная для хранения фокуса
+    var lastFocusedElement = null;
 
     function loadPlugin(filename) {
         var url = CDN_BASE + filename + '?v=' + Date.now();
@@ -45,7 +45,6 @@
         });
     }
 
-    // Меню
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -71,14 +70,12 @@
                         var first = scrollLayer.find('.settings-folder').first();
                         
                         field.off('hover:enter click').on('hover:enter click', function() {
-                            // 1. Сохраняем текущий активный элемент (нашу кнопку)
                             lastFocusedElement = $(this)[0];
                             openStore();
                         });
 
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
-
                         Lampa.Controller.enable('content'); 
                     }
                 }, 50);
@@ -100,7 +97,6 @@
                     var iconHtml = isEnabled ? 
                         '<div style="width:16px;height:16px;background:#4bbc16;border-radius:50%;box-shadow:0 0 10px #4bbc16"></div>' : 
                         '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>';
-
                     items.push({
                         title: p.name,
                         subtitle: statusText + '<span style="opacity:0.7"> • ' + p.version + '</span><div style="opacity:0.6;font-size:0.9em;margin-top:2px">' + p.description + '</div>',
@@ -109,9 +105,7 @@
                         enabled: isEnabled
                     });
                 });
-            } else {
-                items.push({title:'Нет плагинов', subtitle:'Список пуст', icon:'', file:'none', enabled:false});
-            }
+            } else { items.push({title:'Нет плагинов', subtitle:'Список пуст', icon:'', file:'none', enabled:false}); }
 
             Lampa.Select.show({
                 title: 'Cubox Store',
@@ -128,16 +122,15 @@
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
                     } else {
-                        // 2. Штатное закрытие меню
+                        // 1. Просто скрываем Select (без вызова Toggle)
                         Lampa.Select.close(); 
                         
-                        // 3. Возврат контроллера в режим настроек (чтобы работали стрелки)
-                        Lampa.Controller.toggle('settings_component');
+                        // 2. Активируем управление в настройках напрямую
+                        // 'content' - это имя контроллера для списков в настройках
+                        Lampa.Controller.enable('content');
 
-                        // 4. ВОССТАНОВЛЕНИЕ ФОКУСА (Фикс для Android TV)
-                        // Если мы знаем, где были, принудительно ставим туда курсор
+                        // 3. Возвращаем фокус
                         if (lastFocusedElement) {
-                             // Используем Lampa.Controller.collectionFocus если возможно, или просто trigger hover
                              Lampa.Controller.collectionFocus(lastFocusedElement, $('.settings__content .scroll__content'));
                         }
                     }
