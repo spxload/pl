@@ -90,7 +90,7 @@
         });
     }
 
-    function openStore() {
+        function openStore() {
         Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
         
         fetchManifest(function(plugins) {
@@ -128,22 +128,19 @@
                     setTimeout(openStore, 50);
                 },
                 onBack: function() {
-                    // !!! ИСПРАВЛЕНИЕ НАВИГАЦИИ !!!
+                    // ИСПРАВЛЕНИЕ ЗАЦИКЛИВАНИЯ
                     if (needReload) {
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
                     } else {
-                        // Просто закрываем Select (меню магазина)
-                        Lampa.Select.close();
-                        
-                        // Возвращаем фокус обратно на кнопку Cubox в настройках
-                        // Lampa сама знает, что под ней настройки, но нужно вернуть управление
-                        Lampa.Controller.toggle('content'); 
+                        // Просто скрываем меню. Лампа сама вернет фокус на предыдущий активный элемент (кнопку Cubox)
+                        Lampa.Controller.toggle('settings_component');
                     }
                 }
             });
         });
     }
+
 
     if (window.appready) { addMenu(); startPlugins(); }
     else { Lampa.Listener.follow('app', function (e) { if (e.type == 'ready') { addMenu(); startPlugins(); } }); }
