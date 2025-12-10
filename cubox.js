@@ -14,10 +14,11 @@
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
+    var lastFocused = null; // Для запоминания фокуса
 
-    // Загрузка плагина (с версией для сброса кэша)
+    // Загрузка плагина
     function loadPlugin(filename) {
-        var url = CDN_BASE + filename + '?v=' + Date.now(); // Агрессивный сброс кэша
+        var url = CDN_BASE + filename + '?v=' + Date.now();
         var script = document.createElement('script');
         script.src = url;
         script.async = true;
@@ -45,13 +46,12 @@
                 } else { throw new Error('No content'); }
             })
             .catch(err => {
-                // Fallback CDN
                 var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
                 fetch(cdnUrl).then(r=>r.json()).then(callback).catch(()=>callback([]));
             });
     }
 
-    // Меню (Исправлена навигация)
+    // Меню
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -76,13 +76,16 @@
                         scrollLayer.find('.cubox-menu-item').remove();
                         var first = scrollLayer.find('.settings-folder').first();
                         
-                        // Обработчик
-                        field.off('hover:enter click').on('hover:enter click', openStore);
+                        field.off('hover:enter click').on('hover:enter click', function() {
+                            // Запоминаем текущий элемент фокуса перед открытием
+                            lastFocused = $(this);
+                            openStore();
+                        });
 
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
 
-                        // !!! ВАЖНО: Обновляем контроллер, чтобы пульт увидел новый пункт
+                        // Пересчитываем навигацию для пульта
                         Lampa.Controller.enable('content'); 
                     }
                 }, 50);
@@ -90,7 +93,7 @@
         });
     }
 
-        function openStore() {
+    function openStore() {
         Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
         
         fetchManifest(function(plugins) {
@@ -128,19 +131,23 @@
                     setTimeout(openStore, 50);
                 },
                 onBack: function() {
-                    // ИСПРАВЛЕНИЕ ЗАЦИКЛИВАНИЯ
                     if (needReload) {
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
                     } else {
-                        // Просто скрываем меню. Лампа сама вернет фокус на предыдущий активный элемент (кнопку Cubox)
+                        // 1. Закрываем Select
                         Lampa.Controller.toggle('settings_component');
+                        
+                        // 2. ВОССТАНАВЛИВАЕМ ФОКУС
+                        // Если мы запомнили кнопку, принудительно ставим фокус на неё
+                        if (lastFocused && lastFocused.length) {
+                             Lampa.Controller.collectionFocus(lastFocused[0], $('.settings__content .scroll__content'));
+                        }
                     }
                 }
             });
         });
     }
-
 
     if (window.appready) { addMenu(); startPlugins(); }
     else { Lampa.Listener.follow('app', function (e) { if (e.type == 'ready') { addMenu(); startPlugins(); } }); }
