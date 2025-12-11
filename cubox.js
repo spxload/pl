@@ -1,15 +1,11 @@
 (function () {
     'use strict';
 
-    // ==========================================
-    // НАСТРОЙКИ
-    // ==========================================
     var GITHUB_USER = 'spxload'; 
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.2';
-    // ==========================================
+    var CUBOX_VERSION = 'v3.3';
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
@@ -32,19 +28,13 @@
 
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
-        console.log('[Cubox] Fetching:', apiUrl);
-
         fetch(apiUrl)
-            .then(response => { if (!response.ok) throw new Error(response.status); return response.json(); })
+            .then(res => res.json())
             .then(data => {
-                if (data && data.content) {
-                    try {
-                        var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                        callback(JSON.parse(jsonString));
-                    } catch (e) { throw new Error('Decode Error'); }
-                } else { throw new Error('No content'); }
+                var json = JSON.parse(decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, '')))));
+                callback(json);
             })
-            .catch(err => {
+            .catch(() => {
                 var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
                 fetch(cdnUrl).then(r => r.json()).then(callback).catch(() => callback([]));
             });
@@ -94,30 +84,28 @@
                     var isEnabled = enabledPlugins[p.file] === true;
                     var statusColor = '#4bbc16'; 
 
-                    // HTML кружочка
-                    var circle = isEnabled ? 
-                        `<div style="display:inline-block; vertical-align:middle; width:14px; height:14px; background:${statusColor}; border-radius:50%; box-shadow:0 0 8px ${statusColor}; margin-right:10px;"></div>` : 
-                        `<div style="display:inline-block; vertical-align:middle; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3); border-radius:50%; margin-right:10px;"></div>`;
+                    // --- ФИНАЛЬНАЯ ПОПЫТКА СТИЛИЗАЦИИ ---
+                    // Мы используем SVG вместо DIV для кружочка, так как SVG лучше пролезает через фильтры
+                    var svgIcon = isEnabled ? 
+                        `<svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align:middle; margin-right:10px;"><circle cx="8" cy="8" r="6" fill="${statusColor}" stroke="${statusColor}" stroke-width="2"/></svg>` : 
+                        `<svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align:middle; margin-right:10px;"><circle cx="8" cy="8" r="6" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/></svg>`;
 
-                    // Вставляем кружочек В НАЧАЛО названия
-                    var titleHtml = `<div style="display:flex; align-items:center;">${circle} <span>${p.name}</span></div>`;
+                    // Формируем заголовок
+                    var titleText = `<span style="font-size: 1.1em; font-weight: 500;">${p.name}</span>`;
                     
-                    var descHtml = `<div style="font-size: 0.8em; opacity: 0.6; padding-left: 28px;">v${p.version} • ${p.description}</div>`;
+                    // Формируем подзаголовок
+                    var subText = `<span style="opacity: 0.7; font-size: 0.9em;">v${p.version}</span> <span style="opacity: 0.5;">• ${p.description}</span>`;
 
                     items.push({
-                        title: titleHtml,  // Теперь тут и иконка, и текст
-                        subtitle: descHtml,
-                        icon: '',          // Стандартную иконку оставляем пустой
+                        title: svgIcon + ' ' + titleText, // Иконка + Текст в заголовке
+                        subtitle: subText,
                         file: p.file,
-                        enabled: isEnabled
+                        enabled: isEnabled,
+                        icon: '' // Очищаем стандартную иконку
                     });
                 });
             } else {
-                items.push({
-                    title: 'Нет плагинов',
-                    subtitle: 'Список пуст',
-                    file: 'none'
-                });
+                items.push({ title: 'Нет плагинов', subtitle: 'Список пуст', file: 'none' });
             }
 
             Lampa.Select.show({
@@ -139,6 +127,18 @@
                     }
                 }
             });
+            
+            // ХАК: После открытия Select находим его DOM-элементы и разрешаем HTML
+            // Это нужно, если Lampa экранирует HTML по умолчанию
+            setTimeout(function() {
+                $('.select__item .select__title, .select__item .select__descr').each(function() {
+                    var $this = $(this);
+                    var html = $this.text(); // Если текст содержит теги как текст
+                    if (html.includes('<') && html.includes('>')) {
+                        $this.html(html); // Превращаем текст обратно в HTML
+                    }
+                });
+            }, 50);
         });
     }
 
