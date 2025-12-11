@@ -8,14 +8,13 @@
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.0'; // Версия магазина
+    var CUBOX_VERSION = 'v3.1';
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
-    var lastFocused = null;
 
     // Загрузка плагина
     function loadPlugin(filename) {
@@ -33,10 +32,9 @@
         });
     }
 
-    // Чтение JSON
+    // Чтение JSON (из твоего рабочего кода)
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
-        
         console.log('[Cubox] Fetching:', apiUrl);
 
         fetch(apiUrl)
@@ -50,10 +48,14 @@
                         var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
                         var json = JSON.parse(jsonString);
                         callback(json);
-                    } catch (e) { throw new Error('Decode Error'); }
-                } else { throw new Error('No content'); }
+                    } catch (e) {
+                        console.error('[Cubox] Decode/Parse Error', e);
+                        throw new Error('Decode Error');
+                    }
+                } else { throw new Error('No content in API'); }
             })
             .catch(err => {
+                console.warn('[Cubox] API failed, trying CDN...', err);
                 var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
                 fetch(cdnUrl).then(r => r.json()).then(callback).catch(e => {
                     Lampa.Noty.show('Не удалось загрузить список плагинов');
@@ -62,7 +64,7 @@
             });
     }
 
-    // Меню
+    // Меню (из твоего рабочего кода)
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -86,101 +88,76 @@
                         clearInterval(timer);
                         scrollLayer.find('.cubox-menu-item').remove();
                         var first = scrollLayer.find('.settings-folder').first();
-                        
-                        field.off('hover:enter click').on('hover:enter click', function() {
-                            lastFocused = $(this); // Запоминаем кнопку (важно для ТВ)
-                            openCustomModal();
-                        });
-
+                        field.off('hover:enter click').on('hover:enter click', openStore);
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
-                        
-                        Lampa.Controller.enable('content');
                     }
                 }, 50);
             }
         });
     }
 
-    // --- КРАСИВАЯ МОДАЛКА ВМЕСТО SELECT ---
-    function openCustomModal() {
+    function openStore() {
         Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
         
         fetchManifest(function(plugins) {
             Lampa.Loading.stop();
-
-            // Создаем красивый HTML (как в версии 5)
-            var html = $(`<div>
-                <div class="cubox-header" style="padding: 15px 20px; font-size: 1.5em; font-weight: bold; border-bottom: 2px solid rgba(255,255,255,0.05); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                    <span>Cubox Store</span>
-                    <span style="font-size: 0.6em; opacity: 0.5; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px;">${CUBOX_VERSION}</span>
-                </div>
-                <div class="cubox-list" style="padding: 0 10px;"></div>
-            </div>`);
-
-            var list = html.find('.cubox-list');
+            var items = [];
 
             if (Array.isArray(plugins) && plugins.length > 0) {
                 plugins.forEach(function(p) {
                     var isEnabled = enabledPlugins[p.file] === true;
-                    var statusColor = '#4bbc16'; // Фирменный зеленый цвет
+                    var statusColor = '#4bbc16'; // Зеленый цвет
+                    
+                    // --- СТИЛИЗАЦИЯ (Твой запрос) ---
+                    // Мы не можем менять структуру Select полностью, но мы можем внедрить HTML в иконку и subtitle
+                    
+                    var iconHtml = isEnabled ? 
+                        `<div style="width:18px;height:18px;background:${statusColor};border-radius:50%;box-shadow:0 0 10px ${statusColor};border:2px solid ${statusColor}"></div>` : 
+                        `<div style="width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>`;
 
-                    var item = $(`
-                        <div class="selector" style="display: flex; align-items: center; padding: 12px; margin-bottom: 5px; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;">
-                            <div class="status-icon" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid ${statusColor}; background: ${isEnabled ? statusColor : 'transparent'}; margin-right: 15px; opacity: ${isEnabled ? '1' : '0.3'}; box-shadow: ${isEnabled ? '0 0 10px ' + statusColor : 'none'}; flex-shrink: 0;"></div>
-                            <div style="flex-grow: 1;">
-                                <div style="font-size: 1.1em; font-weight: 500; margin-bottom: 3px;">${p.name}</div>
-                                <div style="font-size: 0.8em; opacity: 0.6;">v${p.version} • ${p.description}</div>
-                            </div>
-                        </div>
-                    `);
+                    var descHtml = `<div style="font-size: 0.9em; margin-top: 3px; opacity: 0.7;">v${p.version} • ${p.description}</div>`;
 
-                    item.on('hover:enter click', function() {
-                        enabledPlugins[p.file] = !enabledPlugins[p.file];
-                        Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                        needReload = true;
-
-                        // Мгновенное обновление UI (без перезагрузки списка)
-                        var newStatus = enabledPlugins[p.file];
-                        var icon = $(this).find('.status-icon');
-                        icon.css({
-                            'background': newStatus ? statusColor : 'transparent',
-                            'opacity': newStatus ? '1' : '0.3',
-                            'box-shadow': newStatus ? '0 0 10px ' + statusColor : 'none'
-                        });
+                    items.push({
+                        title: p.name,
+                        subtitle: descHtml, // Вставляем описание с версией сюда
+                        icon: iconHtml,     // Кружочек сюда
+                        file: p.file,
+                        enabled: isEnabled
                     });
-
-                    list.append(item);
                 });
             } else {
-                list.append('<div style="padding: 20px; opacity: 0.5; text-align: center;">Список плагинов пуст</div>');
+                items.push({
+                    title: 'Нет доступных плагинов',
+                    subtitle: 'Список пуст или ошибка сети',
+                    icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
+                    file: 'none',
+                    enabled: false
+                });
             }
 
-            // Открываем модалку
-            Lampa.Modal.open({
-                title: '',
-                html: html,
-                size: 'medium',
-                mask: true,
-                onBack: function() {
-                    Lampa.Modal.close();
+            // Используем стандартный Select (раз он у тебя работает лучше всего)
+            Lampa.Select.show({
+                title: 'Cubox Store',
+                items: items,
+                onSelect: function(item) {
+                    if (item.file === 'none') return;
                     
+                    // Логика переключения
+                    enabledPlugins[item.file] = !item.enabled;
+                    Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
+                    needReload = true;
+                    
+                    // Перезагружаем меню, чтобы обновить кружочки
+                    setTimeout(openStore, 10);
+                },
+                onBack: function() {
+                    // Твоя рабочая логика выхода
                     if (needReload) {
-                        Lampa.Noty.show('Применение изменений...');
+                        Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
                     } else {
-                        // ТА САМАЯ РАБОЧАЯ ЛОГИКА ВЫХОДА
-                        // Мы просто закрываемся и возвращаем фокус.
-                        // Если были глюки, setTimeout(..., 100) помогает их решить.
-                        
-                        setTimeout(function(){
-                            // 1. Возвращаем контроллер настроек
-                            Lampa.Controller.toggle('content');
-                            // 2. Ставим фокус на кнопку Cubox (если знаем её)
-                            if (lastFocused && lastFocused.length) {
-                                Lampa.Controller.collectionFocus(lastFocused[0], $('.settings__content .scroll__content'));
-                            }
-                        }, 50);
+                        Lampa.Controller.toggle('settings_component');
                     }
                 }
             });
