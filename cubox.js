@@ -5,7 +5,7 @@
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.3';
+    var CUBOX_VERSION = 'v3.4';
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
@@ -63,7 +63,12 @@
                         clearInterval(timer);
                         scrollLayer.find('.cubox-menu-item').remove();
                         var first = scrollLayer.find('.settings-folder').first();
-                        field.off('hover:enter click').on('hover:enter click', openStore);
+                        
+                        field.off('hover:enter click').on('hover:enter click', function() {
+                            // Открываем магазин
+                            openStore();
+                        });
+
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
                     }
@@ -84,24 +89,19 @@
                     var isEnabled = enabledPlugins[p.file] === true;
                     var statusColor = '#4bbc16'; 
 
-                    // --- ФИНАЛЬНАЯ ПОПЫТКА СТИЛИЗАЦИИ ---
-                    // Мы используем SVG вместо DIV для кружочка, так как SVG лучше пролезает через фильтры
-                    var svgIcon = isEnabled ? 
-                        `<svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align:middle; margin-right:10px;"><circle cx="8" cy="8" r="6" fill="${statusColor}" stroke="${statusColor}" stroke-width="2"/></svg>` : 
-                        `<svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align:middle; margin-right:10px;"><circle cx="8" cy="8" r="6" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/></svg>`;
+                    // ФИКС РАЗМЕРА: Используем div с жесткими размерами (px) и flex-shrink:0
+                    var circle = isEnabled ? 
+                        `<div style="width:12px; height:12px; min-width:12px; max-width:12px; background:${statusColor}; border-radius:50%; box-shadow:0 0 6px ${statusColor}; margin-right:10px; flex-shrink:0;"></div>` : 
+                        `<div style="width:12px; height:12px; min-width:12px; max-width:12px; border:2px solid rgba(255,255,255,0.3); border-radius:50%; margin-right:10px; flex-shrink:0;"></div>`;
 
-                    // Формируем заголовок
-                    var titleText = `<span style="font-size: 1.1em; font-weight: 500;">${p.name}</span>`;
+                    // Оборачиваем все во flex контейнер
+                    var titleHtml = `<div style="display:flex; align-items:center; width:100%;">${circle} <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${p.name}</span></div>`;
                     
-                    // Формируем подзаголовок
-                    var subText = `<span style="opacity: 0.7; font-size: 0.9em;">v${p.version}</span> <span style="opacity: 0.5;">• ${p.description}</span>`;
-
                     items.push({
-                        title: svgIcon + ' ' + titleText, // Иконка + Текст в заголовке
-                        subtitle: subText,
+                        title: titleHtml,
+                        subtitle: `v${p.version} • ${p.description}`,
                         file: p.file,
-                        enabled: isEnabled,
-                        icon: '' // Очищаем стандартную иконку
+                        enabled: isEnabled
                     });
                 });
             } else {
@@ -119,23 +119,34 @@
                     setTimeout(openStore, 10);
                 },
                 onBack: function() {
+                    // ФИКС НАВИГАЦИИ
                     if (needReload) {
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
                     } else {
-                        Lampa.Controller.toggle('settings_component');
+                        // 1. Закрываем сам Select (это важно!)
+                        // Lampa.Select.close() не всегда доступен напрямую, но toggle('settings') должен сработать
+                        
+                        // Пробуем универсальный метод возврата
+                        Lampa.Controller.toggle('content');
+                        
+                        // Если мы были в настройках, это вернет фокус на список
+                        var active = $('.settings__content .scroll__content').find('.selector.focus');
+                        if (!active.length) {
+                             active = $('.settings__content .scroll__content').find('.cubox-menu-item');
+                             if (active.length) Lampa.Controller.collectionFocus(active[0], $('.settings__content .scroll__content'));
+                        }
                     }
                 }
             });
-            
-            // ХАК: После открытия Select находим его DOM-элементы и разрешаем HTML
-            // Это нужно, если Lampa экранирует HTML по умолчанию
+
+            // Хак для рендера HTML на iPhone (снова нужен, чтобы теги сработали)
             setTimeout(function() {
-                $('.select__item .select__title, .select__item .select__descr').each(function() {
+                $('.select__item .select__title').each(function() {
                     var $this = $(this);
-                    var html = $this.text(); // Если текст содержит теги как текст
-                    if (html.includes('<') && html.includes('>')) {
-                        $this.html(html); // Превращаем текст обратно в HTML
+                    var html = $this.text();
+                    if (html.includes('<div') && !html.includes('[object')) {
+                         $this.html(html);
                     }
                 });
             }, 50);
