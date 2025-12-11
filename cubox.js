@@ -8,7 +8,7 @@
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.1';
+    var CUBOX_VERSION = 'v3.2';
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
@@ -16,7 +16,6 @@
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false; 
 
-    // Загрузка плагина
     function loadPlugin(filename) {
         var url = CDN_BASE + filename + '?t=' + Date.now();
         var script = document.createElement('script');
@@ -25,46 +24,32 @@
         document.body.appendChild(script);
     }
     
-    // Старт
     function startPlugins() {
         Object.keys(enabledPlugins).forEach(function(file) {
             if (enabledPlugins[file]) loadPlugin(file);
         });
     }
 
-    // Чтение JSON (из твоего рабочего кода)
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
         console.log('[Cubox] Fetching:', apiUrl);
 
         fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) throw new Error('API Error: ' + response.status);
-                return response.json();
-            })
+            .then(response => { if (!response.ok) throw new Error(response.status); return response.json(); })
             .then(data => {
                 if (data && data.content) {
                     try {
                         var jsonString = decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, ''))));
-                        var json = JSON.parse(jsonString);
-                        callback(json);
-                    } catch (e) {
-                        console.error('[Cubox] Decode/Parse Error', e);
-                        throw new Error('Decode Error');
-                    }
-                } else { throw new Error('No content in API'); }
+                        callback(JSON.parse(jsonString));
+                    } catch (e) { throw new Error('Decode Error'); }
+                } else { throw new Error('No content'); }
             })
             .catch(err => {
-                console.warn('[Cubox] API failed, trying CDN...', err);
                 var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-                fetch(cdnUrl).then(r => r.json()).then(callback).catch(e => {
-                    Lampa.Noty.show('Не удалось загрузить список плагинов');
-                    callback([]);
-                });
+                fetch(cdnUrl).then(r => r.json()).then(callback).catch(() => callback([]));
             });
     }
 
-    // Меню (из твоего рабочего кода)
     function addMenu() {
         var field = $(`
             <div class="settings-folder selector cubox-menu-item">
@@ -107,52 +92,45 @@
             if (Array.isArray(plugins) && plugins.length > 0) {
                 plugins.forEach(function(p) {
                     var isEnabled = enabledPlugins[p.file] === true;
-                    var statusColor = '#4bbc16'; // Зеленый цвет
-                    
-                    // --- СТИЛИЗАЦИЯ (Твой запрос) ---
-                    // Мы не можем менять структуру Select полностью, но мы можем внедрить HTML в иконку и subtitle
-                    
-                    var iconHtml = isEnabled ? 
-                        `<div style="width:18px;height:18px;background:${statusColor};border-radius:50%;box-shadow:0 0 10px ${statusColor};border:2px solid ${statusColor}"></div>` : 
-                        `<div style="width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);border-radius:50%"></div>`;
+                    var statusColor = '#4bbc16'; 
 
-                    var descHtml = `<div style="font-size: 0.9em; margin-top: 3px; opacity: 0.7;">v${p.version} • ${p.description}</div>`;
+                    // HTML кружочка
+                    var circle = isEnabled ? 
+                        `<div style="display:inline-block; vertical-align:middle; width:14px; height:14px; background:${statusColor}; border-radius:50%; box-shadow:0 0 8px ${statusColor}; margin-right:10px;"></div>` : 
+                        `<div style="display:inline-block; vertical-align:middle; width:14px; height:14px; border:2px solid rgba(255,255,255,0.3); border-radius:50%; margin-right:10px;"></div>`;
+
+                    // Вставляем кружочек В НАЧАЛО названия
+                    var titleHtml = `<div style="display:flex; align-items:center;">${circle} <span>${p.name}</span></div>`;
+                    
+                    var descHtml = `<div style="font-size: 0.8em; opacity: 0.6; padding-left: 28px;">v${p.version} • ${p.description}</div>`;
 
                     items.push({
-                        title: p.name,
-                        subtitle: descHtml, // Вставляем описание с версией сюда
-                        icon: iconHtml,     // Кружочек сюда
+                        title: titleHtml,  // Теперь тут и иконка, и текст
+                        subtitle: descHtml,
+                        icon: '',          // Стандартную иконку оставляем пустой
                         file: p.file,
                         enabled: isEnabled
                     });
                 });
             } else {
                 items.push({
-                    title: 'Нет доступных плагинов',
-                    subtitle: 'Список пуст или ошибка сети',
-                    icon: '<div style="width:20px;height:20px;border-radius:50%;background:#aaa"></div>',
-                    file: 'none',
-                    enabled: false
+                    title: 'Нет плагинов',
+                    subtitle: 'Список пуст',
+                    file: 'none'
                 });
             }
 
-            // Используем стандартный Select (раз он у тебя работает лучше всего)
             Lampa.Select.show({
                 title: 'Cubox Store',
                 items: items,
                 onSelect: function(item) {
                     if (item.file === 'none') return;
-                    
-                    // Логика переключения
                     enabledPlugins[item.file] = !item.enabled;
                     Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
                     needReload = true;
-                    
-                    // Перезагружаем меню, чтобы обновить кружочки
                     setTimeout(openStore, 10);
                 },
                 onBack: function() {
-                    // Твоя рабочая логика выхода
                     if (needReload) {
                         Lampa.Noty.show('Перезагрузка...');
                         setTimeout(function(){ window.location.reload(); }, 1000);
