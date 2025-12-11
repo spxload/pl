@@ -8,7 +8,7 @@
     var GITHUB_REPO = 'pl';
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox';
-    var CUBOX_VERSION = 'v2.5'; 
+    var CUBOX_VERSION = 'v3.0'; 
     // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
@@ -70,7 +70,7 @@
                         scrollLayer.find('.cubox-menu-item').remove();
                         var first = scrollLayer.find('.settings-folder').first();
 
-                        // Используем нативный Interaction для обработки нажатия
+                        // Сохраняем кнопку для возврата фокуса
                         field.on('hover:enter click', function () {
                             lastFocused = $(this);
                             openCustomModal();
@@ -91,6 +91,7 @@
         fetchManifest(function (plugins) {
             Lampa.Loading.stop();
 
+            // 1. HTML структура (Твой любимый стиль)
             var html = $(`<div>
                 <div class="cubox-header" style="padding: 15px 20px; font-size: 1.5em; font-weight: bold; border-bottom: 2px solid rgba(255,255,255,0.05); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
                     <span>Cubox Store</span>
@@ -116,16 +117,24 @@
                         </div>
                     `);
 
-                    // ВАЖНО: Вешаем обработчик НАПРЯМУЮ, без hover:enter, чтобы исключить дублирование
-                    // Lampa.Controller вызовет click() при нажатии ОК
-                    item.on('click', function () {
-                        togglePlugin(p.file, $(this));
-                    });
+                    // Логика переключения
+                    function toggle() {
+                        enabledPlugins[p.file] = !enabledPlugins[p.file];
+                        Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
+                        needReload = true;
 
-                    // Для мыши и тача оставляем
-                    item.on('hover:enter', function () {
-                         togglePlugin(p.file, $(this));
-                    });
+                        var newStatus = enabledPlugins[p.file];
+                        var icon = item.find('.status-icon');
+                        icon.css({
+                            'background': newStatus ? statusColor : 'transparent',
+                            'opacity': newStatus ? '1' : '0.3',
+                            'box-shadow': newStatus ? '0 0 10px ' + statusColor : 'none'
+                        });
+                    }
+
+                    // Обработчики: и клик (пульт), и hover:enter (мышь/пульт старый)
+                    item.on('click', toggle);
+                    item.on('hover:enter', toggle);
 
                     list.append(item);
                 });
@@ -133,23 +142,7 @@
                 list.append('<div style="padding: 20px; opacity: 0.5; text-align: center;">Список плагинов пуст</div>');
             }
 
-            function togglePlugin(file, el) {
-                enabledPlugins[file] = !enabledPlugins[file];
-                Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                needReload = true;
-
-                var newStatus = enabledPlugins[file];
-                var icon = el.find('.status-icon');
-                var color = '#4bbc16';
-                
-                icon.css({
-                    'background': newStatus ? color : 'transparent',
-                    'opacity': newStatus ? '1' : '0.3',
-                    'box-shadow': newStatus ? '0 0 10px ' + color : 'none'
-                });
-            }
-
-            // Открываем модалку
+            // 2. Открытие окна
             Lampa.Modal.open({
                 title: '',
                 html: html,
@@ -157,28 +150,11 @@
                 mask: true,
                 onBack: function() {
                     Lampa.Modal.close();
+                    
                     if (needReload) {
                         Lampa.Noty.show('Применение изменений...');
                         setTimeout(function () { window.location.reload(); }, 1000);
                     } else {
-                        // Возвращаем контроллер настроек
+                        // Возврат в настройки
                         Lampa.Controller.toggle('content');
-                        if (lastFocused) {
-                             setTimeout(function(){
-                                Lampa.Controller.collectionFocus(lastFocused[0], $('.settings__content .scroll__content'));
-                            }, 50);
-                        }
-                    }
-                }
-            });
-
-            // --- ХАК ДЛЯ ТВ ПУЛЬТА ---
-            // Мы принудительно говорим Лампе: "Сейчас активна модалка"
-            // Это заставляет её отправлять нажатия в наше окно (в элементы с классом .selector)
-            Lampa.Controller.toggle('modal'); 
-        });
-    }
-
-    if (window.appready) { addMenu(); startPlugins(); }
-    else { Lampa.Listener.follow('app', function (e) { if (e.type == 'ready') { addMenu(); startPlugins(); } }); }
-})();
+                        if (lastFocused
