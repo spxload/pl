@@ -1,11 +1,15 @@
 (function () {
     'use strict';
 
+    // ==========================================
+    // НАСТРОЙКИ
+    // ==========================================
     var GITHUB_USER = 'spxload';
     var GITHUB_REPO = 'pl';
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox';
-    var CUBOX_VERSION = 'v3.5';
+    var CUBOX_VERSION = 'v3.4.2';
+    // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
@@ -13,40 +17,29 @@
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false;
 
-    // --- Стили для кружков (чтобы было красиво внутри настроек) ---
+    var SETTINGS_COMPONENT = 'cubox_store';
+    var lastSettingsPage = null;
+
     function ensureStyle() {
-        if (document.getElementById('cubox-native-style')) return;
-        var style = document.createElement('style');
-        style.id = 'cubox-native-style';
-        style.innerHTML = `
-            .cubox-status-circle {
-                width: 14px;
-                height: 14px;
-                min-width: 14px;
-                border-radius: 50%;
-                margin-right: 15px;
-                display: inline-block;
-                position: relative;
-                top: 2px;
-                transition: all 0.2s;
+        if (document.getElementById('cubox-store-style')) return;
+
+        var css = `
+            .cubox-circle{
+                width:14px;height:14px;min-width:14px;border-radius:50%;
+                display:inline-block;box-sizing:border-box;
             }
-            .cubox-status-on {
-                background: #4bbc16;
-                box-shadow: 0 0 8px #4bbc16;
-            }
-            .cubox-status-off {
-                background: transparent;
-                border: 2px solid rgba(255,255,255,0.3);
-            }
-            .settings-param.selector:hover .cubox-status-off,
-            .settings-param.selector.focus .cubox-status-off {
-                border-color: rgba(255,255,255,0.7);
-            }
+            .cubox-circle--on{background:#4bbc16;border:2px solid #4bbc16;box-shadow:0 0 8px rgba(75,188,22,.85)}
+            .cubox-circle--off{background:transparent;border:2px solid rgba(255,255,255,.28)}
+            .cubox-store-wrap{padding-top:8px}
+            .cubox-store-row .settings-paramvalue{display:flex;align-items:center;justify-content:flex-end}
         `;
-        document.body.appendChild(style);
+
+        var style = document.createElement('style');
+        style.id = 'cubox-store-style';
+        style.textContent = css;
+        document.head.appendChild(style);
     }
 
-    // --- Загрузчик скриптов ---
     function loadPlugin(filename) {
         var url = CDN_BASE + filename + '?t=' + Date.now();
         var script = document.createElement('script');
@@ -61,135 +54,114 @@
         });
     }
 
-    // --- Загрузка манифеста (списка плагинов) ---
     function fetchManifest(callback) {
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
+
         fetch(apiUrl)
-            .then(res => res.json())
-            .then(data => {
-                var json = JSON.parse(decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, '')))));
-                callback(json);
+            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+            .then(function (data) {
+                var jsonString = decodeURIComponent(escape(window.atob((data.content || '').replace(/\s/g, ''))));
+                callback(JSON.parse(jsonString));
             })
-            .catch(() => {
-                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-                fetch(cdnUrl).then(r => r.json()).then(callback).catch(() => callback([]));
+            .catch(function () {
+                var cdnUrl = CDN_BASE + 'plugins.json?t=' + Date.now();
+                fetch(cdnUrl).then(function (r) { return r.json(); }).then(callback).catch(function () { callback([]); });
             });
     }
 
-    // --- Основная логика интеграции в настройки ---
-    function init() {
+    function drawStore(body) {
         ensureStyle();
 
-        // 1. Регистрируем компонент "Cubox Store" в системе настроек Лампы
-        Lampa.SettingsApi.addComponent({
-            component: 'cubox_store_native',
-            name: 'Cubox Store',
-            icon: '<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>'
-        });
+        body.find('.cubox-store-wrap').remove();
 
-        // 2. Слушаем события открытия настроек
-        Lampa.Settings.listener.follow('open', function (e) {
-            
-            // Если открылось ГЛАВНОЕ меню -> переносим кнопку наверх и добавляем версию
-            if (e.name == 'main') {
-                setTimeout(function() {
-                    var btn = $('.settings__content .settings-folder[data-component="cubox_store_native"]');
-                    if (btn.length) {
-                        // Переносим наверх
-                        $('.settings__content .scroll__content').prepend(btn);
-                        // Дописываем версию
-                        btn.find('.settings-folder__descr').text(CUBOX_VERSION);
-                    }
-                }, 20);
+        var wrap = $('<div class="cubox-store-wrap"></div>');
+        body.append(wrap);
+
+        Lampa.Loading.start(function(){});
+
+        fetchManifest(function (plugins) {
+            Lampa.Loading.stop();
+
+            wrap.empty();
+
+            if (!Array.isArray(plugins) || !plugins.length) {
+                wrap.append('<div class="settings-param selector" data-static="true"><div class="settings-paramname">Список плагинов пуст</div></div>');
+                try { Lampa.Params.listener.send('updateScroll'); } catch (e) {}
+                return;
             }
 
-            // Если открылся НАШ раздел -> рисуем список
-            if (e.name == 'cubox_store_native') {
-                var container = e.body; // Это правая часть окна настроек
-                container.empty();
+            plugins.forEach(function (p) {
+                var isEnabled = enabledPlugins[p.file] === true;
 
-                // Создаем скролл-контейнер (как в родных настройках)
-                var scroll = $('<div class="scroll scroll--nofade"><div class="scroll__content" style="padding:1.5em 0;"></div></div>');
-                var content = scroll.find('.scroll__content');
+                var row = $(`
+                    <div class="settings-param selector cubox-store-row" data-static="true">
+                        <div class="settings-paramname"></div>
+                        <div class="settings-paramvalue"><span class="cubox-circle"></span></div>
+                        <div class="settings-paramdescr"></div>
+                    </div>
+                `);
 
-                // Показываем загрузку
-                var loader = $('<div class="settings-param__name" style="padding:20px; text-align:center;">Загрузка...</div>');
-                content.append(loader);
-                container.append(scroll);
+                row.find('.settings-paramname').text(p.name);
+                row.find('.settings-paramdescr').text('v' + p.version + ' • ' + p.description);
 
-                fetchManifest(function (plugins) {
-                    loader.remove();
-                    
-                    if (!plugins || !plugins.length) {
-                        content.append('<div class="settings-param__name" style="padding:20px;">Ошибка загрузки или список пуст</div>');
-                        return;
-                    }
+                var circle = row.find('.cubox-circle');
+                circle.toggleClass('cubox-circle--on', isEnabled);
+                circle.toggleClass('cubox-circle--off', !isEnabled);
 
-                    plugins.forEach(function (p) {
-                        var isEnabled = enabledPlugins[p.file] === true;
+                row.on('hover:enter click', function () {
+                    enabledPlugins[p.file] = !enabledPlugins[p.file];
+                    Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
 
-                        // Верстка элемента "Настроек" (как Interface/Player и т.д.)
-                        var item = $(`
-                            <div class="settings-param selector" data-file="${p.file}">
-                                <div class="settings-param__name" style="display:flex; align-items:center;">
-                                    <div class="cubox-status-circle ${isEnabled ? 'cubox-status-on' : 'cubox-status-off'}"></div>
-                                    <span>${p.name}</span>
-                                </div>
-                                <div class="settings-param__descr">v${p.version} • ${p.description}</div>
-                            </div>
-                        `);
+                    needReload = true;
 
-                        // Логика клика
-                        item.on('hover:enter click', function () {
-                            enabledPlugins[p.file] = !enabledPlugins[p.file];
-                            Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                            needReload = true; // Ставим флаг, что нужна перезагрузка
-
-                            // Обновляем визуал кружка мгновенно
-                            var circle = $(this).find('.cubox-status-circle');
-                            if (enabledPlugins[p.file]) {
-                                circle.removeClass('cubox-status-off').addClass('cubox-status-on');
-                            } else {
-                                circle.removeClass('cubox-status-on').addClass('cubox-status-off');
-                            }
-                        });
-
-                        content.append(item);
-                    });
-
-                    // --- ВАЖНО: Перехват управления для кнопки "Назад" ---
-                    // Лампа по умолчанию при 'back' просто вернет в меню.
-                    // Нам нужно проверить needReload.
-                    
-                    Lampa.Controller.add('cubox_list_ctrl', {
-                        toggle: function () {
-                            // Собираем элементы для навигации
-                            Lampa.Controller.collectionSet(scroll);
-                            Lampa.Controller.collectionFocus(false, scroll);
-                        },
-                        up: function () { Lampa.Navigator.move('up'); },
-                        down: function () { Lampa.Navigator.move('down'); },
-                        left: function () { Lampa.Navigator.move('left'); },
-                        right: function () { Lampa.Navigator.move('right'); },
-                        back: function () {
-                            if (needReload) {
-                                Lampa.Noty.show('Применение изменений...');
-                                setTimeout(function() { window.location.reload(); }, 500);
-                            } else {
-                                // Если ничего не меняли - возвращаемся в главное меню настроек
-                                Lampa.Settings.main();
-                            }
-                        }
-                    });
-                    
-                    // Активируем наш контроллер
-                    Lampa.Controller.toggle('cubox_list_ctrl');
+                    circle.toggleClass('cubox-circle--on', enabledPlugins[p.file] === true);
+                    circle.toggleClass('cubox-circle--off', enabledPlugins[p.file] !== true);
                 });
+
+                wrap.append(row);
+            });
+
+            // важно: чтобы Scroll в настройках пересчитал высоту/позиции
+            try { Lampa.Params.listener.send('updateScroll'); } catch (e) {}
+        });
+    }
+
+    function addSettingsComponent() {
+        // Регистрируем “страницу” в настройках (появится как папка)
+        Lampa.SettingsApi.addComponent({
+            component: SETTINGS_COMPONENT,
+            name: 'Cubox Store',
+            icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>'
+        });
+
+        // Рисуем магазин внутри настроек и ловим “выход” для автоперезагрузки
+        Lampa.Settings.listener.follow('open', function (e) {
+            // если выходим ИЗ магазина — применяем (как ты просил)
+            if (lastSettingsPage === SETTINGS_COMPONENT && e.name !== SETTINGS_COMPONENT && needReload) {
+                Lampa.Noty.show('Перезагрузка...');
+                setTimeout(function () { window.location.reload(); }, 700);
+                return;
+            }
+
+            lastSettingsPage = e.name;
+
+            if (e.name === SETTINGS_COMPONENT) {
+                // e.body — DOM компонента настроек
+                drawStore(e.body);
             }
         });
     }
 
-    if (window.appready) { init(); startPlugins(); }
-    else { Lampa.Listener.follow('app', function (e) { if (e.type == 'ready') { init(); startPlugins(); } }); }
-
+    // ---------- start ----------
+    if (window.appready) {
+        addSettingsComponent();
+        startPlugins();
+    } else {
+        Lampa.Listener.follow('app', function (e) {
+            if (e.type === 'ready') {
+                addSettingsComponent();
+                startPlugins();
+            }
+        });
+    }
 })();
