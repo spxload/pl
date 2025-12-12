@@ -1,37 +1,67 @@
 (function () {
     'use strict';
 
-    // ==========================================
-    // НАСТРОЙКИ
-    // ==========================================
     var GITHUB_USER = 'spxload';
     var GITHUB_REPO = 'pl';
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox';
     var CUBOX_VERSION = 'v3.4.2';
-    // ==========================================
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
 
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false;
-
-    var SETTINGS_COMPONENT = 'cubox_store';
-    var lastSettingsPage = null;
+    var manifestCache = null;
 
     function ensureStyle() {
         if (document.getElementById('cubox-store-style')) return;
 
         var css = `
-            .cubox-circle{
-                width:14px;height:14px;min-width:14px;border-radius:50%;
-                display:inline-block;box-sizing:border-box;
+            /* кружок включения */
+            .cubox-toggle {
+                width: 14px !important;
+                height: 14px !important;
+                min-width: 14px !important;
+                border-radius: 50% !important;
+                margin-right: 12px !important;
+                display: inline-block !important;
+                vertical-align: middle !important;
+                box-sizing: border-box !important;
+                flex-shrink: 0 !important;
+                transition: all .2s ease !important;
             }
-            .cubox-circle--on{background:#4bbc16;border:2px solid #4bbc16;box-shadow:0 0 8px rgba(75,188,22,.85)}
-            .cubox-circle--off{background:transparent;border:2px solid rgba(255,255,255,.28)}
-            .cubox-store-wrap{padding-top:8px}
-            .cubox-store-row .settings-paramvalue{display:flex;align-items:center;justify-content:flex-end}
+            .cubox-toggle--on {
+                background: #4bbc16 !important;
+                border: 2px solid #4bbc16 !important;
+                box-shadow: 0 0 8px rgba(75,188,22,.85) !important;
+            }
+            .cubox-toggle--off {
+                background: transparent !important;
+                border: 2px solid rgba(255,255,255,.28) !important;
+                box-shadow: none !important;
+            }
+
+            /* строка плагина */
+            .cubox-plugin-row {
+                display: flex !important;
+                align-items: center !important;
+                width: 100% !important;
+            }
+            .cubox-plugin-name {
+                flex: 1 !important;
+                min-width: 0 !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+                white-space: nowrap !important;
+            }
+
+            /* описание плагина */
+            .settings-param__descr.cubox-plugin-descr {
+                margin-top: 0 !important;
+                padding-left: 26px !important;
+                opacity: 0.6 !important;
+            }
         `;
 
         var style = document.createElement('style');
@@ -55,113 +85,112 @@
     }
 
     function fetchManifest(callback) {
+        if (manifestCache) {
+            callback(manifestCache);
+            return;
+        }
+
         var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
 
         fetch(apiUrl)
-            .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+            .then(function (res) { return res.json(); })
             .then(function (data) {
-                var jsonString = decodeURIComponent(escape(window.atob((data.content || '').replace(/\s/g, ''))));
-                callback(JSON.parse(jsonString));
+                var json = JSON.parse(decodeURIComponent(escape(window.atob((data.content || '').replace(/\s/g, '')))));
+                manifestCache = json;
+                callback(json);
             })
             .catch(function () {
-                var cdnUrl = CDN_BASE + 'plugins.json?t=' + Date.now();
-                fetch(cdnUrl).then(function (r) { return r.json(); }).then(callback).catch(function () { callback([]); });
+                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
+                fetch(cdnUrl).then(function (r) { return r.json(); }).then(function (json) {
+                    manifestCache = json;
+                    callback(json);
+                }).catch(function () {
+                    callback([]);
+                });
             });
     }
 
-    function drawStore(body) {
+    function togglePlugin(file, currentState) {
+        enabledPlugins[file] = !currentState;
+        Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
+        needReload = true;
+
+        // обновляем UI кружка
+        var row = $('[data-cubox-file="' + file + '"]');
+        if (row.length) {
+            var circle = row.find('.cubox-toggle');
+            circle.toggleClass('cubox-toggle--on', enabledPlugins[file]);
+            circle.toggleClass('cubox-toggle--off', !enabledPlugins[file]);
+        }
+    }
+
+    function renderPluginParam(plugin) {
+        var isEnabled = enabledPlugins[plugin.file] === true;
+
+        var circle = $('<span class="cubox-toggle"></span>');
+        circle.toggleClass('cubox-toggle--on', isEnabled);
+        circle.toggleClass('cubox-toggle--off', !isEnabled);
+
+        var name = $('<span class="cubox-plugin-name"></span>').text(plugin.name);
+
+        var row = $('<div class="cubox-plugin-row"></div>');
+        row.attr('data-cubox-file', plugin.file);
+        row.append(circle);
+        row.append(name);
+
+        var descr = $('<div class="settings-param__descr cubox-plugin-descr"></div>').text('v' + plugin.version + ' • ' + plugin.description);
+
+        return { row: row, descr: descr };
+    }
+
+    function buildStoreComponent() {
         ensureStyle();
 
-        body.find('.cubox-store-wrap').remove();
-
-        var wrap = $('<div class="cubox-store-wrap"></div>');
-        body.append(wrap);
-
-        Lampa.Loading.start(function(){});
-
         fetchManifest(function (plugins) {
-            Lampa.Loading.stop();
-
-            wrap.empty();
-
             if (!Array.isArray(plugins) || !plugins.length) {
-                wrap.append('<div class="settings-param selector" data-static="true"><div class="settings-paramname">Список плагинов пуст</div></div>');
-                try { Lampa.Params.listener.send('updateScroll'); } catch (e) {}
+                Lampa.Noty.show('Не удалось загрузить список плагинов');
                 return;
             }
 
-            plugins.forEach(function (p) {
-                var isEnabled = enabledPlugins[p.file] === true;
+            // добавляем параметры для каждого плагина
+            plugins.forEach(function (plugin) {
+                Lampa.SettingsApi.addParam({
+                    component: 'cubox_store',
+                    param: {
+                        name: 'cubox_plugin_' + plugin.file.replace(/[^a-zA-Z0-9]/g, '_'),
+                        type: 'trigger',
+                        default: false
+                    },
+                    field: {
+                        name: plugin.name
+                    },
+                    onRender: function (item) {
+                        var rendered = renderPluginParam(plugin);
 
-                var row = $(`
-                    <div class="settings-param selector cubox-store-row" data-static="true">
-                        <div class="settings-paramname"></div>
-                        <div class="settings-paramvalue"><span class="cubox-circle"></span></div>
-                        <div class="settings-paramdescr"></div>
-                    </div>
-                `);
+                        // заменяем стандартное имя на наш кастомный ряд
+                        var nameContainer = item.find('.settings-param__name');
+                        if (nameContainer.length) {
+                            nameContainer.empty().append(rendered.row);
+                        }
 
-                row.find('.settings-paramname').text(p.name);
-                row.find('.settings-paramdescr').text('v' + p.version + ' • ' + p.description);
+                        // добавляем описание
+                        item.append(rendered.descr);
 
-                var circle = row.find('.cubox-circle');
-                circle.toggleClass('cubox-circle--on', isEnabled);
-                circle.toggleClass('cubox-circle--off', !isEnabled);
-
-                row.on('hover:enter click', function () {
-                    enabledPlugins[p.file] = !enabledPlugins[p.file];
-                    Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-
-                    needReload = true;
-
-                    circle.toggleClass('cubox-circle--on', enabledPlugins[p.file] === true);
-                    circle.toggleClass('cubox-circle--off', enabledPlugins[p.file] !== true);
+                        // вешаем клик
+                        item.off('hover:enter').on('hover:enter', function () {
+                            var currentState = enabledPlugins[plugin.file] === true;
+                            togglePlugin(plugin.file, currentState);
+                        });
+                    }
                 });
-
-                wrap.append(row);
             });
 
-            // важно: чтобы Scroll в настройках пересчитал высоту/позиции
-            try { Lampa.Params.listener.send('updateScroll'); } catch (e) {}
+            // открываем компонент
+            Lampa.Settings.create('cubox_store');
+            Lampa.Controller.enabled().controller.back();
         });
     }
 
-    function addSettingsComponent() {
-        // Регистрируем “страницу” в настройках (появится как папка)
+    function initStore() {
+        // регистрируем компонент один раз
         Lampa.SettingsApi.addComponent({
-            component: SETTINGS_COMPONENT,
-            name: 'Cubox Store',
-            icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>'
-        });
-
-        // Рисуем магазин внутри настроек и ловим “выход” для автоперезагрузки
-        Lampa.Settings.listener.follow('open', function (e) {
-            // если выходим ИЗ магазина — применяем (как ты просил)
-            if (lastSettingsPage === SETTINGS_COMPONENT && e.name !== SETTINGS_COMPONENT && needReload) {
-                Lampa.Noty.show('Перезагрузка...');
-                setTimeout(function () { window.location.reload(); }, 700);
-                return;
-            }
-
-            lastSettingsPage = e.name;
-
-            if (e.name === SETTINGS_COMPONENT) {
-                // e.body — DOM компонента настроек
-                drawStore(e.body);
-            }
-        });
-    }
-
-    // ---------- start ----------
-    if (window.appready) {
-        addSettingsComponent();
-        startPlugins();
-    } else {
-        Lampa.Listener.follow('app', function (e) {
-            if (e.type === 'ready') {
-                addSettingsComponent();
-                startPlugins();
-            }
-        });
-    }
-})();
