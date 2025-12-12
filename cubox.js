@@ -5,13 +5,14 @@
     var GITHUB_REPO = 'pl';
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox';
-    var CUBOX_VERSION = 'v4.0';
+    var CUBOX_VERSION = 'v5.0';
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
     var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
     var needReload = false;
 
+    // --- ЗАГРУЗКА ---
     function loadPlugin(filename) {
         var url = CDN_BASE + filename + '?t=' + Date.now();
         var script = document.createElement('script');
@@ -40,17 +41,47 @@
             });
     }
 
-    // --- ГЛАВНАЯ ЧАСТЬ: Нативный компонент настроек ---
+    // --- ИНИЦИАЛИЗАЦИЯ ---
     function init() {
-        // Регистрируем компонент "cubox_store" в настройках
+        // 1. Создаем компонент официально (чтобы работала навигация)
         Lampa.SettingsApi.addComponent({
             component: 'cubox_store',
-            name: 'Cubox',
+            name: 'Cubox Store', // Имя пока простое, версию добавим потом
             icon: '<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>'
         });
 
-        // Слушаем открытие этого раздела
+        // 2. ХАК: Переносим кнопку наверх и добавляем версию
         Lampa.Settings.listener.follow('open', function (e) {
+            // Когда открывается ГЛАВНОЕ меню настроек
+            if (e.name == 'main') {
+                var timer = setInterval(function() {
+                    // Ищем нашу кнопку по названию компонента (Lampa добавляет data-component)
+                    var btn = $('.settings__content .settings-folder[data-component="cubox_store"]');
+                    
+                    if (btn.length) {
+                        clearInterval(timer);
+                        
+                        // 2.1 Переносим в начало списка
+                        var container = $('.settings__content .scroll__content');
+                        if (container.length) {
+                            container.prepend(btn);
+                        }
+                        
+                        // 2.2 Добавляем версию (если еще нет)
+                        var descr = btn.find('.settings-folder__descr');
+                        if (descr.text().indexOf(CUBOX_VERSION) === -1) {
+                            // Если есть описание - заменяем, если нет - создаем
+                            if (descr.length) descr.text(CUBOX_VERSION);
+                            else btn.find('.settings-folder__name').after('<div class="settings-folder__descr">' + CUBOX_VERSION + '</div>');
+                        }
+                        
+                        // Обновляем навигацию пульта, так как порядок изменился
+                        Lampa.Controller.enable('content');
+                    }
+                }, 50);
+            }
+            
+            // 3. ОТРИСОВКА ВНУТРЕННОСТЕЙ (Когда нажали на кнопку)
             if (e.name == 'cubox_store') {
                 e.body.empty();
 
@@ -60,7 +91,7 @@
                     e.body.append(scroll);
                 }
 
-                // Заголовок
+                // Красивый заголовок внутри
                 var title = $(`
                     <div class="settings-param__name" style="padding: 20px 20px 10px; font-size: 1.5em; font-weight: bold;">
                         Cubox Store <span style="font-size: 0.6em; opacity: 0.5; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px;">${CUBOX_VERSION}</span>
@@ -78,25 +109,23 @@
                             var isEnabled = enabledPlugins[p.file] === true;
                             var statusColor = '#4bbc16';
 
-                            // --- РИСУЕМ ЭЛЕМЕНТ ВРУЧНУЮ ---
-                            // Используем классы 'selector' и 'settings-param', чтобы Лампа понимала, что это кнопка
+                            // Нативный элемент списка (чтобы не глючило выделение)
+                            // Используем стандартные классы, но с нашей иконкой
                             var item = $(`
-                                <div class="settings-param selector" style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center;">
-                                    <div class="status-icon" style="width: 14px; height: 14px; min-width: 14px; border-radius: 50%; border: 2px solid ${statusColor}; background: ${isEnabled ? statusColor : 'transparent'}; margin-right: 15px; opacity: ${isEnabled ? '1' : '0.3'}; box-shadow: ${isEnabled ? '0 0 8px ' + statusColor : 'none'}; transition: all 0.2s;"></div>
-                                    <div class="settings-param__body" style="flex-grow: 1;">
-                                        <div class="settings-param__name" style="font-size: 1.1em; font-weight: 500;">${p.name}</div>
-                                        <div class="settings-param__descr" style="font-size: 0.8em; opacity: 0.6;">v${p.version} • ${p.description}</div>
+                                <div class="settings-param selector" style="padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; transition: background 0.2s;">
+                                    <div class="status-icon" style="width: 14px; height: 14px; min-width: 14px; border-radius: 50%; border: 2px solid ${statusColor}; background: ${isEnabled ? statusColor : 'transparent'}; margin-right: 15px; opacity: ${isEnabled ? '1' : '0.3'}; box-shadow: ${isEnabled ? '0 0 8px ' + statusColor : 'none'}; flex-shrink: 0; transition: all 0.2s;"></div>
+                                    <div class="settings-param__body" style="flex-grow: 1; overflow: hidden;">
+                                        <div class="settings-param__name" style="font-size: 1.1em; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.name}</div>
+                                        <div class="settings-param__descr" style="font-size: 0.8em; opacity: 0.6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">v${p.version} • ${p.description}</div>
                                     </div>
                                 </div>
                             `);
 
-                            // Обработка клика
                             item.on('hover:enter click', function () {
                                 enabledPlugins[p.file] = !enabledPlugins[p.file];
                                 Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
                                 needReload = true;
 
-                                // Мгновенное обновление UI (только кружочек)
                                 var newState = enabledPlugins[p.file];
                                 var icon = $(this).find('.status-icon');
                                 icon.css({
@@ -104,15 +133,13 @@
                                     'opacity': newState ? '1' : '0.3',
                                     'box-shadow': newState ? '0 0 8px ' + statusColor : 'none'
                                 });
-                                
-                                // Показываем кнопку перезагрузки (если скрыта)
+
                                 $('.reload-btn').fadeIn();
                             });
 
                             scroll.append(item);
                         });
 
-                        // Кнопка перезагрузки (появляется снизу)
                         var reloadBtn = $(`
                             <div class="settings-param selector reload-btn" style="display: none; padding: 15px 20px; color: #f44336; font-weight: bold; text-align: center; margin-top: 20px;">
                                 Применить изменения (Перезагрузить)
@@ -122,10 +149,10 @@
                         scroll.append(reloadBtn);
 
                     } else {
-                        scroll.append('<div style="padding: 20px; opacity: 0.5;">Нет плагинов</div>');
+                        scroll.append('<div style="padding: 20px; opacity: 0.5;">Список пуст или ошибка загрузки</div>');
                     }
                     
-                    // Обновляем скролл и фокус (важно!)
+                    // Обновляем контроллер, чтобы можно было скроллить
                     Lampa.Controller.enable('content');
                 });
             }
