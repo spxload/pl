@@ -142,7 +142,13 @@
     }
 
     function openStore() {
+        // Проверяем, не открыто ли уже модальное окно
+        if (Lampa.Modal && Lampa.Modal.opened && Lampa.Modal.opened()) {
+            return;
+        }
+        
         var needReloadBeforeOpen = needReload;
+        var isClosing = false;
         
         // Показываем загрузку
         var loadingContent = $('<div style="padding: 2em; text-align: center;">Загрузка...</div>');
@@ -155,6 +161,10 @@
             align: 'top',
             mask: true,
             onBack: function() {
+                // Защита от повторных вызовов
+                if (isClosing) return;
+                isClosing = true;
+                
                 // Анимируем закрытие (уезжает вправо)
                 var modal = $('.modal.cubox-modal-settings');
                 if (modal.length) {
@@ -163,6 +173,7 @@
                     
                     setTimeout(function() {
                         Lampa.Modal.close();
+                        isClosing = false;
                         
                         // Проверяем, были ли изменения
                         if (needReload && !needReloadBeforeOpen) {
@@ -170,13 +181,12 @@
                             setTimeout(function() {
                                 window.location.reload();
                             }, 1000);
-                        } else {
-                            // Возвращаемся в настройки
-                            Lampa.Controller.toggle("settings_component");
                         }
+                        // Модальное окно закрыто, настройки остаются открытыми автоматически
                     }, 200);
                 } else {
                     Lampa.Modal.close();
+                    isClosing = false;
                     
                     // Проверяем, были ли изменения
                     if (needReload && !needReloadBeforeOpen) {
@@ -184,9 +194,6 @@
                         setTimeout(function() {
                             window.location.reload();
                         }, 1000);
-                    } else {
-                        // Возвращаемся в настройки
-                        Lampa.Controller.toggle("settings_component");
                     }
                 }
             }
@@ -195,7 +202,7 @@
         // Добавляем класс для стилизации под настройки и анимируем появление справа
         setTimeout(function() {
             var modal = $('.modal');
-            if (modal.length) {
+            if (modal.length && !modal.hasClass('cubox-modal-settings')) {
                 modal.addClass('cubox-modal-settings');
                 var modalContent = modal.find('.modal__content');
                 // Устанавливаем начальную позицию
@@ -208,105 +215,92 @@
                     modalContent.css('transform', 'translateX(-100%)');
                 }, 10);
             }
-        }, 50);
+        }, 100);
         
         // Загружаем список плагинов
         fetchManifest(function(plugins) {
-            var content = $('<div class="cubox-modal-body"></div>');
-            var scroll = new Lampa.Scroll({ mask: true, over: true, step: 200 });
-            
-            // Создаем элементы списка
-            if (Array.isArray(plugins) && plugins.length > 0) {
-                plugins.forEach(function(p) {
-                    var isEnabled = enabledPlugins[p.file] === true;
-                    var statusColor = '#4bbc16'; 
+            // Ждем, пока модальное окно полностью создастся и его внутренний scroll будет готов
+            var checkModal = setInterval(function() {
+                var scrollContent = $('.modal.cubox-modal-settings .modal__body .scroll__content');
+                if (scrollContent.length) {
+                    clearInterval(checkModal);
+                    
+                    // Очищаем содержимое загрузки
+                    scrollContent.empty();
+                    
+                    // Создаем элементы списка
+                    if (Array.isArray(plugins) && plugins.length > 0) {
+                        plugins.forEach(function(p) {
+                            var isEnabled = enabledPlugins[p.file] === true;
+                            var statusColor = '#4bbc16'; 
 
-                    // Создаем элемент списка
-                    var circle = isEnabled ? 
-                        `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
-                        `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
+                            // Создаем элемент списка
+                            var circle = isEnabled ? 
+                                `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
+                                `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
 
-                    var item = $('<div class="settings-param selector cubox-store-item"></div>');
-                    item.html(`
-                        <div class="cubox-select-item">
-                            ${circle}
-                            <div class="cubox-modal-item__content">
-                                <div class="settings-param__name cubox-select-text">${p.name}</div>
-                                <div class="settings-param__descr">v${p.version} • ${p.description || ''}</div>
-                            </div>
-                        </div>
-                    `);
+                            var item = $('<div class="settings-param selector cubox-store-item"></div>');
+                            item.html(`
+                                <div class="cubox-select-item">
+                                    ${circle}
+                                    <div class="cubox-modal-item__content">
+                                        <div class="settings-param__name cubox-select-text">${p.name}</div>
+                                        <div class="settings-param__descr">v${p.version} • ${p.description || ''}</div>
+                                    </div>
+                                </div>
+                            `);
+                            
+                            // Сохраняем данные плагина в элементе
+                            item.data('plugin-file', p.file);
+                            item.data('plugin-enabled', isEnabled);
+                            item.data('plugin-data', p);
+                            
+                            // Обработка выбора
+                            item.on('hover:enter', function() {
+                                if (p.file === 'none') return;
+                                
+                                var currentEnabled = enabledPlugins[p.file] === true;
+                                enabledPlugins[p.file] = !currentEnabled;
+                                Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
+                                needReload = true;
+                                item.data('plugin-enabled', enabledPlugins[p.file]);
+                                
+                                // Обновляем визуальное состояние
+                                var newCircle = enabledPlugins[p.file] ? 
+                                    `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
+                                    `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
+                                
+                                var contentDiv = item.find('.cubox-modal-item__content');
+                                item.find('.cubox-select-item').html(newCircle + contentDiv[0].outerHTML);
+                                
+                                // Показываем уведомление о необходимости перезагрузки
+                                Lampa.Noty.show('Изменения применятся после перезагрузки');
+                            });
+                            
+                            scrollContent.append(item);
+                        });
+                    } else {
+                        var emptyItem = $('<div class="settings-param"></div>');
+                        emptyItem.html('<div class="settings-param__name">Нет плагинов</div><div class="settings-param__descr">Список пуст</div>');
+                        scrollContent.append(emptyItem);
+                    }
                     
-                    // Сохраняем данные плагина в элементе
-                    item.data('plugin-file', p.file);
-                    item.data('plugin-enabled', isEnabled);
-                    item.data('plugin-data', p);
-                    
-                    // Обработка фокуса для скролла
-                    item.on('hover:focus', function() {
-                        scroll.update(item);
-                    });
-                    
-                    // Обработка выбора
-                    item.on('hover:enter', function() {
-                        if (p.file === 'none') return;
-                        
-                        var currentEnabled = enabledPlugins[p.file] === true;
-                        enabledPlugins[p.file] = !currentEnabled;
-                        Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                        needReload = true;
-                        item.data('plugin-enabled', enabledPlugins[p.file]);
-                        
-                        // Обновляем визуальное состояние
-                        var newCircle = enabledPlugins[p.file] ? 
-                            `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
-                            `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
-                        
-                        var contentDiv = item.find('.cubox-modal-item__content');
-                        item.find('.cubox-select-item').html(newCircle + contentDiv[0].outerHTML);
-                        
-                        // Показываем уведомление о необходимости перезагрузки
-                        Lampa.Noty.show('Изменения применятся после перезагрузки');
-                    });
-                    
-                    scroll.append(item);
-                });
-            } else {
-                var emptyItem = $('<div class="settings-param"></div>');
-                emptyItem.html('<div class="settings-param__name">Нет плагинов</div><div class="settings-param__descr">Список пуст</div>');
-                scroll.append(emptyItem);
-            }
+                    // Настраиваем контроллер для навигации
+                    setTimeout(function() {
+                        var scroll = $('.modal.cubox-modal-settings .modal__body .scroll');
+                        var items = scrollContent.find('.selector');
+                        if (items.length > 0 && scroll.length) {
+                            Lampa.Controller.collectionSet(scroll);
+                            Lampa.Controller.collectionFocus(items[0][0], scroll);
+                        }
+                    }, 100);
+                }
+            }, 50);
             
-            // Обновляем содержимое модального окна
-            var modalBody = $('.modal.cubox-modal-settings .modal__body');
-            if (modalBody.length) {
-                modalBody.empty().append(scroll.render());
-                
-                // Настраиваем контроллер для навигации
-                setTimeout(function() {
-                    var items = scroll.render().find('.selector');
-                    if (items.length > 0) {
-                        Lampa.Controller.collectionSet(scroll.render());
-                        Lampa.Controller.collectionFocus(items[0][0], scroll.render());
-                    }
-                }, 100);
-            } else {
-                // Если модальное окно еще не готово, ждем
-                setTimeout(function() {
-                    var modalBody = $('.modal.cubox-modal-settings .modal__body');
-                    if (modalBody.length) {
-                        modalBody.empty().append(scroll.render());
-                        
-                        setTimeout(function() {
-                            var items = scroll.render().find('.selector');
-                            if (items.length > 0) {
-                                Lampa.Controller.collectionSet(scroll.render());
-                                Lampa.Controller.collectionFocus(items[0][0], scroll.render());
-                            }
-                        }, 100);
-                    }
-                }, 200);
-            }
+            // Таймаут на случай, если модальное окно не создалось
+            setTimeout(function() {
+                clearInterval(checkModal);
+            }, 5000);
         });
     }
 
