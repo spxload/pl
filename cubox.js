@@ -1,180 +1,121 @@
 (function () {
     'use strict';
 
-    // --- CSS FIX (Из анализа tekst.txt: жесткие стили для SVG и слоев) ---
-    var style = document.createElement('style');
-    style.innerHTML = `
-        .cubox-select-icon {
-            width: 14px !important;
-            height: 14px !important;
-            min-width: 14px !important;
-            border-radius: 50% !important;
-            margin-right: 12px !important;
-            flex-shrink: 0 !important;
-            display: inline-block !important;
-            vertical-align: middle !important;
-        }
-        .cubox-select-item {
-            display: flex !important;
-            align-items: center !important;
-            width: 100% !important;
-            overflow: hidden !important;
-        }
-        .cubox-select-text {
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            font-size: 1.1em !important;
-        }
-    `;
-    document.head.appendChild(style);
+    console.log('[Cubox] Initializing plugin store...');
 
-    var GITHUB_USER = 'spxload'; 
-    var GITHUB_REPO = 'pl'; 
-    var BRANCH = 'main';
-    var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.4';
+    // Конфигурация магазина
+    var STORE_COMPONENT = 'cubox_store';
+    var STORE_NAME = 'Cubox Store';
+    var STORE_URL = 'Cubox/plugins.json';
 
-    var STORAGE_KEY = 'cubox_plugins_state';
-    var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
-    var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
-    var needReload = false; 
-
-    function loadPlugin(filename) {
-        var url = CDN_BASE + filename + '?t=' + Date.now();
-        var script = document.createElement('script');
-        script.src = url;
-        script.async = true;
-        document.body.appendChild(script);
-    }
-    
-    function startPlugins() {
-        Object.keys(enabledPlugins).forEach(function(file) {
-            if (enabledPlugins[file]) loadPlugin(file);
-        });
-    }
-
-    function fetchManifest(callback) {
-        var apiUrl = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/' + FOLDER_PATH + '/plugins.json?ref=' + BRANCH + '&_t=' + Date.now();
-        fetch(apiUrl)
-            .then(res => res.json())
-            .then(data => {
-                var json = JSON.parse(decodeURIComponent(escape(window.atob(data.content.replace(/\s/g, '')))));
-                callback(json);
-            })
-            .catch(() => {
-                var cdnUrl = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/plugins.json?t=' + Date.now();
-                fetch(cdnUrl).then(r => r.json()).then(callback).catch(() => callback([]));
-            });
-    }
-
-    function addMenu() {
-        var field = $(`
-            <div class="settings-folder selector cubox-menu-item">
-                <div class="settings-folder__icon">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                </div>
-                <div class="settings-folder__name">Cubox Store</div>
-                <div class="settings-folder__descr">${CUBOX_VERSION}</div>
-            </div>
-        `);
-        
-        Lampa.Settings.listener.follow('open', function (e) {
-            if (e.name == 'main') {
-                var timer = setInterval(function() {
-                    var scrollLayer = $('.settings__content .scroll__content');
-                    if (scrollLayer.length) {
-                        clearInterval(timer);
-                        scrollLayer.find('.cubox-menu-item').remove();
-                        var first = scrollLayer.find('.settings-folder').first();
-                        
-                        field.off('hover:enter click').on('hover:enter click', function() {
-                            openStore();
-                        });
-
-                        if (first.length) first.before(field);
-                        else scrollLayer.append(field);
-                    }
-                }, 50);
+    // Добавляем локализацию
+    if (typeof Lampa !== 'undefined' && Lampa.Lang) {
+        Lampa.Lang.add({
+            cubox_store: {
+                ru: 'Cubox Store',
+                en: 'Cubox Store',
+                uk: 'Cubox Store',
+                zh: 'Cubox Store'
             }
         });
     }
 
-    function openStore() {
-        Lampa.Loading.start(function(){ Lampa.Loading.stop(); });
+    // Функция добавления магазина в настройки
+    function addStore() {
+        // Проверяем готовность Lampa
+        if (typeof Lampa === 'undefined' || !Lampa.Settings || !Lampa.Settings.main) {
+            console.warn('[Cubox] Lampa not ready, retrying...');
+            setTimeout(addStore, 500);
+            return;
+        }
+
+        var selector = '[data-component="' + STORE_COMPONENT + '"]';
         
-        fetchManifest(function(plugins) {
-            Lampa.Loading.stop();
-            var items = [];
-
-            if (Array.isArray(plugins) && plugins.length > 0) {
-                plugins.forEach(function(p) {
-                    var isEnabled = enabledPlugins[p.file] === true;
-                    var statusColor = '#4bbc16'; 
-
-                    // Используем классы из CSS выше
-                    var circle = isEnabled ? 
-                        `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
-                        `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
-
-                    var titleHtml = `<div class="cubox-select-item">${circle} <span class="cubox-select-text">${p.name}</span></div>`;
-                    
-                    items.push({
-                        title: titleHtml,
-                        subtitle: `v${p.version} • ${p.description}`,
-                        file: p.file,
-                        enabled: isEnabled
-                    });
-                });
-            } else {
-                items.push({ title: 'Нет плагинов', subtitle: 'Список пуст', file: 'none' });
-            }
-
-            Lampa.Select.show({
-                title: 'Cubox Store',
-                items: items,
-                onSelect: function(item) {
-                    if (item.file === 'none') return;
-                    enabledPlugins[item.file] = !item.enabled;
-                    Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                    needReload = true;
-                    setTimeout(openStore, 10);
-                },
-                onBack: function() {
-                    if (needReload) {
-                        Lampa.Noty.show('Перезагрузка...');
-                        setTimeout(function(){ window.location.reload(); }, 1000);
-                    } else {
-                        // Попытка корректного закрытия
-                        Lampa.Controller.toggle('content');
+        // Проверяем, не добавлен ли уже магазин
+        if (Lampa.Settings.main().render().find(selector).length === 0) {
+            console.log('[Cubox] Adding store to settings...');
+            
+            // Создаем элемент магазина с сохранением стиля иконки
+            var field = $(
+                '<div class="settings-folder selector" data-component="' + STORE_COMPONENT + '" data-static="true">' +
+                    '<div class="settings-folder__icon">' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 490 490" xml:space="preserve">' +
+                            '<path d="M153.125 317.435h183.75v30.625h-183.75z" fill="white"></path>' +
+                            '<circle cx="339.672" cy="175.293" r="42.642" fill="white"></circle>' +
+                            '<path d="M420.914 0H69.086C30.999 0 0 30.999 0 69.086v351.829C0 459.001 30.999 490 69.086 490h351.829C459.001 490 490 459.001 490 420.914V69.086C490 30.999 459.001 0 420.914 0zM69.086 30.625h237.883c-17.146 20.912-42.277 47.893-75.177 74.575-9.514-12.906-26.35-19.331-42.586-14.613l-69.644 20.242c-20.778 6.039-32.837 27.98-26.798 48.758l6.475 22.278c-21.375 8-44.353 14.456-68.614 19.267V69.086c0-21.204 17.257-38.461 38.461-38.461zm390.289 390.289c0 21.204-17.257 38.461-38.461 38.461H69.086c-21.204 0-38.461-17.257-38.461-38.461V232.459c27.504-4.993 53.269-12.075 77.268-20.816l3.811 13.111c6.038 20.778 27.98 32.837 48.758 26.799l69.643-20.242c20.778-6.039 32.837-27.98 26.799-48.758l-13.481-46.382c50.532-39.47 84.67-80.759 102.687-105.546h74.805c21.204 0 38.461 17.257 38.461 38.461v351.828z" fill="white"></path>' +
+                        '</svg>' +
+                    '</div>' +
+                    '<div class="settings-folder__name">' + (Lampa.Lang ? Lampa.Lang.translate('cubox_store') : STORE_NAME) + '</div>' +
+                '</div>'
+            );
+            
+            // Обработка открытия настроек
+            Lampa.Settings.listener.follow('open', function(e) {
+                if (e.name === 'main') {
+                    e.body.find(selector).on('hover:enter', function() {
+                        console.log('[Cubox] Opening plugin store...');
                         
-                        // Возврат фокуса
-                        var active = $('.settings__content .scroll__content').find('.selector.focus');
-                        if (!active.length) {
-                             active = $('.settings__content .scroll__content').find('.cubox-menu-item');
-                             if (active.length) Lampa.Controller.collectionFocus(active[0], $('.settings__content .scroll__content'));
+                        // Открываем магазин плагинов через Lampa.Extensions
+                        if (Lampa.Extensions && Lampa.Extensions.show) {
+                            Lampa.Extensions.show({
+                                store: STORE_URL,
+                                with_installed: true  // Показывать установленные плагины
+                            });
+                        } else {
+                            console.error('[Cubox] Lampa.Extensions.show is not available');
+                            if (Lampa.Noty) {
+                                Lampa.Noty.show('Магазин плагинов недоступен. Обновите Lampa до последней версии.');
+                            }
                         }
-                    }
+                    });
                 }
             });
-
-            // Хак для рендера HTML
-            setTimeout(function() {
-                $('.select__item .select__title').each(function() {
-                    var $this = $(this);
-                    var html = $this.text();
-                    if (html.includes('<div') && !html.includes('[object')) {
-                         $this.html(html);
-                    }
-                });
-            }, 50);
-        });
+            
+            // Добавляем поле после раздела "Плагины" или перед "Еще"
+            var pluginsElement = Lampa.Settings.main().render().find('[data-component="plugins"]');
+            var moreElement = Lampa.Settings.main().render().find('[data-component="more"]');
+            
+            if (pluginsElement.length > 0) {
+                pluginsElement.after(field);
+            } else if (moreElement.length > 0) {
+                moreElement.before(field);
+            } else {
+                // Если не найдены стандартные элементы, добавляем в конец
+                Lampa.Settings.main().render().append(field);
+            }
+            
+            Lampa.Settings.main().update();
+            console.log('[Cubox] Store added successfully');
+        } else {
+            console.log('[Cubox] Store already exists');
+        }
     }
 
-    if (window.appready) { addMenu(); startPlugins(); }
-    else { Lampa.Listener.follow('app', function (e) { if (e.type == 'ready') { addMenu(); startPlugins(); } }); }
+    // Инициализация
+    function init() {
+        if (window.appready) {
+            addStore();
+        } else {
+            if (typeof Lampa !== 'undefined' && Lampa.Listener) {
+                Lampa.Listener.follow('app', function(e) {
+                    if (e.type === 'ready') {
+                        addStore();
+                    }
+                });
+            } else {
+                // Fallback: ждем готовности
+                setTimeout(init, 500);
+            }
+        }
+    }
+
+    // Запускаем инициализацию
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(init, 1000);
+        });
+    } else {
+        setTimeout(init, 1000);
+    }
+
 })();
