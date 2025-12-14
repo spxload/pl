@@ -34,6 +34,71 @@
             flex: 1;
             min-width: 0;
         }
+        .cubox-modal-settings {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 50;
+            background: transparent !important;
+            padding: 0 !important;
+        }
+        .cubox-modal-settings .modal__content {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            transition: transform 0.2s;
+            background: #262829;
+            width: 35%;
+            max-width: 35% !important;
+            border-radius: 0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            transform: translateX(0);
+        }
+        .cubox-modal-settings.animate .modal__content {
+            transform: translateX(0);
+        }
+        @media screen and (max-width: 767px) {
+            .cubox-modal-settings .modal__content {
+                width: 50%;
+                max-width: 50% !important;
+            }
+        }
+        @media screen and (max-width: 580px) {
+            .cubox-modal-settings .modal__content {
+                width: 70%;
+                max-width: 70% !important;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            .cubox-modal-settings .modal__content {
+                width: 100%;
+                max-width: 100% !important;
+                left: 0;
+                top: unset;
+                bottom: 0;
+                height: auto;
+                border-top-left-radius: 2em;
+                border-top-right-radius: 2em;
+            }
+        }
+        .cubox-modal-settings .modal__head {
+            flex-shrink: 0;
+            padding: 2em;
+            padding-bottom: 0;
+        }
+        .cubox-modal-settings .modal__body {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 0;
+        }
+        .cubox-modal-settings .modal__title {
+            font-size: 2.2em;
+            font-weight: 300;
+        }
     `;
     document.head.appendChild(style);
 
@@ -76,49 +141,79 @@
             });
     }
 
-    function initStore() {
-        // Регистрируем компонент настроек
-        Lampa.SettingsApi.addComponent({
-            component: 'cubox_store',
-            name: 'Cubox Store',
-            icon: '<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>'
-        });
+    function openStore() {
+        var needReloadBeforeOpen = needReload;
         
-        var wasInStore = false;
-        var needReloadBeforeStore = false;
+        // Показываем загрузку
+        var loadingContent = $('<div style="padding: 2em; text-align: center;">Загрузка...</div>');
         
-        // Обработчик открытия компонента
-        Lampa.Settings.listener.follow('open', function(e) {
-            if (e.name === 'cubox_store') {
-                wasInStore = true;
-                needReloadBeforeStore = needReload; // Сохраняем состояние до открытия
-                buildStoreContent(e.body);
-            } else if (wasInStore && e.name === 'main') {
-                // Вернулись в главное меню после закрытия компонента
-                wasInStore = false;
-                // Проверяем, были ли изменения (needReload изменился)
-                if (needReload && !needReloadBeforeStore) {
-                    // Были изменения, нужно перезагрузить
-                    Lampa.Noty.show('Перезагрузка...');
+        // Открываем модальное окно
+        Lampa.Modal.open({
+            title: 'Cubox Store',
+            html: loadingContent,
+            size: 'large',
+            align: 'top',
+            mask: true,
+            onBack: function() {
+                // Анимируем закрытие (уезжает вправо)
+                var modal = $('.modal.cubox-modal-settings');
+                if (modal.length) {
+                    var modalContent = modal.find('.modal__content');
+                    modalContent.css('transform', 'translateX(0)');
+                    
                     setTimeout(function() {
-                        window.location.reload();
-                    }, 1000);
-                }
-                // Сбрасываем флаг только если не было изменений
-                if (!needReload) {
-                    needReloadBeforeStore = false;
+                        Lampa.Modal.close();
+                        
+                        // Проверяем, были ли изменения
+                        if (needReload && !needReloadBeforeOpen) {
+                            Lampa.Noty.show('Перезагрузка...');
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1000);
+                        } else {
+                            // Возвращаемся в настройки
+                            Lampa.Controller.toggle("settings_component");
+                        }
+                    }, 200);
+                } else {
+                    Lampa.Modal.close();
+                    
+                    // Проверяем, были ли изменения
+                    if (needReload && !needReloadBeforeOpen) {
+                        Lampa.Noty.show('Перезагрузка...');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        // Возвращаемся в настройки
+                        Lampa.Controller.toggle("settings_component");
+                    }
                 }
             }
         });
-    }
-
-    function buildStoreContent(body) {
-        // Показываем загрузку
-        body.html('<div style="padding: 2em; text-align: center;">Загрузка...</div>');
         
+        // Добавляем класс для стилизации под настройки и анимируем появление справа
+        setTimeout(function() {
+            var modal = $('.modal');
+            if (modal.length) {
+                modal.addClass('cubox-modal-settings');
+                var modalContent = modal.find('.modal__content');
+                // Устанавливаем начальную позицию
+                modalContent.css({
+                    'transform': 'translateX(0)',
+                    'left': '100%'
+                });
+                // Анимируем появление
+                setTimeout(function() {
+                    modalContent.css('transform', 'translateX(-100%)');
+                }, 10);
+            }
+        }, 50);
+        
+        // Загружаем список плагинов
         fetchManifest(function(plugins) {
-            // Очищаем содержимое
-            body.empty();
+            var content = $('<div class="cubox-modal-body"></div>');
+            var scroll = new Lampa.Scroll({ mask: true, over: true, step: 200 });
             
             // Создаем элементы списка
             if (Array.isArray(plugins) && plugins.length > 0) {
@@ -147,6 +242,11 @@
                     item.data('plugin-enabled', isEnabled);
                     item.data('plugin-data', p);
                     
+                    // Обработка фокуса для скролла
+                    item.on('hover:focus', function() {
+                        scroll.update(item);
+                    });
+                    
                     // Обработка выбора
                     item.on('hover:enter', function() {
                         if (p.file === 'none') return;
@@ -166,33 +266,88 @@
                         item.find('.cubox-select-item').html(newCircle + contentDiv[0].outerHTML);
                         
                         // Показываем уведомление о необходимости перезагрузки
-                        if (needReload) {
-                            Lampa.Noty.show('Изменения применятся после перезагрузки');
-                        }
+                        Lampa.Noty.show('Изменения применятся после перезагрузки');
                     });
                     
-                    body.append(item);
+                    scroll.append(item);
                 });
             } else {
                 var emptyItem = $('<div class="settings-param"></div>');
                 emptyItem.html('<div class="settings-param__name">Нет плагинов</div><div class="settings-param__descr">Список пуст</div>');
-                body.append(emptyItem);
+                scroll.append(emptyItem);
             }
             
-            // Обновляем скролл
-            Lampa.Settings.update();
+            // Обновляем содержимое модального окна
+            var modalBody = $('.modal.cubox-modal-settings .modal__body');
+            if (modalBody.length) {
+                modalBody.empty().append(scroll.render());
+                
+                // Настраиваем контроллер для навигации
+                setTimeout(function() {
+                    var items = scroll.render().find('.selector');
+                    if (items.length > 0) {
+                        Lampa.Controller.collectionSet(scroll.render());
+                        Lampa.Controller.collectionFocus(items[0][0], scroll.render());
+                    }
+                }, 100);
+            } else {
+                // Если модальное окно еще не готово, ждем
+                setTimeout(function() {
+                    var modalBody = $('.modal.cubox-modal-settings .modal__body');
+                    if (modalBody.length) {
+                        modalBody.empty().append(scroll.render());
+                        
+                        setTimeout(function() {
+                            var items = scroll.render().find('.selector');
+                            if (items.length > 0) {
+                                Lampa.Controller.collectionSet(scroll.render());
+                                Lampa.Controller.collectionFocus(items[0][0], scroll.render());
+                            }
+                        }, 100);
+                    }
+                }, 200);
+            }
         });
     }
 
     function addMenu() {
-        // Компонент уже зарегистрирован через SettingsApi.addComponent
-        // Он автоматически появится в главном меню настроек
-        // Обработка открытия уже настроена в initStore()
+        var field = $(`
+            <div class="settings-folder selector cubox-menu-item">
+                <div class="settings-folder__icon">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <div class="settings-folder__name">Cubox Store</div>
+                <div class="settings-folder__descr">${CUBOX_VERSION}</div>
+            </div>
+        `);
+        
+        Lampa.Settings.listener.follow('open', function (e) {
+            if (e.name == 'main') {
+                var timer = setInterval(function() {
+                    var scrollLayer = $('.settings__content .scroll__content');
+                    if (scrollLayer.length) {
+                        clearInterval(timer);
+                        scrollLayer.find('.cubox-menu-item').remove();
+                        var first = scrollLayer.find('.settings-folder').first();
+                        
+                        field.off('hover:enter click').on('hover:enter click', function() {
+                            openStore();
+                        });
+
+                        if (first.length) first.before(field);
+                        else scrollLayer.append(field);
+                    }
+                }, 50);
+            }
+        });
     }
 
     // Инициализация
     function init() {
-        initStore();
         addMenu();
         startPlugins();
     }
@@ -207,3 +362,4 @@
         }); 
     }
 })();
+
