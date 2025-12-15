@@ -8,11 +8,14 @@
             width: 14px !important;
             height: 14px !important;
             min-width: 14px !important;
+            min-height: 14px !important;
             border-radius: 50% !important;
             margin-right: 12px !important;
             flex-shrink: 0 !important;
             display: inline-block !important;
             vertical-align: middle !important;
+            box-sizing: border-box !important;
+            overflow: hidden !important;
         }
         .cubox-select-item {
             display: flex !important;
@@ -38,9 +41,12 @@
             position: fixed;
             top: 0;
             right: 0;
-            z-index: 50;
+            z-index: 60 !important;
             background: transparent !important;
             padding: 0 !important;
+        }
+        .cubox-modal-settings .modal {
+            z-index: 60 !important;
         }
         .cubox-modal-settings .modal__content {
             position: fixed;
@@ -149,17 +155,31 @@
         
         var needReloadBeforeOpen = needReload;
         var isClosing = false;
+        var menuItemElement = null;
+        var settingsWasOpen = $('body').hasClass('settings--open');
+        
+        // Сохраняем ссылку на элемент меню для возврата фокуса
+        var menuItem = $('.cubox-menu-item');
+        if (menuItem.length) {
+            menuItemElement = menuItem[0];
+        }
+        
+        // Убеждаемся, что настройки остаются открытыми
+        if (!settingsWasOpen) {
+            $('body').addClass('settings--open');
+        }
         
         // Показываем загрузку
         var loadingContent = $('<div style="padding: 2em; text-align: center;">Загрузка...</div>');
         
-        // Открываем модальное окно
+        // Открываем модальное окно с высоким z-index чтобы было поверх настроек
         Lampa.Modal.open({
             title: 'Cubox Store',
             html: loadingContent,
             size: 'large',
             align: 'top',
             mask: true,
+            zIndex: 60, // Выше настроек (z-index: 20)
             onBack: function() {
                 // Защита от повторных вызовов
                 if (isClosing) return;
@@ -172,8 +192,51 @@
                     modalContent.css('transform', 'translateX(0)');
                     
                     setTimeout(function() {
+                        // Закрываем модальное окно
                         Lampa.Modal.close();
+                        
+                        // Небольшая задержка для полного закрытия модального окна
+                        setTimeout(function() {
+                            isClosing = false;
+                            
+                            // Убеждаемся, что настройки остаются открытыми
+                            $('body').addClass('settings--open');
+                            
+                            // Проверяем, были ли изменения
+                            if (needReload && !needReloadBeforeOpen) {
+                                Lampa.Noty.show('Перезагрузка...');
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
+                            } else {
+                                // Правильно переключаем контроллер обратно в настройки
+                                // Используем toggle чтобы активировать контроллер настроек
+                                Lampa.Controller.toggle('settings');
+                                
+                                // Возвращаем фокус на пункт меню в настройках
+                                setTimeout(function() {
+                                    if (menuItemElement) {
+                                        var scrollLayer = $('.settings__content .scroll__content');
+                                        if (scrollLayer.length) {
+                                            // Убеждаемся что настройки активны
+                                            Lampa.Controller.collectionSet(scrollLayer);
+                                            Lampa.Controller.collectionFocus(menuItemElement, scrollLayer);
+                                        }
+                                    }
+                                }, 200);
+                            }
+                        }, 100);
+                    }, 200);
+                } else {
+                    // Закрываем модальное окно
+                    Lampa.Modal.close();
+                    
+                    // Небольшая задержка для полного закрытия модального окна
+                    setTimeout(function() {
                         isClosing = false;
+                        
+                        // Убеждаемся, что настройки остаются открытыми
+                        $('body').addClass('settings--open');
                         
                         // Проверяем, были ли изменения
                         if (needReload && !needReloadBeforeOpen) {
@@ -181,20 +244,22 @@
                             setTimeout(function() {
                                 window.location.reload();
                             }, 1000);
+                        } else {
+                            // Правильно переключаем контроллер обратно в настройки
+                            Lampa.Controller.toggle('settings');
+                            
+                            // Возвращаем фокус на пункт меню в настройках
+                            setTimeout(function() {
+                                if (menuItemElement) {
+                                    var scrollLayer = $('.settings__content .scroll__content');
+                                    if (scrollLayer.length) {
+                                        Lampa.Controller.collectionSet(scrollLayer);
+                                        Lampa.Controller.collectionFocus(menuItemElement, scrollLayer);
+                                    }
+                                }
+                            }, 200);
                         }
-                        // Модальное окно закрыто, настройки остаются открытыми автоматически
-                    }, 200);
-                } else {
-                    Lampa.Modal.close();
-                    isClosing = false;
-                    
-                    // Проверяем, были ли изменения
-                    if (needReload && !needReloadBeforeOpen) {
-                        Lampa.Noty.show('Перезагрузка...');
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 1000);
-                    }
+                    }, 100);
                 }
             }
         });
@@ -286,14 +351,26 @@
                     }
                     
                     // Настраиваем контроллер для навигации
+                    // Modal сам управляет контроллером через свой внутренний механизм
+                    // Нам нужно только убедиться, что элементы правильно обрабатывают фокус
                     setTimeout(function() {
                         var scroll = $('.modal.cubox-modal-settings .modal__body .scroll');
                         var items = scrollContent.find('.selector');
                         if (items.length > 0 && scroll.length) {
-                            Lampa.Controller.collectionSet(scroll);
-                            Lampa.Controller.collectionFocus(items[0][0], scroll);
+                            // Добавляем обработку фокуса для каждого элемента
+                            items.each(function() {
+                                var item = $(this);
+                                item.on('hover:focus', function() {
+                                    var scrollInstance = scroll.data('scroll');
+                                    if (scrollInstance && scrollInstance.update) {
+                                        scrollInstance.update(item);
+                                    }
+                                });
+                            });
+                            
+                            // Modal сам установит фокус через параметр select или через свой механизм
                         }
-                    }, 100);
+                    }, 200);
                 }
             }, 50);
             
@@ -356,3 +433,4 @@
         }); 
     }
 })();
+
