@@ -11,17 +11,27 @@
             min-height: 14px !important;
             border-radius: 50% !important;
             margin-right: 12px !important;
+            margin-left: 0 !important;
             flex-shrink: 0 !important;
             display: inline-block !important;
             vertical-align: middle !important;
             box-sizing: border-box !important;
-            overflow: hidden !important;
+            overflow: visible !important;
         }
         .cubox-select-item {
             display: flex !important;
             align-items: center !important;
             width: 100% !important;
-            overflow: hidden !important;
+            overflow: visible !important;
+            padding-left: 0 !important;
+        }
+        .cubox-store-item {
+            overflow: visible !important;
+            padding-left: 12px !important;
+        }
+        .settings-param.cubox-store-item {
+            overflow: visible !important;
+            padding-left: 12px !important;
         }
         .cubox-select-text {
             white-space: nowrap !important;
@@ -112,7 +122,7 @@
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.4';
+    var CUBOX_VERSION = 'v3.5';
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
@@ -428,6 +438,18 @@
 
                         if (first.length) first.before(field);
                         else scrollLayer.append(field);
+                        
+                        // Обновляем коллекцию контроллера после добавления элемента
+                        // Это нужно для TV приставки, чтобы можно было переключиться на новый элемент
+                        // Settings использует scrollLayer для коллекции
+                        setTimeout(function() {
+                            // Проверяем, активен ли контроллер настроек
+                            var currentController = Lampa.Controller && Lampa.Controller.enabled ? Lampa.Controller.enabled() : null;
+                            if (currentController && currentController.name === 'settings') {
+                                // Обновляем коллекцию контроллера с новым элементом
+                                Lampa.Controller.collectionSet(scrollLayer);
+                            }
+                        }, 150);
                     }
                 }, 50);
             }
