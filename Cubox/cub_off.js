@@ -1,6 +1,6 @@
 // @name: Cub_off
-// @version: 3
-// @description: Отключение рекламы CUB (включая старые TV приставки - исправлено)
+// @version: 4
+// @description: Отключение рекламы CUB (включая старые TV приставки и нативное Android приложение)
 
 (function () {
     'use strict';
@@ -27,23 +27,26 @@
         blacklist: true  // Отключаем черные списки контента
     };
 
-    var PLUGIN_VERSION = 'CUB OFF v22.0 (Old TV Fix)';
+    var PLUGIN_VERSION = 'CUB OFF v23.0 (Native App Fix)';
     
     // ========================================================================
     // 0. РАННИЙ ПЕРЕХВАТ ДЛЯ СТАРЫХ TV ПРИСТАВОК (До загрузки модулей)
     // ========================================================================
-    // Определяем, является ли это старой TV приставкой
+    // Определяем, является ли это старой TV приставкой или нативным Android приложением
     var isOldTV = function() {
         try {
             var ua = navigator.userAgent.toLowerCase();
             var body = document.body;
             if (body && body.classList) {
                 if (body.classList.contains('platform--orsay') || 
-                    body.classList.contains('platform--netcast')) {
+                    body.classList.contains('platform--netcast') ||
+                    body.classList.contains('platform--android')) {
                     return true;
                 }
             }
-            if (ua.indexOf('maple') !== -1 || ua.indexOf('netcast') !== -1) {
+            if (ua.indexOf('maple') !== -1 || 
+                ua.indexOf('netcast') !== -1 ||
+                ua.indexOf('lampa_client') !== -1) {
                 return true;
             }
         } catch(e) {}
@@ -384,6 +387,31 @@
                             interceptMethod(Lampa.Account, 'showCubPremium', function() {
                                 // Ничего не делаем
                             }, isOldTVDevice);
+                        }
+
+                        // Блокируем Offer.show напрямую (для нативного Android приложения)
+                        // Ищем Offer через все возможные пути
+                        var findAndBlockOffer = function(obj, path) {
+                            if (!obj || typeof obj !== 'object') return;
+                            try {
+                                for (var key in obj) {
+                                    if (key === 'Offer' && obj[key] && obj[key].show) {
+                                        interceptMethod(obj[key], 'show', function(data, call) {
+                                            if (call && typeof call === 'function') {
+                                                call();
+                                            }
+                                        }, isOldTVDevice);
+                                    }
+                                    if (typeof obj[key] === 'object' && path.length < 5) {
+                                        findAndBlockOffer(obj[key], path + '.' + key);
+                                    }
+                                }
+                            } catch(e) {}
+                        };
+                        
+                        if (isOldTVDevice) {
+                            findAndBlockOffer(Lampa, 'Lampa');
+                            findAndBlockOffer(window, 'window');
                         }
                     }
                 } catch(e) {
