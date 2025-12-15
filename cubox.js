@@ -126,8 +126,29 @@
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
-    var enabledPlugins = Lampa.Storage.get(STORAGE_KEY, '{}');
+    var enabledPlugins = {};
     var needReload = false;
+    
+    // Инициализируем enabledPlugins из хранилища
+    function initEnabledPlugins() {
+        try {
+            if (typeof Lampa !== 'undefined' && Lampa.Storage) {
+                var stored = Lampa.Storage.get(STORAGE_KEY, '{}');
+                if (typeof stored === 'string') {
+                    enabledPlugins = JSON.parse(stored);
+                } else if (typeof stored === 'object' && stored !== null) {
+                    enabledPlugins = stored;
+                } else {
+                    enabledPlugins = {};
+                }
+            } else {
+                enabledPlugins = {};
+            }
+        } catch(e) {
+            console.error('Cubox Store: Error loading enabled plugins', e);
+            enabledPlugins = {};
+        }
+    }
 
     function loadPlugin(filename) {
         var url = CDN_BASE + filename + '?t=' + Date.now();
@@ -138,9 +159,19 @@
     }
     
     function startPlugins() {
-        Object.keys(enabledPlugins).forEach(function(file) {
-            if (enabledPlugins[file]) loadPlugin(file);
-        });
+        if (!enabledPlugins || typeof enabledPlugins !== 'object') {
+            enabledPlugins = {};
+            return;
+        }
+        try {
+            Object.keys(enabledPlugins).forEach(function(file) {
+                if (file && enabledPlugins[file] === true) {
+                    loadPlugin(file);
+                }
+            });
+        } catch(e) {
+            console.error('Cubox Store: Error starting plugins', e);
+        }
     }
 
     function fetchManifest(callback) {
@@ -158,254 +189,218 @@
     }
 
     function openStore() {
-        // Проверяем, не открыто ли уже модальное окно
-        if (Lampa.Modal && Lampa.Modal.opened && Lampa.Modal.opened()) {
+        // Сохраняем текущее состояние needReload в локальную переменную для замыкания
+        var needReloadBeforeOpen = (typeof needReload !== 'undefined') ? needReload : false;
+        
+        // Открываем компонент настроек вместо модального окна
+        if (typeof Lampa === 'undefined' || !Lampa.Settings || !Lampa.Settings.create) {
+            console.error('Cubox Store: Lampa.Settings is not available');
             return;
         }
         
-        var needReloadBeforeOpen = needReload;
-        var isClosing = false;
-        var menuItemElement = null;
-        var settingsWasOpen = $('body').hasClass('settings--open');
-        
-        // Сохраняем ссылку на элемент меню для возврата фокуса
-        var menuItem = $('.cubox-menu-item');
-        if (menuItem.length) {
-            menuItemElement = menuItem[0];
-        }
-        
-        // Убеждаемся, что настройки остаются открытыми
-        if (!settingsWasOpen) {
-            $('body').addClass('settings--open');
-        }
-        
-        // Показываем загрузку (скрываем, чтобы не было мерцания)
-        var loadingContent = $('<div style="padding: 2em; text-align: center; opacity: 0;">Загрузка...</div>');
-        
-        // Открываем модальное окно с высоким z-index чтобы было поверх настроек
-        Lampa.Modal.open({
-            title: 'Cubox Store',
-            html: loadingContent,
-            size: 'large',
-            align: 'top',
-            mask: true,
-            zIndex: 60, // Выше настроек (z-index: 20)
-            onBack: function() {
-                // Защита от повторных вызовов
-                if (isClosing) return;
-                isClosing = true;
-                
-                // Анимируем закрытие (уезжает вправо)
-                var modal = $('.modal.cubox-modal-settings');
-                if (modal.length) {
-                    var modalContent = modal.find('.modal__content');
-                    modalContent.css('transform', 'translateX(0)');
-                    
-                    setTimeout(function() {
-                        // Закрываем модальное окно
-                        Lampa.Modal.close();
+        try {
+            Lampa.Settings.create('cubox_store', {
+                onBack: function() {
+                    try {
+                        // Проверяем, были ли изменения (используем текущее значение needReload)
+                        var currentNeedReload = (typeof needReload !== 'undefined') ? needReload : false;
+                        var wasNeedReloadBefore = (typeof needReloadBeforeOpen !== 'undefined') ? needReloadBeforeOpen : false;
                         
-                        // Небольшая задержка для полного закрытия модального окна
-                        setTimeout(function() {
-                            isClosing = false;
-                            
-                            // Убеждаемся, что настройки остаются открытыми
-                            $('body').addClass('settings--open');
-                            
-                            // Проверяем, были ли изменения
-                            if (needReload && !needReloadBeforeOpen) {
+                        if (currentNeedReload && !wasNeedReloadBefore) {
+                            if (typeof Lampa !== 'undefined' && Lampa.Noty) {
                                 Lampa.Noty.show('Перезагрузка...');
-                                setTimeout(function() {
-                                    window.location.reload();
-                                }, 1000);
-                            } else {
-                                // Правильно переключаем контроллер обратно в настройки
-                                // Используем toggle чтобы активировать контроллер настроек
-                                Lampa.Controller.toggle('settings');
-                                
-                                // Возвращаем фокус на пункт меню в настройках
-                                setTimeout(function() {
-                                    if (menuItemElement) {
-                                        var scrollLayer = $('.settings__content .scroll__content');
-                                        if (scrollLayer.length) {
-                                            // Убеждаемся что настройки активны
-                                            Lampa.Controller.collectionSet(scrollLayer);
-                                            Lampa.Controller.collectionFocus(menuItemElement, scrollLayer);
-                                        }
-                                    }
-                                }, 200);
                             }
-                        }, 100);
-                    }, 200);
-                } else {
-                    // Закрываем модальное окно
-                    Lampa.Modal.close();
-                    
-                    // Небольшая задержка для полного закрытия модального окна
-                    setTimeout(function() {
-                        isClosing = false;
-                        
-                        // Убеждаемся, что настройки остаются открытыми
-                        $('body').addClass('settings--open');
-                        
-                        // Проверяем, были ли изменения
-                        if (needReload && !needReloadBeforeOpen) {
-                            Lampa.Noty.show('Перезагрузка...');
                             setTimeout(function() {
                                 window.location.reload();
                             }, 1000);
                         } else {
-                            // Правильно переключаем контроллер обратно в настройки
-                            Lampa.Controller.toggle('settings');
-                            
-                            // Возвращаем фокус на пункт меню в настройках
-                            setTimeout(function() {
-                                if (menuItemElement) {
-                                    var scrollLayer = $('.settings__content .scroll__content');
-                                    if (scrollLayer.length) {
-                                        Lampa.Controller.collectionSet(scrollLayer);
-                                        Lampa.Controller.collectionFocus(menuItemElement, scrollLayer);
-                                    }
-                                }
-                            }, 200);
-                        }
-                    }, 100);
-                }
-            }
-        });
-        
-        // Добавляем класс для стилизации под настройки СРАЗУ, чтобы не было мерцания
-        // Используем requestAnimationFrame для применения стилей до отрисовки
-        requestAnimationFrame(function() {
-            var modal = $('.modal');
-            if (modal.length && !modal.hasClass('cubox-modal-settings')) {
-                modal.addClass('cubox-modal-settings');
-                var modalContent = modal.find('.modal__content');
-                // Устанавливаем начальную позицию сразу
-                modalContent.css({
-                    'transform': 'translateX(0)',
-                    'left': '100%',
-                    'transition': 'none' // Отключаем переход для мгновенного позиционирования
-                });
-                
-                // Включаем переход и анимируем появление
-                requestAnimationFrame(function() {
-                    modalContent.css('transition', 'transform 0.2s');
-                    setTimeout(function() {
-                        modalContent.css('transform', 'translateX(-100%)');
-                    }, 10);
-                });
-            }
-        });
-        
-        // Загружаем список плагинов
-        fetchManifest(function(plugins) {
-            // Ждем, пока модальное окно полностью создастся и его внутренний scroll будет готов
-            var checkModal = setInterval(function() {
-                var scrollContent = $('.modal.cubox-modal-settings .modal__body .scroll__content');
-                var scroll = $('.modal.cubox-modal-settings .modal__body .scroll');
-                if (scrollContent.length && scroll.length) {
-                    clearInterval(checkModal);
-                    
-                    // Очищаем содержимое загрузки
-                    scrollContent.empty();
-                    
-                    // Создаем элементы списка
-                    if (Array.isArray(plugins) && plugins.length > 0) {
-                        plugins.forEach(function(p) {
-                            var isEnabled = enabledPlugins[p.file] === true;
-                            var statusColor = '#4bbc16'; 
-
-                            // Создаем элемент списка
-                            var circle = isEnabled ? 
-                                `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
-                                `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
-
-                            var item = $('<div class="settings-param selector cubox-store-item"></div>');
-                            item.html(`
-                                <div class="cubox-select-item">
-                                    ${circle}
-                                    <div class="cubox-modal-item__content">
-                                        <div class="settings-param__name cubox-select-text">${p.name}</div>
-                                        <div class="settings-param__descr">v${p.version} • ${p.description || ''}</div>
-                                    </div>
-                                </div>
-                            `);
-                            
-                            // Сохраняем данные плагина в элементе
-                            item.data('plugin-file', p.file);
-                            item.data('plugin-enabled', isEnabled);
-                            item.data('plugin-data', p);
-                            
-                            // Обработка выбора
-                            item.on('hover:enter', function() {
-                                if (p.file === 'none') return;
-                                
-                                var currentEnabled = enabledPlugins[p.file] === true;
-                                enabledPlugins[p.file] = !currentEnabled;
-                                Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
-                                needReload = true;
-                                item.data('plugin-enabled', enabledPlugins[p.file]);
-                                
-                                // Обновляем визуальное состояние
-                                var newCircle = enabledPlugins[p.file] ? 
-                                    `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
-                                    `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
-                                
-                                var contentDiv = item.find('.cubox-modal-item__content');
-                                item.find('.cubox-select-item').html(newCircle + contentDiv[0].outerHTML);
-                                
-                                // Показываем уведомление о необходимости перезагрузки
-                                Lampa.Noty.show('Изменения применятся после перезагрузки');
-                            });
-                            
-                            scrollContent.append(item);
-                        });
-                    } else {
-                        var emptyItem = $('<div class="settings-param"></div>');
-                        emptyItem.html('<div class="settings-param__name">Нет плагинов</div><div class="settings-param__descr">Список пуст</div>');
-                        scrollContent.append(emptyItem);
-                    }
-                    
-                    // Настраиваем контроллер для навигации с пульта
-                    // Modal сам управляет контроллером, но нужно обновить коллекцию после добавления элементов
-                    setTimeout(function() {
-                        var items = scrollContent.find('.selector');
-                        if (items.length > 0) {
-                            // Обновляем коллекцию контроллера с новыми элементами
-                            // Modal использует scroll.render() для коллекции
-                            Lampa.Controller.collectionSet(scroll);
-                            
-                            // Устанавливаем фокус на первый элемент
-                            var firstItem = items[0][0];
-                            if (firstItem) {
-                                // Используем небольшой таймаут чтобы убедиться что Modal готов
-                                setTimeout(function() {
-                                    Lampa.Controller.collectionFocus(firstItem, scroll);
-                                }, 100);
-                            }
-                            
-                            // Добавляем обработку фокуса для каждого элемента для правильного скролла
-                            items.each(function() {
-                                var item = $(this);
-                                item.on('hover:focus', function() {
-                                    // Обновляем скролл при фокусе через внутренний механизм Modal
-                                    var scrollInstance = scroll.data('scroll');
-                                    if (scrollInstance && scrollInstance.update) {
-                                        scrollInstance.update(item);
+                            // Возвращаемся в главное меню настроек
+                            // Компонент уже уничтожен, просто возвращаемся в настройки
+                            // Используем requestAnimationFrame для правильного порядка выполнения
+                            // Используем двойной requestAnimationFrame для гарантии выполнения после уничтожения компонента
+                            requestAnimationFrame(function() {
+                                requestAnimationFrame(function() {
+                                    try {
+                                        if (typeof Lampa !== 'undefined' && Lampa.Settings && Lampa.Settings.create) {
+                                            Lampa.Settings.create('main');
+                                        } else if (typeof Lampa !== 'undefined' && Lampa.Controller) {
+                                            // Fallback: используем Controller для возврата в настройки
+                                            Lampa.Controller.toggle('settings');
+                                        }
+                                    } catch(e2) {
+                                        console.error('Cubox Store: Error returning to main settings', e2);
+                                        // Последняя попытка - через Controller
+                                        if (typeof Lampa !== 'undefined' && Lampa.Controller) {
+                                            Lampa.Controller.toggle('settings');
+                                        }
                                     }
                                 });
                             });
                         }
-                    }, 350);
+                    } catch(e) {
+                        console.error('Cubox Store: Error in onBack', e);
+                        // В случае ошибки все равно пытаемся вернуться в настройки
+                        setTimeout(function() {
+                            try {
+                                if (typeof Lampa !== 'undefined' && Lampa.Settings && Lampa.Settings.create) {
+                                    Lampa.Settings.create('main');
+                                } else if (typeof Lampa !== 'undefined' && Lampa.Controller) {
+                                    Lampa.Controller.toggle('settings');
+                                }
+                            } catch(e2) {
+                                console.error('Cubox Store: Error creating main settings', e2);
+                            }
+                        }, 50);
+                    }
                 }
-            }, 50);
+            });
+        } catch(e) {
+            console.error('Cubox Store: Error creating settings component', e);
+        }
+    }
+    
+    // Флаг для предотвращения повторной регистрации слушателя
+    var storeListenerRegistered = false;
+    
+    // Регистрируем компонент настроек
+    function registerStoreComponent() {
+        // Регистрируем компонент только один раз
+        if (typeof Lampa.SettingsApi !== 'undefined' && Lampa.SettingsApi.addComponent) {
+            try {
+                Lampa.SettingsApi.addComponent({
+                    component: 'cubox_store',
+                    name: 'Cubox Store',
+                    icon: '<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>'
+                });
+            } catch(e) {
+                console.error('Cubox Store: Error registering component', e);
+            }
+        }
+        
+        // Слушаем открытие компонента только один раз
+        if (!storeListenerRegistered && typeof Lampa.Settings !== 'undefined' && Lampa.Settings.listener) {
+            storeListenerRegistered = true;
             
-            // Таймаут на случай, если модальное окно не создалось
-            setTimeout(function() {
-                clearInterval(checkModal);
-            }, 5000);
-        });
+            Lampa.Settings.listener.follow('open', function (e) {
+                if (e && e.name == 'cubox_store' && e.body) {
+                    // Ждем, пока компонент создастся
+                    var checkComponent = setInterval(function() {
+                        var scrollContent = e.body.find('.scroll__content');
+                        if (scrollContent.length) {
+                            clearInterval(checkComponent);
+                            
+                            // Загружаем список плагинов
+                            fetchManifest(function(plugins) {
+                                // Убеждаемся, что enabledPlugins инициализирован
+                                if (!enabledPlugins || typeof enabledPlugins !== 'object') {
+                                    initEnabledPlugins();
+                                }
+                                
+                                // Создаем элементы списка
+                                if (Array.isArray(plugins) && plugins.length > 0) {
+                                    plugins.forEach(function(p) {
+                                        if (!p || !p.file) return;
+                                        
+                                        var isEnabled = enabledPlugins[p.file] === true;
+                                        var statusColor = '#4bbc16'; 
+
+                                        // Создаем элемент списка
+                                        var circle = isEnabled ? 
+                                            `<div class="cubox-select-icon" style="background:${statusColor}; box-shadow:0 0 6px ${statusColor}; border:none;"></div>` : 
+                                            `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
+
+                                        var item = $('<div class="settings-param selector cubox-store-item"></div>');
+                                        item.html(`
+                                            <div class="cubox-select-item">
+                                                ${circle}
+                                                <div class="cubox-modal-item__content">
+                                                    <div class="settings-param__name cubox-select-text">${p.name}</div>
+                                                    <div class="settings-param__descr">v${p.version} • ${p.description || ''}</div>
+                                                </div>
+                                            </div>
+                                        `);
+                                        
+                                        // Сохраняем данные плагина в элементе
+                                        item.data('plugin-file', p.file);
+                                        item.data('plugin-enabled', isEnabled);
+                                        item.data('plugin-data', p);
+                                        
+                                        // Сохраняем данные плагина в локальные переменные для замыкания
+                                        var pluginFile = p.file;
+                                        var pluginStatusColor = statusColor;
+                                        
+                                        // Обработка выбора
+                                        item.on('hover:enter', function() {
+                                            try {
+                                                if (!pluginFile || pluginFile === 'none') return;
+                                                
+                                                // Убеждаемся, что enabledPlugins инициализирован
+                                                if (!enabledPlugins || typeof enabledPlugins !== 'object') {
+                                                    initEnabledPlugins();
+                                                }
+                                                
+                                                var currentEnabled = enabledPlugins[pluginFile] === true;
+                                                enabledPlugins[pluginFile] = !currentEnabled;
+                                                
+                                                try {
+                                                    Lampa.Storage.set(STORAGE_KEY, enabledPlugins);
+                                                } catch(e) {
+                                                    console.error('Cubox Store: Error saving plugin state', e);
+                                                }
+                                                
+                                                needReload = true;
+                                                item.data('plugin-enabled', enabledPlugins[pluginFile]);
+                                                
+                                                // Обновляем визуальное состояние
+                                                var newCircle = enabledPlugins[pluginFile] ? 
+                                                    `<div class="cubox-select-icon" style="background:${pluginStatusColor}; box-shadow:0 0 6px ${pluginStatusColor}; border:none;"></div>` : 
+                                                    `<div class="cubox-select-icon" style="border:2px solid rgba(255,255,255,0.3);"></div>`;
+                                                
+                                                var contentDiv = item.find('.cubox-modal-item__content');
+                                                if (contentDiv.length) {
+                                                    item.find('.cubox-select-item').html(newCircle + contentDiv[0].outerHTML);
+                                                }
+                                                
+                                                // Показываем уведомление о необходимости перезагрузки
+                                                Lampa.Noty.show('Изменения применятся после перезагрузки');
+                                            } catch(e) {
+                                                console.error('Cubox Store: Error in hover:enter handler', e);
+                                            }
+                                        });
+                                        
+                                        scrollContent.append(item);
+                                    });
+                                } else {
+                                    var emptyItem = $('<div class="settings-param"></div>');
+                                    emptyItem.html('<div class="settings-param__name">Нет плагинов</div><div class="settings-param__descr">Список пуст</div>');
+                                    scrollContent.append(emptyItem);
+                                }
+                                
+                                // Обновляем коллекцию контроллера после добавления элементов
+                                setTimeout(function() {
+                                    var scroll = e.body.find('.scroll');
+                                    var items = scrollContent.find('.selector');
+                                    if (items.length > 0 && scroll.length) {
+                                        Lampa.Controller.collectionSet(scroll);
+                                        var firstItem = items[0][0];
+                                        if (firstItem) {
+                                            setTimeout(function() {
+                                                Lampa.Controller.collectionFocus(firstItem, scroll);
+                                            }, 100);
+                                        }
+                                    }
+                                }, 150);
+                            });
+                        }
+                    }, 50);
+                    
+                    // Таймаут на случай, если компонент не создался
+                    setTimeout(function() {
+                        clearInterval(checkComponent);
+                    }, 5000);
+                }
+            });
+        }
     }
 
     function addMenu() {
@@ -458,6 +453,8 @@
 
     // Инициализация
     function init() {
+        initEnabledPlugins();
+        registerStoreComponent();
         addMenu();
         startPlugins();
     }
@@ -465,11 +462,30 @@
     if (window.appready) { 
         init();
     } else { 
-        Lampa.Listener.follow('app', function (e) { 
-            if (e.type == 'ready') { 
-                init();
-            } 
-        }); 
+        if (typeof Lampa !== 'undefined' && Lampa.Listener) {
+            Lampa.Listener.follow('app', function (e) { 
+                if (e && e.type == 'ready') { 
+                    init();
+                } 
+            });
+        } else {
+            // Если Lampa еще не загружен, ждем
+            var checkLampa = setInterval(function() {
+                if (typeof Lampa !== 'undefined' && Lampa.Listener) {
+                    clearInterval(checkLampa);
+                    Lampa.Listener.follow('app', function (e) { 
+                        if (e && e.type == 'ready') { 
+                            init();
+                        } 
+                    });
+                }
+            }, 100);
+            
+            // Таймаут на случай, если Lampa не загрузится
+            setTimeout(function() {
+                clearInterval(checkLampa);
+            }, 10000);
+        }
     }
 })();
 
