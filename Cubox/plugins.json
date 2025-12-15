@@ -7,8 +7,8 @@
   },
   {
     "name": "Cub_off",
-    "version": "3",
-    "description": "Отключение рекламы CUB (включая старые TV приставки - исправлено)",
+    "version": "4",
+    "description": "Отключение рекламы CUB (включая старые TV приставки и нативное Android приложение)",
     "file": "cub_off.js"
   }
 ]
