@@ -169,8 +169,8 @@
             $('body').addClass('settings--open');
         }
         
-        // Показываем загрузку
-        var loadingContent = $('<div style="padding: 2em; text-align: center;">Загрузка...</div>');
+        // Показываем загрузку (скрываем, чтобы не было мерцания)
+        var loadingContent = $('<div style="padding: 2em; text-align: center; opacity: 0;">Загрузка...</div>');
         
         // Открываем модальное окно с высоким z-index чтобы было поверх настроек
         Lampa.Modal.open({
@@ -264,30 +264,37 @@
             }
         });
         
-        // Добавляем класс для стилизации под настройки и анимируем появление справа
-        setTimeout(function() {
+        // Добавляем класс для стилизации под настройки СРАЗУ, чтобы не было мерцания
+        // Используем requestAnimationFrame для применения стилей до отрисовки
+        requestAnimationFrame(function() {
             var modal = $('.modal');
             if (modal.length && !modal.hasClass('cubox-modal-settings')) {
                 modal.addClass('cubox-modal-settings');
                 var modalContent = modal.find('.modal__content');
-                // Устанавливаем начальную позицию
+                // Устанавливаем начальную позицию сразу
                 modalContent.css({
                     'transform': 'translateX(0)',
-                    'left': '100%'
+                    'left': '100%',
+                    'transition': 'none' // Отключаем переход для мгновенного позиционирования
                 });
-                // Анимируем появление
-                setTimeout(function() {
-                    modalContent.css('transform', 'translateX(-100%)');
-                }, 10);
+                
+                // Включаем переход и анимируем появление
+                requestAnimationFrame(function() {
+                    modalContent.css('transition', 'transform 0.2s');
+                    setTimeout(function() {
+                        modalContent.css('transform', 'translateX(-100%)');
+                    }, 10);
+                });
             }
-        }, 100);
+        });
         
         // Загружаем список плагинов
         fetchManifest(function(plugins) {
             // Ждем, пока модальное окно полностью создастся и его внутренний scroll будет готов
             var checkModal = setInterval(function() {
                 var scrollContent = $('.modal.cubox-modal-settings .modal__body .scroll__content');
-                if (scrollContent.length) {
+                var scroll = $('.modal.cubox-modal-settings .modal__body .scroll');
+                if (scrollContent.length && scroll.length) {
                     clearInterval(checkModal);
                     
                     // Очищаем содержимое загрузки
@@ -350,27 +357,37 @@
                         scrollContent.append(emptyItem);
                     }
                     
-                    // Настраиваем контроллер для навигации
-                    // Modal сам управляет контроллером через свой внутренний механизм
-                    // Нам нужно только убедиться, что элементы правильно обрабатывают фокус
+                    // Настраиваем контроллер для навигации с пульта
+                    // Modal сам управляет контроллером, но нужно обновить коллекцию после добавления элементов
                     setTimeout(function() {
-                        var scroll = $('.modal.cubox-modal-settings .modal__body .scroll');
                         var items = scrollContent.find('.selector');
-                        if (items.length > 0 && scroll.length) {
-                            // Добавляем обработку фокуса для каждого элемента
+                        if (items.length > 0) {
+                            // Обновляем коллекцию контроллера с новыми элементами
+                            // Modal использует scroll.render() для коллекции
+                            Lampa.Controller.collectionSet(scroll);
+                            
+                            // Устанавливаем фокус на первый элемент
+                            var firstItem = items[0][0];
+                            if (firstItem) {
+                                // Используем небольшой таймаут чтобы убедиться что Modal готов
+                                setTimeout(function() {
+                                    Lampa.Controller.collectionFocus(firstItem, scroll);
+                                }, 100);
+                            }
+                            
+                            // Добавляем обработку фокуса для каждого элемента для правильного скролла
                             items.each(function() {
                                 var item = $(this);
                                 item.on('hover:focus', function() {
+                                    // Обновляем скролл при фокусе через внутренний механизм Modal
                                     var scrollInstance = scroll.data('scroll');
                                     if (scrollInstance && scrollInstance.update) {
                                         scrollInstance.update(item);
                                     }
                                 });
                             });
-                            
-                            // Modal сам установит фокус через параметр select или через свой механизм
                         }
-                    }, 200);
+                    }, 350);
                 }
             }, 50);
             
