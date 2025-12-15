@@ -1,6 +1,6 @@
 // @name: Cub_off
-// @version: 2
-// @description: Отключение рекламы CUB (включая старые TV приставки)
+// @version: 3
+// @description: Отключение рекламы CUB (включая старые TV приставки - исправлено)
 
 (function () {
     'use strict';
@@ -27,7 +27,73 @@
         blacklist: true  // Отключаем черные списки контента
     };
 
-    var PLUGIN_VERSION = 'CUB OFF v21.0 (TV Support)';
+    var PLUGIN_VERSION = 'CUB OFF v22.0 (Old TV Fix)';
+    
+    // ========================================================================
+    // 0. РАННИЙ ПЕРЕХВАТ ДЛЯ СТАРЫХ TV ПРИСТАВОК (До загрузки модулей)
+    // ========================================================================
+    // Определяем, является ли это старой TV приставкой
+    var isOldTV = function() {
+        try {
+            var ua = navigator.userAgent.toLowerCase();
+            var body = document.body;
+            if (body && body.classList) {
+                if (body.classList.contains('platform--orsay') || 
+                    body.classList.contains('platform--netcast')) {
+                    return true;
+                }
+            }
+            if (ua.indexOf('maple') !== -1 || ua.indexOf('netcast') !== -1) {
+                return true;
+            }
+        } catch(e) {}
+        return false;
+    };
+
+    // Ранний перехват для старых TV приставок - перехватываем функции до загрузки модулей
+    var earlyIntercept = function() {
+        // Сохраняем оригинальные функции для перехвата
+        var interceptedModules = {};
+        
+        // Перехватываем через глобальный объект window
+        var originalWindowSetTimeout = window.setTimeout;
+        var adTimers = [];
+        
+        // Перехватываем setTimeout для блокировки рекламных таймеров
+        window.setTimeout = function(func, delay) {
+            // Блокируем рекламные таймеры (3.5 секунды - стандартное время показа рекламы)
+            if (delay === 3500 || (delay > 3400 && delay < 3600)) {
+                // Вызываем функцию сразу, чтобы пропустить рекламу
+                if (typeof func === 'function') {
+                    try {
+                        func();
+                    } catch(e) {}
+                }
+                return 0; // Возвращаем фиктивный ID таймера
+            }
+            return originalWindowSetTimeout.apply(this, arguments);
+        };
+
+        // Перехватываем setInterval для блокировки рекламных интервалов
+        var originalSetInterval = window.setInterval;
+        window.setInterval = function(func, delay) {
+            // Блокируем интервалы, связанные с рекламой
+            if (delay === 1000) { // 1 секунда - часто используется для таймеров рекламы
+                var funcStr = func.toString();
+                if (funcStr.indexOf('tic') !== -1 || 
+                    funcStr.indexOf('count') !== -1 ||
+                    funcStr.indexOf('ad') !== -1 ||
+                    funcStr.indexOf('premium') !== -1) {
+                    // Это похоже на рекламный таймер, блокируем
+                    return 0;
+                }
+            }
+            return originalSetInterval.apply(this, arguments);
+        };
+    };
+
+    // Запускаем ранний перехват сразу
+    earlyIntercept();
     
     // Безопасная обертка всего функционала
     try {
@@ -163,13 +229,15 @@
         var blockAdFunctions = function() {
             // Ранний перехват через прототипы и глобальные объекты
             var interceptedFunctions = {};
+            var isOldTVDevice = isOldTV();
             
             // Функция для перехвата методов объекта
-            var interceptMethod = function(obj, methodName, replacement) {
+            var interceptMethod = function(obj, methodName, replacement, force) {
                 if (!obj || !obj[methodName]) return false;
                 try {
-                    if (!interceptedFunctions[obj.constructor.name + '.' + methodName]) {
-                        interceptedFunctions[obj.constructor.name + '.' + methodName] = obj[methodName];
+                    var key = (obj.constructor && obj.constructor.name ? obj.constructor.name : 'Object') + '.' + methodName;
+                    if (!interceptedFunctions[key] || force) {
+                        interceptedFunctions[key] = obj[methodName];
                         obj[methodName] = replacement;
                         return true;
                     }
@@ -177,11 +245,57 @@
                 return false;
             };
 
+            // Агрессивный перехват для старых TV приставок
+            var aggressiveIntercept = function() {
+                try {
+                    // Перехватываем через глобальные объекты
+                    if (window.Lampa) {
+                        // Перехватываем Player.Preroll.show напрямую
+                        if (window.Lampa.Player && window.Lampa.Player.Preroll && window.Lampa.Player.Preroll.show) {
+                            interceptMethod(window.Lampa.Player.Preroll, 'show', function(data, call) {
+                                if (call && typeof call === 'function') {
+                                    call();
+                                }
+                            }, true);
+                        }
+
+                        // Перехватываем через Interaction
+                        if (window.Lampa.Interaction) {
+                            // Ищем модули рекламы
+                            var interactionKeys = Object.keys(window.Lampa.Interaction);
+                            for (var i = 0; i < interactionKeys.length; i++) {
+                                var key = interactionKeys[i];
+                                var module = window.Lampa.Interaction[key];
+                                if (module && typeof module === 'object') {
+                                    if (module.show && typeof module.show === 'function') {
+                                        var showStr = module.show.toString();
+                                        if (showStr.indexOf('cub-premium') !== -1 || 
+                                            showStr.indexOf('premium') !== -1 ||
+                                            showStr.indexOf('Modal.open') !== -1) {
+                                            interceptMethod(module, 'show', function(data, call) {
+                                                if (call && typeof call === 'function') {
+                                                    call();
+                                                }
+                                            }, true);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch(e) {}
+            };
+
             // Перехватываем функции показа рекламы через интервалы
             var checkInterval = setInterval(function() {
                 try {
                     // Блокируем Advert/Offer модуль
                     if (typeof Lampa !== 'undefined') {
+                        // Агрессивный перехват для старых TV приставок
+                        if (isOldTVDevice) {
+                            aggressiveIntercept();
+                        }
+
                         // Блокируем через Interaction.Advert
                         if (Lampa.Interaction && Lampa.Interaction.Advert) {
                             if (Lampa.Interaction.Advert.Offer && Lampa.Interaction.Advert.Offer.show) {
@@ -189,14 +303,14 @@
                                     if (call && typeof call === 'function') {
                                         call();
                                     }
-                                });
+                                }, isOldTVDevice);
                             }
                             if (Lampa.Interaction.Advert.Preroll && Lampa.Interaction.Advert.Preroll.show) {
                                 interceptMethod(Lampa.Interaction.Advert.Preroll, 'show', function(data, call) {
                                     if (call && typeof call === 'function') {
                                         call();
                                     }
-                                });
+                                }, isOldTVDevice);
                             }
                         }
 
@@ -207,14 +321,14 @@
                                     if (call && typeof call === 'function') {
                                         call();
                                     }
-                                });
+                                }, isOldTVDevice);
                             }
                             if (Lampa.Advert.Preroll && Lampa.Advert.Preroll.show) {
                                 interceptMethod(Lampa.Advert.Preroll, 'show', function(data, call) {
                                     if (call && typeof call === 'function') {
                                         call();
                                     }
-                                });
+                                }, isOldTVDevice);
                             }
                         }
 
@@ -258,23 +372,24 @@
                                 }
                                 
                                 // Вызываем оригинальную функцию
-                                if (interceptedFunctions['Modal.open']) {
-                                    return interceptedFunctions['Modal.open'].call(this, options);
+                                var key = 'Modal.open';
+                                if (interceptedFunctions[key]) {
+                                    return interceptedFunctions[key].call(this, options);
                                 }
-                            });
+                            }, isOldTVDevice);
                         }
 
                         // Блокируем Account.showCubPremium
                         if (Lampa.Account && Lampa.Account.showCubPremium) {
                             interceptMethod(Lampa.Account, 'showCubPremium', function() {
                                 // Ничего не делаем
-                            });
+                            }, isOldTVDevice);
                         }
                     }
                 } catch(e) {
                     // Игнорируем ошибки
                 }
-            }, 300);
+            }, isOldTVDevice ? 100 : 300); // Более частые проверки для старых TV приставок
 
             // Не останавливаем проверку - продолжаем работать постоянно
             // Это важно для старых TV приставок, где модули могут загружаться позже
@@ -284,6 +399,7 @@
         // 6.6. БЛОКИРОВКА СОЗДАНИЯ РЕКЛАМНЫХ ЭЛЕМЕНТОВ (MutationObserver)
         // ====================================================================
         var blockAdElements = function() {
+            var isOldTVDevice = isOldTV();
             var hideAdElement = function(element) {
                 if (!element) return;
                 try {
@@ -365,14 +481,34 @@
             }
 
             // Дополнительная проверка каждые 2 секунды (для старых TV приставок)
+            var checkInterval = isOldTVDevice ? 500 : 2000; // Более частые проверки для старых TV приставок
             setInterval(function() {
                 try {
-                    var adElements = document.querySelectorAll('.ad-preroll, .ad-server, .player-advertising, .layer--advertising, .modal--cub-premium, .cub-premium, [class*="ad-preroll"], [class*="ad-server"]');
+                    var adElements = document.querySelectorAll('.ad-preroll, .ad-server, .player-advertising, .layer--advertising, .modal--cub-premium, .cub-premium, [class*="ad-preroll"], [class*="ad-server"], [class*="ad"], [id*="ad"]');
                     for (var i = 0; i < adElements.length; i++) {
                         hideAdElement(adElements[i]);
                     }
+                    
+                    // Дополнительная проверка для старых TV приставок - ищем все элементы с рекламой
+                    if (isOldTVDevice) {
+                        var allElements = document.querySelectorAll('*');
+                        for (var j = 0; j < allElements.length; j++) {
+                            var el = allElements[j];
+                            if (el.classList) {
+                                for (var k = 0; k < el.classList.length; k++) {
+                                    var className = el.classList[k];
+                                    if (className.indexOf('ad') !== -1 || 
+                                        className.indexOf('premium') !== -1 ||
+                                        className.indexOf('advert') !== -1) {
+                                        hideAdElement(el);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 } catch(e) {}
-            }, 2000);
+            }, checkInterval);
         };
 
         // ====================================================================
@@ -419,4 +555,3 @@
     }
 
 })();
-
