@@ -1,6 +1,6 @@
 // @name: Cub_off
-// @version: 4
-// @description: Отключение рекламы CUB (включая старые TV приставки и нативное Android приложение)
+// @version: 5
+// @description: Отключение рекламы CUB (агрессивная блокировка для всех платформ)
 
 (function () {
     'use strict';
@@ -27,7 +27,7 @@
         blacklist: true  // Отключаем черные списки контента
     };
 
-    var PLUGIN_VERSION = 'CUB OFF v23.0 (Native App Fix)';
+    var PLUGIN_VERSION = 'CUB OFF v24.0 (Aggressive Block)';
     
     // ========================================================================
     // 0. РАННИЙ ПЕРЕХВАТ ДЛЯ СТАРЫХ TV ПРИСТАВОК (До загрузки модулей)
@@ -85,8 +85,11 @@
                 var funcStr = func.toString();
                 if (funcStr.indexOf('tic') !== -1 || 
                     funcStr.indexOf('count') !== -1 ||
+                    funcStr.indexOf('coun') !== -1 ||
                     funcStr.indexOf('ad') !== -1 ||
-                    funcStr.indexOf('premium') !== -1) {
+                    funcStr.indexOf('premium') !== -1 ||
+                    funcStr.indexOf('Modal.close') !== -1 ||
+                    funcStr.indexOf('Controller.toggle') !== -1) {
                     // Это похоже на рекламный таймер, блокируем
                     return 0;
                 }
@@ -126,6 +129,35 @@
             }
             return originalDefineProperty.call(this, obj, prop, descriptor);
         };
+
+        // Ранний перехват Account.hasPremium через прототипы
+        var setupAccountPremium = function() {
+            var checkAccount = setInterval(function() {
+                try {
+                    if (typeof Lampa !== 'undefined' && Lampa.Account) {
+                        if (Lampa.Account.hasPremium) {
+                            var originalHasPremium = Lampa.Account.hasPremium;
+                            Lampa.Account.hasPremium = function() {
+                                return true;
+                            };
+                            // Также блокируем через defineProperty если это возможно
+                            try {
+                                Object.defineProperty(Lampa.Account, 'hasPremium', {
+                                    value: function() { return true; },
+                                    writable: true,
+                                    configurable: true
+                                });
+                            } catch(e) {}
+                        }
+                        clearInterval(checkAccount);
+                    }
+                } catch(e) {}
+            }, 50);
+            
+            // Останавливаем через 10 секунд
+            setTimeout(function() { clearInterval(checkAccount); }, 10000);
+        };
+        setupAccountPremium();
 
         // ====================================================================
         // 4. БЕЗОПАСНЫЙ CSS (Скрытие рекламы)
@@ -292,6 +324,11 @@
             // Перехватываем функции показа рекламы через интервалы
             var checkInterval = setInterval(function() {
                 try {
+                    // Убеждаемся, что disable_features.ads всегда true
+                    if (window.lampa_settings && window.lampa_settings.disable_features) {
+                        window.lampa_settings.disable_features.ads = true;
+                    }
+                    
                     // Блокируем Advert/Offer модуль
                     if (typeof Lampa !== 'undefined') {
                         // Агрессивный перехват для старых TV приставок
@@ -355,6 +392,8 @@
                                         
                                         if (htmlStr.toLowerCase().indexOf('cub-premium') !== -1 || 
                                             htmlStr.toLowerCase().indexOf('premium') !== -1 ||
+                                            htmlStr.toLowerCase().indexOf('ad_continue_after') !== -1 ||
+                                            htmlStr.toLowerCase().indexOf('ad_disable') !== -1 ||
                                             (htmlStr.toLowerCase().indexOf('ad') !== -1 && htmlStr.toLowerCase().indexOf('disable') === -1)) {
                                             // Закрываем рекламное модальное окно сразу
                                             if (options.onBack && typeof options.onBack === 'function') {
@@ -382,6 +421,25 @@
                             }, isOldTVDevice);
                         }
 
+                        // Блокируем Modal.render().addClass('modal--cub-premium')
+                        if (Lampa.Modal && Lampa.Modal.render) {
+                            var originalModalRender = Lampa.Modal.render;
+                            Lampa.Modal.render = function() {
+                                var result = originalModalRender.call(this);
+                                if (result && result.addClass) {
+                                    var originalAddClass = result.addClass;
+                                    result.addClass = function(className) {
+                                        if (className && className.indexOf('cub-premium') !== -1) {
+                                            // Блокируем добавление класса рекламы
+                                            return result;
+                                        }
+                                        return originalAddClass.apply(this, arguments);
+                                    };
+                                }
+                                return result;
+                            };
+                        }
+
                         // Блокируем Account.showCubPremium
                         if (Lampa.Account && Lampa.Account.showCubPremium) {
                             interceptMethod(Lampa.Account, 'showCubPremium', function() {
@@ -397,8 +455,11 @@
                                 for (var key in obj) {
                                     if (key === 'Offer' && obj[key] && obj[key].show) {
                                         interceptMethod(obj[key], 'show', function(data, call) {
+                                            // Сразу вызываем callback, пропуская рекламу
                                             if (call && typeof call === 'function') {
-                                                call();
+                                                try {
+                                                    call();
+                                                } catch(e) {}
                                             }
                                         }, isOldTVDevice);
                                     }
@@ -409,9 +470,21 @@
                             } catch(e) {}
                         };
                         
-                        if (isOldTVDevice) {
-                            findAndBlockOffer(Lampa, 'Lampa');
-                            findAndBlockOffer(window, 'window');
+                        // Всегда ищем и блокируем Offer, не только для старых TV
+                        findAndBlockOffer(Lampa, 'Lampa');
+                        findAndBlockOffer(window, 'window');
+                        
+                        // Также блокируем через Interaction.Advert
+                        if (Lampa.Interaction && Lampa.Interaction.Advert) {
+                            if (Lampa.Interaction.Advert.Offer && Lampa.Interaction.Advert.Offer.show) {
+                                interceptMethod(Lampa.Interaction.Advert.Offer, 'show', function(data, call) {
+                                    if (call && typeof call === 'function') {
+                                        try {
+                                            call();
+                                        } catch(e) {}
+                                    }
+                                }, true);
+                            }
                         }
                     }
                 } catch(e) {
@@ -568,8 +641,27 @@
             
             // Финальная страховка премиума
             if (typeof Lampa !== 'undefined' && Lampa.Account) {
-                try { Lampa.Account.hasPremium = function() { return true; }; } catch(e) {}
+                try { 
+                    Lampa.Account.hasPremium = function() { return true; };
+                    // Также через defineProperty
+                    Object.defineProperty(Lampa.Account, 'hasPremium', {
+                        value: function() { return true; },
+                        writable: true,
+                        configurable: true
+                    });
+                } catch(e) {}
             }
+            
+            // Постоянная проверка и блокировка Account.hasPremium
+            setInterval(function() {
+                try {
+                    if (typeof Lampa !== 'undefined' && Lampa.Account) {
+                        if (Lampa.Account.hasPremium && Lampa.Account.hasPremium.toString().indexOf('return true') === -1) {
+                            Lampa.Account.hasPremium = function() { return true; };
+                        }
+                    }
+                } catch(e) {}
+            }, 500);
         };
 
         if (document.readyState === 'loading') {
