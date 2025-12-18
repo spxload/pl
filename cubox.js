@@ -122,7 +122,7 @@
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.5';
+    var CUBOX_VERSION = 'v3.6';
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
@@ -381,12 +381,24 @@
                                     var scroll = e.body.find('.scroll');
                                     var items = scrollContent.find('.selector');
                                     if (items.length > 0 && scroll.length) {
+                                        // Устанавливаем коллекцию
                                         Lampa.Controller.collectionSet(scroll);
+                                        
+                                        // Принудительно переключаем на контроллер компонента настроек
+                                        // Это активирует навигацию в Crosswalk
+                                        Lampa.Controller.toggle('settings_component');
+                                        
                                         var firstItem = items[0][0];
                                         if (firstItem) {
                                             setTimeout(function() {
+                                                // Устанавливаем фокус
                                                 Lampa.Controller.collectionFocus(firstItem, scroll);
-                                            }, 100);
+                                                
+                                                // Если это TV, пробуем через Navigator (как в миграции 3.0)
+                                                if (typeof Navigator !== 'undefined' && Navigator.focused) {
+                                                    Navigator.focused(firstItem);
+                                                }
+                                            }, 50);
                                         }
                                     }
                                 }, 150);
