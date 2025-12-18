@@ -122,7 +122,7 @@
     var GITHUB_REPO = 'pl'; 
     var BRANCH = 'main';
     var FOLDER_PATH = 'Cubox'; 
-    var CUBOX_VERSION = 'v3.6';
+    var CUBOX_VERSION = 'v3.5';
 
     var STORAGE_KEY = 'cubox_plugins_state';
     var CDN_BASE = 'https://cdn.jsdelivr.net/gh/' + GITHUB_USER + '/' + GITHUB_REPO + '@' + BRANCH + '/' + FOLDER_PATH + '/';
@@ -468,23 +468,11 @@
                         else scrollLayer.append(field);
                         
                         // Обновляем коллекцию контроллера после добавления элемента
-                        // Для Crosswalk используем Navigator напрямую
+                        // Это нужно для TV приставки, чтобы можно было переключиться на новый элемент
                         setTimeout(function() {
-                            try {
-                                var currentController = Lampa.Controller && Lampa.Controller.enabled ? Lampa.Controller.enabled() : null;
-                                if (currentController && currentController.name === 'settings') {
-                                    var allItems = scrollLayer.find('.selector').toArray();
-                                    
-                                    // Используем Navigator напрямую для Crosswalk совместимости
-                                    if (typeof Navigator !== 'undefined' && allItems.length > 0) {
-                                        Navigator.setCollection(allItems);
-                                    } else {
-                                        // Fallback через Controller
-                                        Lampa.Controller.collectionSet(scrollLayer);
-                                    }
-                                }
-                            } catch(err) {
-                                console.error('Cubox Store: Error updating main menu navigation', err);
+                            var currentController = Lampa.Controller && Lampa.Controller.enabled ? Lampa.Controller.enabled() : null;
+                            if (currentController && currentController.name === 'settings') {
+                                Lampa.Controller.collectionSet(scrollLayer);
                             }
                         }, 150);
                     }
