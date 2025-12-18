@@ -7,8 +7,8 @@
   },
   {
     "name": "Cub_off",
-    "version": "5",
-    "description": "Отключение рекламы CUB (агрессивная блокировка для всех платформ)",
+    "version": "1",
+    "description": "Отключение рекламы CUB",
     "file": "cub_off.js"
   }
 ]
