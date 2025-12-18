@@ -377,31 +377,52 @@
                                 }
                                 
                                 // Обновляем коллекцию контроллера после добавления элементов
+                                // Для Crosswalk и старых WebView используем Navigator напрямую
                                 setTimeout(function() {
-                                    var scroll = e.body.find('.scroll');
-                                    var items = scrollContent.find('.selector');
-                                    if (items.length > 0 && scroll.length) {
-                                        // Устанавливаем коллекцию
-                                        Lampa.Controller.collectionSet(scroll);
+                                    try {
+                                        var items = scrollContent.find('.selector');
                                         
-                                        // Принудительно переключаем на контроллер компонента настроек
-                                        // Это активирует навигацию в Crosswalk
-                                        Lampa.Controller.toggle('settings_component');
-                                        
-                                        var firstItem = items[0][0];
-                                        if (firstItem) {
-                                            setTimeout(function() {
-                                                // Устанавливаем фокус
-                                                Lampa.Controller.collectionFocus(firstItem, scroll);
-                                                
-                                                // Если это TV, пробуем через Navigator (как в миграции 3.0)
-                                                if (typeof Navigator !== 'undefined' && Navigator.focused) {
-                                                    Navigator.focused(firstItem);
+                                        if (items.length > 0) {
+                                            // Привязываем события hover:focus к элементам (как в стандартном component.js)
+                                            var scroll = e.body.find('.scroll');
+                                            items.off('hover:focus').on('hover:focus', function(evt) {
+                                                // Обновляем скролл при фокусе
+                                                if (scroll.length && scroll[0].scrollUpdate) {
+                                                    scroll[0].scrollUpdate($(evt.target), true);
                                                 }
-                                            }, 50);
+                                            });
+                                            
+                                            // Получаем массив DOM элементов для Navigator
+                                            var itemsArray = items.toArray();
+                                            
+                                            // Используем Navigator напрямую для Crosswalk совместимости
+                                            if (typeof Navigator !== 'undefined') {
+                                                Navigator.setCollection(itemsArray);
+                                                
+                                                // Устанавливаем фокус на первый элемент
+                                                if (itemsArray.length > 0) {
+                                                    setTimeout(function() {
+                                                        try {
+                                                            Navigator.focus(itemsArray[0]);
+                                                        } catch(e) {
+                                                            console.error('Cubox Store: Navigator.focus error', e);
+                                                        }
+                                                    }, 50);
+                                                }
+                                            } else {
+                                                // Fallback через Controller
+                                                Lampa.Controller.collectionSet(e.body);
+                                                if (itemsArray.length > 0) {
+                                                    setTimeout(function() {
+                                                        Lampa.Controller.collectionFocus(itemsArray[0], e.body);
+                                                    }, 50);
+                                                }
+                                            }
                                         }
+                                    } catch(err) {
+                                        console.error('Cubox Store: Error setting up navigation', err);
                                     }
-                                }, 150);
+                                }, 200);
                             });
                         }
                     }, 50);
@@ -447,14 +468,23 @@
                         else scrollLayer.append(field);
                         
                         // Обновляем коллекцию контроллера после добавления элемента
-                        // Это нужно для TV приставки, чтобы можно было переключиться на новый элемент
-                        // Settings использует scrollLayer для коллекции
+                        // Для Crosswalk используем Navigator напрямую
                         setTimeout(function() {
-                            // Проверяем, активен ли контроллер настроек
-                            var currentController = Lampa.Controller && Lampa.Controller.enabled ? Lampa.Controller.enabled() : null;
-                            if (currentController && currentController.name === 'settings') {
-                                // Обновляем коллекцию контроллера с новым элементом
-                                Lampa.Controller.collectionSet(scrollLayer);
+                            try {
+                                var currentController = Lampa.Controller && Lampa.Controller.enabled ? Lampa.Controller.enabled() : null;
+                                if (currentController && currentController.name === 'settings') {
+                                    var allItems = scrollLayer.find('.selector').toArray();
+                                    
+                                    // Используем Navigator напрямую для Crosswalk совместимости
+                                    if (typeof Navigator !== 'undefined' && allItems.length > 0) {
+                                        Navigator.setCollection(allItems);
+                                    } else {
+                                        // Fallback через Controller
+                                        Lampa.Controller.collectionSet(scrollLayer);
+                                    }
+                                }
+                            } catch(err) {
+                                console.error('Cubox Store: Error updating main menu navigation', err);
                             }
                         }, 150);
                     }
